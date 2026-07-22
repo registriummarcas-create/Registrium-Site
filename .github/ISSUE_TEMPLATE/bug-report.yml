@@ -1,0 +1,24 @@
+name: Relatar falha
+description: Falha funcional, visual ou de integração.
+title: ""
+labels:
+  - "type:bug"
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: O que aconteceu?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Navegador, dispositivo e ambiente
+    validations:
+      required: true

@@ -1,0 +1,26 @@
+---
+import { contactConfig } from '../../config/contact';
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>REGISTRIUM</strong>
+      <p>Estratégia, registro e acompanhamento de marcas no INPI.</p>
+    </div>
+    <div>
+      <p><a href={`mailto:${contactConfig.email}`}>{contactConfig.email}</a></p>
+      <p><a href="/politica-de-privacidade">Política de Privacidade</a></p>
+      <p><a href="/termos-de-uso">Termos de Uso</a></p>
+    </div>
+  </div>
+  <div class="container legal">© 2026 Registrium. O deferimento de pedidos compete exclusivamente ao INPI.</div>
+</footer>
+<style>
+.footer { background: var(--color-navy-950); color: var(--color-white); padding: 3.5rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2rem; }
+.footer strong { letter-spacing: .16em; }
+.footer p { color: rgba(255,255,255,.72); }
+.footer a { color: inherit; }
+.legal { border-top: 1px solid rgba(255,255,255,.14); margin-top: 2rem; padding-top: 1.5rem; color: rgba(255,255,255,.58); font-size: .85rem; }
+@media (max-width: 650px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>

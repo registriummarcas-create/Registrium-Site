@@ -1,0 +1,9 @@
+{
+  "name": "Registrium",
+  "short_name": "Registrium",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071625",
+  "theme_color": "#071625",
+  "icons": []
+}

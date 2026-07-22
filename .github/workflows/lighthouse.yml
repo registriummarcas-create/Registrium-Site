@@ -1,0 +1,13 @@
+name: Lighthouse placeholder
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  instructions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ative este workflow após configurar a URL de preview/produção no Cloudflare Pages."

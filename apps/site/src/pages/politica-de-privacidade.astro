@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contactConfig } from '../config/contact';
+---
+<BaseLayout title="Política de Privacidade | Registrium" description="Política de privacidade e tratamento de dados da Registrium.">
+  <article class="section legal-page container">
+    <p class="eyebrow">Privacidade</p>
+    <h1>Política de Privacidade</h1>
+    <p><strong>Versão inicial para revisão jurídica antes da publicação definitiva.</strong></p>
+    <h2>1. Finalidade</h2><p>Os dados informados no formulário são utilizados para analisar a solicitação, realizar contato, prestar informações e organizar o atendimento.</p>
+    <h2>2. Dados tratados</h2><p>Podem ser tratados nome, telefone, e-mail, nome da marca, segmento, localização, situação perante o INPI, mensagem e dados técnicos de navegação.</p>
+    <h2>3. Serviços de terceiros</h2><p>O formulário, a hospedagem, o analytics e os canais de comunicação poderão ser fornecidos por terceiros, sujeitos às respectivas políticas e configurações de privacidade.</p>
+    <h2>4. Direitos do titular</h2><p>Solicitações relacionadas aos dados pessoais podem ser encaminhadas para <a href={`mailto:${contactConfig.email}`}>{contactConfig.email}</a>.</p>
+    <h2>5. Segurança</h2><p>A Registrium adota medidas proporcionais para evitar acesso não autorizado, perda, alteração ou divulgação indevida.</p>
+    <h2>6. Atualizações</h2><p>Esta política poderá ser alterada para refletir mudanças operacionais, tecnológicas ou jurídicas.</p>
+  </article>
+</BaseLayout>
+<style>
+.legal-page { max-width: 52rem; }
+.legal-page h1 { font-size: clamp(2.5rem,6vw,4.5rem); line-height: 1; }
+.legal-page h2 { margin-top: 2.5rem; }
+.legal-page p { color: var(--color-muted); }
+</style>

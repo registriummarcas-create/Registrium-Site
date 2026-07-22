@@ -1,0 +1,83 @@
+[
+  {
+    "id": "fallback-1",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-1.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Proteja o nome que sustenta o seu negócio.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-2",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-2.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "CNPJ não substitui registro de marca.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-3",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-3.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Pesquisa antes do protocolo reduz riscos.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-4",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-4.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Oposição exige resposta técnica e tempestiva.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-5",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-5.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Sua marca pode se tornar um ativo valioso.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-6",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-6.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Classes corretas definem o alcance da proteção.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-7",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-7.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Indeferimento pode admitir recurso.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-8",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-8.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Registro é estratégia, não mera burocracia.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "fallback-9",
+    "mediaType": "IMAGE",
+    "mediaUrl": "/images/instagram-fallback/post-9.svg",
+    "thumbnailUrl": null,
+    "permalink": "#",
+    "caption": "Antes de investir, verifique a viabilidade.",
+    "timestamp": "2026-07-22T00:00:00Z"
+  }
+]

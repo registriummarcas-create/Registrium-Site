@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Termos de Uso | Registrium" description="Termos de uso do site da Registrium.">
+  <article class="section legal-page container">
+    <p class="eyebrow">Condições de uso</p>
+    <h1>Termos de Uso</h1>
+    <p><strong>Versão inicial para revisão jurídica antes da publicação definitiva.</strong></p>
+    <h2>1. Natureza das informações</h2><p>O conteúdo possui finalidade informativa e comercial, não substituindo análise individualizada ou decisão do INPI.</p>
+    <h2>2. Ausência de garantia</h2><p>A pesquisa preliminar e o protocolo não garantem deferimento. O exame e a decisão competem ao Instituto Nacional da Propriedade Industrial.</p>
+    <h2>3. Dados fornecidos</h2><p>O usuário é responsável pela veracidade e atualização das informações apresentadas.</p>
+    <h2>4. Propriedade intelectual</h2><p>O conteúdo, a identidade visual e os elementos do site não podem ser reproduzidos sem autorização.</p>
+    <h2>5. Links externos</h2><p>Serviços e páginas de terceiros possuem regras próprias e podem sofrer alterações independentes da Registrium.</p>
+  </article>
+</BaseLayout>
+<style>
+.legal-page { max-width: 52rem; }
+.legal-page h1 { font-size: clamp(2.5rem,6vw,4.5rem); line-height: 1; }
+.legal-page h2 { margin-top: 2.5rem; }
+.legal-page p { color: var(--color-muted); }
+</style>

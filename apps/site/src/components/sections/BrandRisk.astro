@@ -1,0 +1,23 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+const risks = [
+  ['CNPJ não é registro', 'Abrir a empresa não assegura exclusividade sobre o sinal utilizado no mercado.'],
+  ['Instagram não é propriedade marcária', 'Usuário, domínio e presença digital não substituem a proteção perante o INPI.'],
+  ['Quem chega antes pode mudar o cenário', 'Pedidos anteriores e marcas semelhantes podem restringir ou impedir o registro.']
+];
+---
+<section class="section section--soft">
+  <div class="container">
+    <SectionTitle eyebrow="O risco invisível" title="Uma marca pode crescer durante anos e ainda permanecer juridicamente vulnerável." description="O investimento em nome, fachada, embalagens e tráfego deve ser precedido por uma estratégia de proteção compatível com o negócio." />
+    <div class="grid risk-grid">
+      {risks.map(([title, description], index) => (
+        <article class="card risk-card"><span>0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+.risk-grid { grid-template-columns: repeat(3, 1fr); }
+.risk-card span { color: var(--color-turmaline-dark); font-weight: 900; }
+@media (max-width: 760px) { .risk-grid { grid-template-columns: 1fr; } }
+</style>

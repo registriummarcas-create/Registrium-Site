@@ -1,0 +1,19 @@
+{
+  "name": "registriumsite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page oficial da Registrium com captação de leads, WhatsApp e feed automático do Instagram.",
+  "packageManager": "pnpm@11.15.1",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @registrium/site dev",
+    "dev:worker": "pnpm --filter @registrium/instagram-worker dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "lint": "node scripts/validate-content.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  }
+}

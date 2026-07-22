@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contactConfig } from '../config/contact';
+import { buildWhatsAppUrl } from '../lib/whatsapp';
+const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig.whatsappMessage);
+---
+<BaseLayout title="Solicitação recebida | Registrium" description="A Registrium recebeu sua solicitação de análise.">
+  <section class="thanks">
+    <div class="container thanks-card">
+      <p class="eyebrow">Solicitação recebida</p>
+      <h1>Seu primeiro passo foi registrado.</h1>
+      <p>A Registrium analisará as informações enviadas. Para continuar o atendimento agora, abra o WhatsApp pelo botão abaixo.</p>
+      <a class="button button--primary" href={whatsappUrl} data-track="whatsapp_click" data-location="thank_you">Continuar pelo WhatsApp</a>
+      <a class="back" href="/">Voltar à página inicial</a>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+.thanks { min-height: 70vh; display: grid; place-items: center; padding: 5rem 0; background: var(--color-navy-950); color: white; }
+.thanks-card { max-width: 48rem; text-align: center; }
+.thanks h1 { font-size: clamp(2.8rem,7vw,5.5rem); line-height: .98; margin: 0; }
+.thanks p:not(.eyebrow) { color: rgba(255,255,255,.72); font-size: 1.1rem; }
+.back { display: block; margin-top: 1.5rem; color: rgba(255,255,255,.72); }
+</style>

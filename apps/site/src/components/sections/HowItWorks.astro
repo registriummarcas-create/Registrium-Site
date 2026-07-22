@@ -1,0 +1,27 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+const steps = [
+  ['Análise inicial', 'Compreensão do nome, atividade, público e plano de expansão.'],
+  ['Pesquisa de viabilidade', 'Exame de anterioridades e sinais potencialmente conflitantes.'],
+  ['Estratégia de proteção', 'Definição de titular, apresentação e classes adequadas.'],
+  ['Protocolo e acompanhamento', 'Pedido no INPI, monitoramento e resposta aos eventos relevantes.']
+];
+---
+<section id="como-funciona" class="section process">
+  <div class="container">
+    <SectionTitle eyebrow="Como funciona" title="Da ideia à proteção, cada etapa precisa conversar com a realidade da empresa." />
+    <ol class="steps">
+      {steps.map(([title, description], index) => <li><span>{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}
+    </ol>
+  </div>
+</section>
+<style>
+.process { background: var(--color-navy-950); color: white; }
+.process :global(.section-title p) { color: rgba(255,255,255,.7); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.steps li { border-top: 1px solid rgba(255,255,255,.25); padding-top: 1.25rem; }
+.steps span { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--color-turmaline); color: var(--color-navy-950); font-weight: 900; }
+.steps p { color: rgba(255,255,255,.68); }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .steps { grid-template-columns: 1fr; } }
+</style>

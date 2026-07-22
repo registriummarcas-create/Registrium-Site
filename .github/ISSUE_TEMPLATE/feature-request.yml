@@ -1,0 +1,24 @@
+name: Solicitar funcionalidade
+description: Nova capacidade do site ou Worker.
+title: ""
+labels:
+  - "type:feature"
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qual problema será resolvido?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Qual solução foi proposta?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Quais são os critérios de aceite?
+    validations:
+      required: true

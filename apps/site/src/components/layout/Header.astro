@@ -1,0 +1,28 @@
+---
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Registrium - página inicial">
+      <span class="brand-mark" aria-hidden="true"><i></i></span>
+      <span>REGISTRIUM</span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="button button--dark header-cta" href="#formulario">Consultar minha marca</a>
+  </div>
+</header>
+<style>
+.site-header { position: sticky; top: 0; z-index: 20; height: var(--header-height); background: rgba(255,255,255,.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(7,22,37,.08); }
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--color-navy-950); font-weight: 900; letter-spacing: .12em; }
+.brand-mark { width: 2.1rem; height: 2.1rem; border: 3px solid var(--color-navy-950); transform: rotate(45deg); display: grid; place-items: center; }
+.brand-mark i { width: .75rem; height: .75rem; background: var(--color-turmaline); box-shadow: .45rem .45rem 0 var(--color-gold); }
+nav { display: flex; gap: 1.4rem; }
+nav a { text-decoration: none; font-weight: 700; font-size: .94rem; }
+nav a:hover { color: var(--color-turmaline-dark); }
+@media (max-width: 800px) { nav { display: none; } .header-cta { padding-inline: .9rem; font-size: .82rem; } .brand { font-size: .85rem; } }
+@media (max-width: 430px) { .brand span:last-child { display: none; } }
+</style>

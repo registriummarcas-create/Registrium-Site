@@ -1,0 +1,24 @@
+name: Alterar conteúdo
+description: Texto, informação comercial ou SEO.
+title: ""
+labels:
+  - "type:content"
+body:
+  - type: textarea
+    id: current
+    attributes:
+      label: Qual conteúdo atual será alterado?
+    validations:
+      required: true
+  - type: textarea
+    id: replacement
+    attributes:
+      label: Qual é o texto substituto?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Qual é a justificativa?
+    validations:
+      required: true

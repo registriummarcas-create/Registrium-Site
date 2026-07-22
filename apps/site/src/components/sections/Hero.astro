@@ -1,0 +1,44 @@
+---
+import { contactConfig } from '../../config/contact';
+import { buildWhatsAppUrl } from '../../lib/whatsapp';
+const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig.whatsappMessage);
+---
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Proteção estratégica de marcas</p>
+      <h1>Antes de investir mais na sua marca, verifique se ela pode realmente ser sua.</h1>
+      <p class="lead">Pesquisa, definição de classes, protocolo e acompanhamento no INPI com comunicação clara e estratégia jurídica.</p>
+      <div class="actions">
+        <a class="button button--primary" href="#formulario" data-track="hero_cta_click">Consultar disponibilidade</a>
+        <a class="button button--secondary" href={whatsappUrl} data-track="whatsapp_click" data-location="hero">Falar com a Registrium</a>
+      </div>
+      <p class="disclaimer">Análise preliminar sem promessa de deferimento. A decisão final compete ao INPI.</p>
+    </div>
+    <div class="hero-visual" aria-label="Representação visual de proteção da marca">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="shield"><span>R</span></div>
+      <div class="tag tag-one">Pesquisa</div>
+      <div class="tag tag-two">Estratégia</div>
+      <div class="tag tag-three">Acompanhamento</div>
+    </div>
+  </div>
+</section>
+<style>
+.hero { overflow: hidden; background: radial-gradient(circle at 80% 20%, rgba(24,213,209,.22), transparent 32%), linear-gradient(135deg, var(--color-navy-950), var(--color-navy-800)); color: white; padding: clamp(4.5rem, 10vw, 8rem) 0; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 3rem; }
+.hero h1 { margin: 0; max-width: 48rem; font-size: clamp(2.65rem, 6.6vw, 5.8rem); line-height: .98; letter-spacing: -.055em; }
+.lead { max-width: 42rem; color: rgba(255,255,255,.78); font-size: clamp(1.05rem, 2vw, 1.28rem); }
+.actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.8rem; }
+.disclaimer { font-size: .82rem; color: rgba(255,255,255,.56); }
+.hero-visual { min-height: 28rem; position: relative; display: grid; place-items: center; }
+.shield { width: 12rem; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.35); border-radius: 2.5rem; transform: rotate(45deg); display: grid; place-items: center; background: rgba(255,255,255,.1); box-shadow: 0 40px 90px rgba(0,0,0,.3), inset 0 0 0 10px rgba(24,213,209,.08); }
+.shield span { transform: rotate(-45deg); font-weight: 900; font-size: 5rem; color: var(--color-gold); }
+.orbit { position: absolute; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; }
+.orbit-one { width: 22rem; height: 22rem; }
+.orbit-two { width: 29rem; height: 29rem; }
+.tag { position: absolute; padding: .55rem .8rem; border-radius: 999px; background: white; color: var(--color-navy-950); font-weight: 800; font-size: .82rem; box-shadow: var(--shadow-lg); }
+.tag-one { top: 14%; left: 3%; } .tag-two { right: 0; top: 34%; } .tag-three { bottom: 13%; left: 10%; }
+@media (max-width: 850px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { min-height: 22rem; } .orbit-two { width: 22rem; height: 22rem; } .orbit-one { width: 17rem; height: 17rem; } .shield { width: 9rem; } }
+</style>

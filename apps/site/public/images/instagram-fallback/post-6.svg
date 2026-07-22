@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+<rect width="800" height="800" fill="#f7f4ec"/>
+<circle cx="680" cy="130" r="170" fill="#ffd700" opacity=".18"/>
+<path d="M80 110h180" stroke="#ffd700" stroke-width="18"/>
+<text x="80" y="380" fill="#071625" font-family="Arial, sans-serif" font-weight="900" font-size="92">CLASSES</text>
+<text x="80" y="455" fill="#071625" opacity=".76" font-family="Arial, sans-serif" font-size="34">definem o alcance da proteção.</text>
+<text x="80" y="700" fill="#ffd700" font-family="Arial, sans-serif" font-weight="800" font-size="28" letter-spacing="8">REGISTRIUM</text>
+</svg>

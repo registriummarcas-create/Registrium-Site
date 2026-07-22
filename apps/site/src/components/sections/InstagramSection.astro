@@ -1,0 +1,60 @@
+---
+import fallback from '../../data/instagram-fallback.json';
+import { contactConfig } from '../../config/contact';
+const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
+---
+<section class="section instagram-section" data-feed-url={feedUrl}>
+  <div class="container">
+    <div class="instagram-heading">
+      <div><p class="eyebrow">Conteúdo Registrium</p><h2>Acompanhe orientações e atualizações.</h2></div>
+      {contactConfig.instagramUrl !== '#' && <a class="button button--dark" href={contactConfig.instagramUrl} target="_blank" rel="noreferrer">Ver perfil no Instagram</a>}
+    </div>
+    <div class="instagram-grid" id="instagram-grid">
+      {fallback.map((item) => (
+        <a class="instagram-card" href={item.permalink} aria-label={item.caption} data-fallback="true">
+          <img src={item.mediaUrl} alt={item.caption} width="800" height="800" loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<script>
+  const section = document.querySelector('.instagram-section');
+  const grid = document.querySelector('#instagram-grid');
+  const feedUrl = section?.getAttribute('data-feed-url');
+  if (feedUrl && grid) {
+    fetch(feedUrl, { signal: AbortSignal.timeout(8000) })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error('Feed indisponível')))
+      .then((feed) => {
+        if (!feed.success || !Array.isArray(feed.items) || feed.items.length === 0) return;
+        grid.innerHTML = '';
+        for (const item of feed.items.slice(0, 9)) {
+          const link = document.createElement('a');
+          link.className = 'instagram-card';
+          link.href = item.permalink;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.setAttribute('aria-label', item.caption || 'Publicação da Registrium no Instagram');
+          link.dataset.track = 'instagram_post_click';
+          const image = document.createElement('img');
+          image.src = item.thumbnailUrl || item.mediaUrl;
+          image.alt = item.caption || 'Publicação da Registrium';
+          image.width = 800;
+          image.height = 800;
+          image.loading = 'lazy';
+          link.appendChild(image);
+          grid.appendChild(link);
+        }
+      })
+      .catch(() => { /* fallback já visível */ });
+  }
+</script>
+<style>
+.instagram-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+.instagram-heading h2 { margin: 0; font-size: clamp(2rem,5vw,3.2rem); }
+.instagram-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; }
+.instagram-card { aspect-ratio: 1; overflow: hidden; background: var(--color-navy-900); }
+.instagram-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.instagram-card:hover img { transform: scale(1.035); }
+@media (max-width: 650px) { .instagram-heading { align-items: start; flex-direction: column; } .instagram-grid { gap: .2rem; } }
+</style>

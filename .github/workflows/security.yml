@@ -1,0 +1,37 @@
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 13 * * 2"
+
+permissions:
+  contents: read
+
+jobs:
+  repository-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Proibir arquivos secretos
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden=$(git ls-files | grep -E '(^|/)(\.env|\.dev\.vars)(\.|$)' | grep -v -E '\.example$' || true)
+          if [ -n "$forbidden" ]; then
+            echo "Arquivos secretos versionados:"
+            echo "$forbidden"
+            exit 1
+          fi
+      - name: Procurar credenciais óbvias
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --exclude-dir=.git --exclude='*.md' '(INSTAGRAM_ACCESS_TOKEN|CLOUDFLARE_API_TOKEN)[[:space:]]*=[[:space:]]*[^[:space:]]+' .; then
+            echo "Possível credencial encontrada."
+            exit 1
+          fi
