@@ -31,7 +31,11 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
         <a class="credential" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">
           <img class="credential-logo" src="/images/inpi-logo.png" alt="INPI" />
           <div class="credential-copy">
-            <div class="credential-title">Certificação Academia INPI · WIPO Academy</div>
+            <span class="credential-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
+              Empresa credenciada no INPI
+            </span>
+            <div class="credential-title">Formação pela Academia do INPI · WIPO Academy</div>
             <div class="credential-sub">Curso Geral de Propriedade Intelectual — ver certificado</div>
           </div>
           <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -79,11 +83,13 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .marks-stats div { display: flex; flex-direction: column; position: relative; padding-bottom: .5rem; }
 .marks-stats div::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 1.75rem; background: var(--grad-brand); transform-origin: left; transform: scaleX(0); transition: transform .5s ease .25s; }
 .marks-intro.in .marks-stats div::after { transform: scaleX(1); }
-.marks-stats .mn { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
+.marks-stats .mn { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
 .marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
 .credential { margin-top: 1.5rem; display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: .75rem 1rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
 .credential:hover { border-color: var(--color-blue); transform: translateY(-2px); }
 .credential-logo { width: 2.75rem; height: auto; flex: none; }
+.credential-badge { display: inline-flex; align-items: center; gap: .35rem; font-family: var(--font-ui); font-size: .62rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--color-blue); margin-bottom: .3rem; }
+.credential-badge svg { flex: none; }
 .credential-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .84rem; font-weight: 700; color: var(--color-text); line-height: 1.3; }
 .credential-sub { font-size: .75rem; color: var(--color-muted); margin-top: .15rem; }
 .credential-arrow { flex: none; margin-left: auto; color: var(--color-violet); }

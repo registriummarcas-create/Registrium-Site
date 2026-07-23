@@ -9,9 +9,9 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
       <div class="cred-row">
         <span class="pill">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
-          Credenciada no INPI
+          Empresa credenciada no INPI
         </span>
-        <a class="cred-link" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">ver credenciamento</a>
+        <a class="cred-link" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">ver certificado</a>
       </div>
       <h1>Sua marca é o seu <span class="g-cyan">patrimônio</span>. Registre antes que <span class="g-purple">alguém registre por você.</span></h1>
       <p class="hero-sub">No INPI, a fila pesa mais do que a história. A Registrium cuida do caminho inteiro: pesquisa de viabilidade, protocolo em até 48h, defesa em oposições e acompanhamento de cada prazo até o certificado. Pagamento único, sem cobrança a cada movimentação.</p>
@@ -168,14 +168,14 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
 .pill svg { width: .95rem; height: .95rem; color: #8fd0f5; }
 .cred-link { font-size: .78rem; font-weight: 600; color: var(--color-on-dark); text-decoration: underline; text-underline-offset: 3px; }
 .cred-link:hover { color: var(--color-white); }
-.hero h1 { color: var(--color-white); font-weight: 800; font-size: clamp(2rem, 3.1vw, 2.75rem); line-height: 1.08; margin-top: 1.25rem; }
+.hero h1 { color: var(--color-white); font-weight: 700; font-size: clamp(2.15rem, 3.4vw, 3rem); line-height: 1.06; margin-top: 1.25rem; letter-spacing: -0.015em; }
 .hero h1 .g-cyan { background: var(--grad-cyan); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1 .g-purple { background: var(--grad-purple); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero-sub { color: var(--color-on-dark); font-size: 1rem; line-height: 1.55; max-width: 31rem; margin-top: 1rem; }
 .hero-ctas { display: flex; gap: .875rem; margin-top: 1.375rem; flex-wrap: wrap; }
 .hero-divider { height: 1px; background: rgba(255,255,255,.12); margin-top: 1.75rem; max-width: 38rem; }
 .hero-stats { display: grid; grid-template-columns: repeat(3, auto); column-gap: 1.625rem; row-gap: .875rem; margin-top: 1.125rem; }
-.hero-stats .s-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.375rem; color: var(--color-white); line-height: 1; }
+.hero-stats .s-num { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 1.375rem; color: var(--color-white); line-height: 1; }
 .hero-stats .s-lbl { font-size: .72rem; color: var(--color-on-dark-soft); margin-top: .3rem; line-height: 1.25; }
 .hero-stats .s-foot { font-size: .62rem; color: var(--color-on-dark-soft); font-style: italic; margin-top: .2rem; max-width: 9rem; line-height: 1.25; opacity: .8; }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }

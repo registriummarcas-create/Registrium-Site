@@ -62,7 +62,7 @@ const steps = [
 .process .container { position: relative; z-index: 1; }
 .proc-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 3.25rem; align-items: start; }
 .proc-intro { position: sticky; top: calc(var(--header-height) + 2rem); }
-.process h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-top: .75rem; line-height: 1.12; }
+.process h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 700; margin-top: .75rem; line-height: 1.1; }
 .process p { color: var(--color-muted); font-size: .97rem; margin-top: .875rem; line-height: 1.55; max-width: 24rem; }
 .timeline { display: flex; flex-direction: column; }
 .tl-item { display: flex; gap: 1.125rem; position: relative; padding-bottom: 1.625rem; }
@@ -74,7 +74,7 @@ const steps = [
 .tl-icon svg { width: 1.2rem; height: 1.2rem; }
 .tl-item:hover .tl-icon { transform: scale(1.08) rotate(-4deg); }
 .tl-content { padding-top: .15rem; }
-.tl-content .etapa { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); }
+.tl-content .etapa { font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); }
 .tl-content h3 { font-size: 1.06rem; margin: .2rem 0 .3rem; }
 .tl-content p { color: var(--color-muted); font-size: .87rem; line-height: 1.5; margin: 0; max-width: 30rem; }
 @media (max-width: 800px) { .proc-grid { grid-template-columns: 1fr; gap: 2rem; } .proc-intro { position: static; } }
