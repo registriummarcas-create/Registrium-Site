@@ -1,0 +1,65 @@
+---
+---
+<section class="section section--dark video-showcase">
+  <div class="container">
+    <p class="eyebrow vs-eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></span>Registrium em vídeo</p>
+    <h2 class="vs-title">A Registrium em menos de 30 segundos</h2>
+    <p class="vs-sub">Começa sem som. Toque no ícone de áudio para ouvir.</p>
+    <div class="vs-stage reveal">
+      <div class="vs-frame">
+        <video id="vsVideo" class="vs-video" muted loop playsinline preload="metadata">
+          <source src="/videos/registrium-apresentacao.mp4" type="video/mp4" />
+          Seu navegador não suporta a reprodução deste vídeo.
+        </video>
+        <button id="vsSound" class="vs-sound muted" type="button" aria-label="Ativar som">
+          <svg class="ic-muted" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5 6 9H3v6h3l5 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 9l4 6M21 9l-4 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="ic-on" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5 6 9H3v6h3l5 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const video = document.getElementById('vsVideo') as HTMLVideoElement | null;
+  const soundBtn = document.getElementById('vsSound') as HTMLButtonElement | null;
+  if (video) {
+    // Só reproduz (mudo) quando entra na tela — não baixa o vídeo antes disso
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      }
+    }, { threshold: 0.4 });
+    io.observe(video);
+
+    // Clicar no vídeo pausa/retoma
+    video.addEventListener('click', () => {
+      if (video.paused) video.play().catch(() => {});
+      else video.pause();
+    });
+
+    // Botão de som
+    soundBtn?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      video.muted = !video.muted;
+      soundBtn.classList.toggle('muted', video.muted);
+      soundBtn.setAttribute('aria-label', video.muted ? 'Ativar som' : 'Desativar som');
+      if (!video.muted) video.play().catch(() => {});
+    });
+  }
+</script>
+<style>
+.video-showcase .container { text-align: center; }
+.vs-eyebrow { justify-content: center; }
+.vs-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; color: var(--color-white); margin: 0 auto .625rem; max-width: 22ch; line-height: 1.18; }
+.vs-sub { color: var(--color-on-dark); font-size: .95rem; margin: 0 auto 2.5rem; max-width: 32rem; }
+.vs-stage { position: relative; display: flex; justify-content: center; padding: 1rem 0; }
+.vs-stage::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32rem; height: 32rem; max-width: 92%; background: radial-gradient(circle, rgba(62,111,230,.4), rgba(138,87,206,.22) 45%, transparent 68%); filter: blur(24px); pointer-events: none; z-index: 0; }
+.vs-frame { position: relative; z-index: 1; width: min(21rem, 82vw); aspect-ratio: 9 / 16; border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,.16); background: #0a0b24; box-shadow: 0 50px 90px -40px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.05) inset; }
+.vs-video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
+.vs-sound { position: absolute; z-index: 2; bottom: .85rem; right: .85rem; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(10,11,36,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .16s ease, transform .16s ease; }
+.vs-sound:hover { background: rgba(10,11,36,.85); transform: scale(1.06); }
+.vs-sound .ic-on { display: none; }
+.vs-sound:not(.muted) .ic-muted { display: none; }
+.vs-sound:not(.muted) .ic-on { display: block; }
+</style>
