@@ -29,7 +29,7 @@ const features = [
     <div class="grid feat-grid reveal">
       {features.map((feature) => (
         <article class="card feat">
-          <div class="icon-tile" set:html={feature.icon} />
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" set:html={feature.icon} /></div>
           <h3>{feature.title}</h3>
           <p>{feature.description}</p>
         </article>
