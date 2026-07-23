@@ -12,10 +12,31 @@
       </a>
     </div>
     <div class="referral-art">
-      <div class="ra-blob"></div>
-      <div class="ra-icon">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19c.6-3 2.6-5 4.5-5s3.9 2 4.5 5M12.5 19c.6-3 2.6-5 4.5-5s3.9 2 4.5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-      </div>
+      <svg class="ra-graphic" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="refHubGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3e6fe6"/>
+            <stop offset="100%" stop-color="#8a57ce"/>
+          </linearGradient>
+        </defs>
+        <circle class="ra-glow" cx="120" cy="120" r="70" fill="url(#refHubGrad)" opacity=".16"/>
+        <path d="M120 120 46 64" stroke="#8a57ce" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round" opacity=".5"/>
+        <path d="M120 120 194 58" stroke="#3e6fe6" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round" opacity=".5"/>
+        <path d="M120 120 186 188" stroke="#f5a623" stroke-width="2.5" stroke-linecap="round" opacity=".55"/>
+        <circle r="4.5" fill="#ffd700">
+          <animateMotion dur="2.6s" repeatCount="indefinite" path="M120 120 186 188"/>
+        </circle>
+        <circle cx="46" cy="64" r="21" fill="var(--color-white)" stroke="#8a57ce" stroke-width="1.5"/>
+        <path d="M46 58a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" fill="#8a57ce"/>
+        <path d="M35 76c1.8-5 5.6-7.8 11-7.8s9.2 2.8 11 7.8" stroke="#8a57ce" stroke-width="1.7" stroke-linecap="round"/>
+        <circle cx="194" cy="58" r="21" fill="var(--color-white)" stroke="#3e6fe6" stroke-width="1.5"/>
+        <path d="M194 52a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" fill="#3e6fe6"/>
+        <path d="M183 70c1.8-5 5.6-7.8 11-7.8s9.2 2.8 11 7.8" stroke="#3e6fe6" stroke-width="1.7" stroke-linecap="round"/>
+        <circle cx="186" cy="188" r="22" fill="var(--color-white)" stroke="#f5a623" stroke-width="1.5"/>
+        <text x="186" y="195" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="17" fill="#f5a623">%</text>
+        <circle cx="120" cy="120" r="38" fill="url(#refHubGrad)"/>
+      </svg>
+      <img class="ra-hub-mark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
       <div class="ra-badge one">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
         Comissão por indicação
@@ -31,7 +52,7 @@
     <div class="container">
       <h3>Ficou com alguma dúvida?</h3>
       <p>Veja as perguntas mais frequentes sobre registro de marca e taxas do INPI, ou fale direto com nossa equipe pelo WhatsApp.</p>
-      <a class="button button--primary" href="#duvidas">Central de dúvidas</a>
+      <a class="button button--primary" href="/blog/duvidas-frequentes">Central de dúvidas</a>
     </div>
   </div>
 </section>
@@ -41,8 +62,10 @@
 .referral-copy h2 { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 800; margin: .75rem 0 1.125rem; line-height: 1.08; }
 .referral-copy p { color: var(--color-muted); font-size: 1rem; line-height: 1.65; max-width: 30rem; margin: 0 0 1.75rem; }
 .referral-art { position: relative; display: flex; align-items: center; justify-content: center; min-height: 16rem; }
-.ra-blob { position: relative; width: 12rem; height: 12rem; border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; background: var(--grad-brand); box-shadow: 0 40px 70px -30px rgba(90,70,210,.55); }
-.ra-icon { position: absolute; width: 12rem; height: 12rem; display: flex; align-items: center; justify-content: center; color: var(--color-white); }
+.ra-graphic { width: 100%; max-width: 20rem; height: auto; filter: drop-shadow(0 30px 40px rgba(90,70,210,.28)); }
+.ra-glow { animation: raPulse 4s ease-in-out infinite; transform-origin: 120px 120px; }
+@keyframes raPulse { 0%, 100% { transform: scale(1); opacity: .16; } 50% { transform: scale(1.12); opacity: .26; } }
+.ra-hub-mark { position: absolute; top: 50%; left: 50%; width: 2.5rem; transform: translate(-50%, -50%); pointer-events: none; }
 .ra-badge { position: absolute; display: inline-flex; align-items: center; gap: .5rem; background: var(--color-white); border: 1px solid var(--color-border); color: var(--color-violet); border-radius: 999px; padding: .55rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(30,20,80,.35); white-space: nowrap; animation: badgeFloat 5s ease-in-out infinite; }
 .ra-badge.one { top: 8%; right: 2%; }
 .ra-badge.two { bottom: 10%; left: 0; animation-delay: 1.2s; }
