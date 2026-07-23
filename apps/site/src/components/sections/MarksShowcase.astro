@@ -57,10 +57,11 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
   </div>
 </section>
 <style>
-.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: -1.75rem auto 3rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
+.marks :global(.section-title) { margin-bottom: 2rem; }
+.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: -1rem auto 2.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
 .story-cta svg { transition: transform .16s ease; }
 .story-cta:hover svg { transform: translateX(3px); }
-.marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 3rem; }
+.marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 2.25rem; }
 .owner-frame { position: relative; }
 .owner-frame::before, .owner-frame::after { content: ""; position: absolute; border-radius: 999px; pointer-events: none; }
 .owner-frame::before { inset: -1.25rem; border: 1px solid rgba(138,87,206,.22); }
@@ -74,8 +75,10 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .marks-intro-copy .mi-kicker { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .625rem; }
 .marks-intro-copy h3 { font-size: 1.375rem; font-weight: 800; margin-bottom: .75rem; line-height: 1.25; }
 .marks-intro-copy p { font-size: .94rem; color: var(--color-muted); line-height: 1.65; margin: 0 0 .875rem; }
-.marks-stats { display: flex; gap: 1.75rem; margin-top: 1.25rem; flex-wrap: wrap; }
-.marks-stats div { display: flex; flex-direction: column; }
+.marks-stats { display: flex; gap: 1.75rem; margin-top: 1.125rem; flex-wrap: wrap; }
+.marks-stats div { display: flex; flex-direction: column; position: relative; padding-bottom: .5rem; }
+.marks-stats div::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 1.75rem; background: var(--grad-brand); transform-origin: left; transform: scaleX(0); transition: transform .5s ease .25s; }
+.marks-intro.in .marks-stats div::after { transform: scaleX(1); }
 .marks-stats .mn { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
 .marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
 .credential { margin-top: 1.5rem; display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: .75rem 1rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }

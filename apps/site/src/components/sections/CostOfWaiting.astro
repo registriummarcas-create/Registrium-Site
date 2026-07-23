@@ -22,12 +22,16 @@ const risks = [
 <section class="section section--soft risk">
   <div class="container">
     <SectionTitle eyebrow="O custo de esperar" title="O que acontece quando o nome não é seu no papel" />
-    <div class="grid risk-grid reveal">
-      {risks.map((risk) => (
-        <article class="card risk-card">
+    <div class="grid risk-grid">
+      {risks.map((risk, i) => (
+        <article class="card risk-card reveal" style={`transition-delay:${i * 80}ms`}>
+          <span class="risk-index">0{i + 1}</span>
           <div class="icon-tile risk-icon"><svg viewBox="0 0 24 24" fill="none" set:html={risk.icon} /></div>
           <h3>{risk.title}</h3>
           <p>{risk.description}</p>
+          {i < risks.length - 1 && (
+            <svg class="risk-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          )}
         </article>
       ))}
     </div>
@@ -41,10 +45,14 @@ const risks = [
   </div>
 </section>
 <style>
-.risk-grid { grid-template-columns: repeat(3, 1fr); }
+.risk-grid { grid-template-columns: repeat(3, 1fr); gap: 2.25rem; }
+.risk-card { position: relative; padding: 1.5rem 1.5rem; overflow: visible; }
+.risk-index { position: absolute; top: 1.25rem; right: 1.375rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: .8rem; color: var(--color-border); }
 .risk-icon { background: var(--grad-brand); }
-.risk-card h3 { margin: 1.4rem 0 .6rem; }
-.risk-close { text-align: center; margin-top: 2.75rem; }
+.risk-card h3 { margin: 1.25rem 0 .5rem; }
+.risk-arrow { display: none; }
+.risk-close { text-align: center; margin-top: 2rem; }
 .risk-close p { font-size: 1.09rem; font-weight: 700; color: var(--color-text); margin: 0 0 1.375rem; }
+@media (min-width: 1041px) { .risk-arrow { display: block; position: absolute; top: 50%; right: -1.75rem; transform: translateY(-50%); color: var(--color-violet); opacity: .4; z-index: 2; } }
 @media (max-width: 1040px) { .risk-grid { grid-template-columns: 1fr; } }
 </style>
