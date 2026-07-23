@@ -5,7 +5,7 @@
     <a href="/" class="brand" aria-label="Registrium — página inicial">
       <img src="/images/logo-nav.png" alt="Registrium" />
     </a>
-    <nav aria-label="Navegação principal">
+    <nav aria-label="Navegação principal" id="mainNav">
       <a href="/#empresa">A empresa</a>
       <a href="/#como-funciona">Como funciona</a>
       <a href="/#planos">Planos</a>
@@ -13,19 +13,54 @@
       <a href="/#marcas">Marcas</a>
       <a href="/parceiros">Parceiros</a>
       <a href="/blog">Blog</a>
+      <a class="button button--primary nav-cta" href="/#cadastro">Quero registrar minha marca</a>
     </nav>
     <a class="button button--primary header-cta" href="/#cadastro">Quero registrar minha marca</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('mainNav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }));
+</script>
 <style>
 .site-header { position: sticky; top: 0; z-index: 50; height: var(--header-height); background: var(--color-navy-950); border-bottom: 1px solid rgba(255,255,255,.08); }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; text-decoration: none; flex: none; }
 .brand img { height: 2.2rem; width: auto; }
-nav { display: flex; gap: 1.375rem; }
+nav { display: flex; align-items: center; gap: 1.375rem; min-width: 0; }
 nav a { text-decoration: none; font-weight: 600; font-size: .92rem; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--color-on-dark); transition: color .15s; }
 nav a:hover { color: var(--color-white); }
-.header-cta { padding: .65rem 1.3rem; min-height: auto; font-size: .88rem; }
-@media (max-width: 920px) { nav { display: none; } }
-@media (max-width: 480px) { .header-cta { padding-inline: .9rem; font-size: .8rem; } }
+nav .nav-cta { display: none; }
+.header-cta { padding: .65rem 1.3rem; min-height: auto; font-size: .88rem; flex: none; }
+.nav-toggle { display: none; flex: none; width: 2.4rem; height: 2.4rem; border: none; background: rgba(255,255,255,.06); border-radius: .65rem; cursor: pointer; align-items: center; justify-content: center; gap: .3rem; flex-direction: column; }
+.nav-toggle span { display: block; width: 1.15rem; height: 2px; background: var(--color-white); border-radius: 1px; transition: transform .2s ease, opacity .2s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 920px) {
+  .header-cta { display: none; }
+  .nav-toggle { display: flex; }
+  nav {
+    position: fixed; top: var(--header-height); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--color-navy-950); border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: .5rem 1.25rem 1.5rem; max-height: calc(100vh - var(--header-height));
+    overflow-y: auto; transform: translateY(-.5rem); opacity: 0; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  nav.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  nav a { padding: .85rem .1rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+  nav .nav-cta { display: flex; width: 100%; margin-top: 1rem; border-bottom: none; }
+}
 </style>

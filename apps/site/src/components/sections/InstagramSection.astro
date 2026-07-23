@@ -17,17 +17,18 @@ const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
     </div>
     <div class="ig-grid reveal" id="instagram-grid">
       {fallback.map((item) => (
-        <a class="ig-tile" href={item.permalink} target="_blank" rel="noreferrer" aria-label={item.caption} data-fallback="true">
+        <a class="ig-tile" href={contactConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label={item.caption} data-fallback="true">
           <img src={item.mediaUrl} alt={item.caption} width="800" height="800" loading="lazy" />
         </a>
       ))}
     </div>
-    <p class="ig-pending">Conteúdo real do {contactConfig.instagramHandle}, atualizado automaticamente.</p>
+    <p class="ig-pending" id="igPending">Prévia de temas do perfil — siga {contactConfig.instagramHandle} para ver as publicações mais recentes.</p>
   </div>
 </section>
 <script>
   const section = document.querySelector('.instagram-section');
   const grid = document.querySelector('#instagram-grid');
+  const pending = document.getElementById('igPending');
   const feedUrl = section?.getAttribute('data-feed-url');
   if (feedUrl && grid) {
     fetch(feedUrl, { signal: AbortSignal.timeout(8000) })
@@ -35,6 +36,7 @@ const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
       .then((feed) => {
         if (!feed.success || !Array.isArray(feed.items) || feed.items.length === 0) return;
         grid.innerHTML = '';
+        if (pending) pending.textContent = `Conteúdo real do ${section?.querySelector('.handle')?.textContent ?? '@registriummarcas'}, atualizado automaticamente.`;
         for (const item of feed.items.slice(0, 9)) {
           const link = document.createElement('a');
           link.className = 'ig-tile';

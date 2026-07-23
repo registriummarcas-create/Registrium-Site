@@ -49,13 +49,44 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
       </div>
       <div class="cert-mockup-wrap">
         <div class="cert-mockup">
-          <div class="cert-stripe"></div>
+          <div class="cert-flag"><span class="cf-green"></span><span class="cf-yellow"></span></div>
           <div class="cert-seal">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 5 5.6.6-4 4 1 5.6L12 14.8 7 17.2l1-5.6-4-4 5.6-.6z" fill="currentColor"/></svg>
           </div>
-          <div class="cert-lines"><span class="line w-60"></span><span class="line w-40"></span></div>
+          <div class="cert-top">
+            <div class="cert-emblem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.2l2.3 2.3L16 9.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="cert-top-text">
+              <div class="ct-country">República Federativa do Brasil</div>
+              <div class="ct-org">Instituto Nacional da Propriedade Industrial</div>
+            </div>
+          </div>
+          <div class="cert-title">Certificado de registro de marca</div>
           <div class="cert-brand-box">SUA MARCA</div>
-          <div class="cert-lines"><span class="line w-80"></span><span class="line w-50"></span></div>
+          <div class="cert-rows">
+            <div class="cert-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20.6 12.6L12.6 20.6a2 2 0 01-2.8 0l-6.4-6.4a2 2 0 010-2.8L11.4 3.4A2 2 0 0112.8 2.8h5.8A2 2 0 0120.6 4.8v5.8a2 2 0 01-.6 1.4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"/></svg>
+              <span class="line w-70"></span>
+            </div>
+            <div class="cert-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span class="line w-55"></span>
+            </div>
+            <div class="cert-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 11h6M9 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="line w-40"></span>
+            </div>
+          </div>
+          <div class="cert-sign">
+            <div class="cert-sign-city">Rio de Janeiro</div>
+            <svg class="cert-sign-mark" viewBox="0 0 90 30" fill="none"><path d="M2 20c4-10 8-14 11-10s2 12 6 12 5-16 10-16 4 14 9 14 6-10 10-10 3 8 8 8 6-6 9-6 4 4 8 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+            <div class="cert-sign-rule"></div>
+          </div>
+          <div class="cert-inpi">
+            <span class="ci-mark">INPI</span>
+            <span class="ci-label">Instituto Nacional da Propriedade Industrial</span>
+          </div>
         </div>
         <div class="cert-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -89,6 +120,7 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .inc-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem 1.875rem; box-shadow: var(--shadow-sm); }
 .inc-card.dark { background: linear-gradient(160deg, #241a52, #12123a); border-color: transparent; color: var(--color-white); }
 .inc-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: .4rem; }
+.inc-card.dark h3 { color: var(--color-white); }
 .inc-card .sub { font-size: .8rem; color: var(--color-muted); margin-bottom: 1.25rem; }
 .inc-card.dark .sub { color: var(--color-on-dark); }
 .inc-group { margin-bottom: 1.125rem; }
@@ -120,15 +152,32 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .cert-copy h3 .hl { color: var(--color-violet); }
 .cert-copy p { color: var(--color-muted); font-size: .94rem; line-height: 1.65; max-width: 26rem; margin: 0; }
 .cert-mockup-wrap { position: relative; display: flex; justify-content: center; padding: 1.5rem 0 2rem; }
-.cert-mockup { position: relative; width: 17rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.375rem 1.5rem 2rem; box-shadow: 0 30px 60px -30px rgba(30,20,80,.4); transform: rotate(-3deg); overflow: hidden; }
-.cert-stripe { position: absolute; left: 0; top: 0; bottom: 0; width: .5rem; background: var(--grad-brand); }
-.cert-seal { position: absolute; top: 1.125rem; right: 1.125rem; width: 2rem; height: 2rem; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #f5a623); display: flex; align-items: center; justify-content: center; color: var(--color-white); }
-.cert-lines { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
-.cert-lines .line { display: block; height: .45rem; border-radius: 999px; background: var(--color-border); }
-.cert-lines .w-60 { width: 60%; } .cert-lines .w-40 { width: 40%; } .cert-lines .w-80 { width: 80%; } .cert-lines .w-50 { width: 50%; }
+.cert-mockup { position: relative; width: 19.5rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.5rem 1.375rem 2.25rem; box-shadow: 0 30px 60px -30px rgba(30,20,80,.4); transform: rotate(-2deg); overflow: hidden; }
+.cert-flag { position: absolute; left: 0; top: 0; bottom: 0; width: .875rem; display: flex; }
+.cert-flag .cf-green { width: 40%; background: #0a7a3d; }
+.cert-flag .cf-yellow { width: 60%; background: #ffcc29; }
+.cert-seal { position: absolute; top: 1.125rem; right: 1.125rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #f5a623); display: flex; align-items: center; justify-content: center; color: var(--color-white); }
+.cert-top { display: flex; align-items: flex-start; gap: .55rem; margin-bottom: 1rem; padding-right: 1.75rem; }
+.cert-emblem { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--color-cream); color: var(--color-violet); display: flex; align-items: center; justify-content: center; }
+.cert-top-text { padding-top: .1rem; }
+.ct-country { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: .62rem; letter-spacing: .02em; color: var(--color-text); line-height: 1.25; }
+.ct-org { font-size: .56rem; color: var(--color-muted); line-height: 1.3; margin-top: .15rem; }
+.cert-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: .84rem; line-height: 1.3; color: var(--color-text); margin-bottom: .875rem; }
 .cert-brand-box { border: 1px dashed var(--color-violet); border-radius: .5rem; padding: .55rem .7rem; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 800; letter-spacing: .08em; color: var(--color-violet); margin-bottom: 1rem; }
-.cert-badge { position: absolute; left: 1.5rem; bottom: .5rem; display: inline-flex; align-items: center; gap: .5rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: 999px; padding: .5rem .9rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(30,20,80,.35); white-space: nowrap; }
+.cert-rows { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.125rem; }
+.cert-row { display: flex; align-items: center; gap: .5rem; color: var(--color-violet); }
+.cert-row svg { flex: none; }
+.cert-row .line { display: block; height: .4rem; border-radius: 999px; background: var(--color-border); }
+.cert-row .w-70 { width: 70%; } .cert-row .w-55 { width: 55%; } .cert-row .w-40 { width: 40%; }
+.cert-sign { margin-bottom: 1rem; }
+.cert-sign-city { font-size: .6rem; color: var(--color-muted); margin-bottom: .125rem; }
+.cert-sign-mark { width: 5.5rem; height: 1.6rem; color: var(--color-text); }
+.cert-sign-rule { width: 7rem; height: 1px; background: var(--color-border); margin-top: .125rem; }
+.cert-inpi { display: flex; align-items: center; gap: .5rem; padding-top: .875rem; border-top: 1px solid var(--color-border); }
+.cert-inpi .ci-mark { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: .78rem; letter-spacing: .04em; color: var(--color-text); }
+.cert-inpi .ci-label { font-size: .5rem; color: var(--color-muted); line-height: 1.3; max-width: 8rem; }
+.cert-badge { position: absolute; left: 1.5rem; bottom: .5rem; display: inline-flex; align-items: center; gap: .5rem; background: var(--color-white); border: 1px solid var(--color-border); color: var(--color-violet); border-radius: 999px; padding: .5rem .9rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(30,20,80,.35); white-space: nowrap; }
 .cert-badge svg { flex: none; }
 @media (max-width: 920px) { .detail-grid { grid-template-columns: 1fr; } .guarantees { grid-template-columns: 1fr; } .cert-strip { grid-template-columns: 1fr; text-align: center; gap: 1rem; } .cert-copy p { margin: 0 auto; } }
-@media (max-width: 560px) { .cert-badge { left: 50%; transform: translateX(-50%); font-size: .64rem; } }
+@media (max-width: 560px) { .cert-badge { left: 50%; transform: translateX(-50%); font-size: .64rem; } .cert-mockup { width: 16.5rem; } }
 </style>

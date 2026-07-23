@@ -7,6 +7,9 @@ const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig
 <BaseLayout title="Solicitação recebida | Registrium" description="A Registrium recebeu sua solicitação de análise.">
   <section class="thanks">
     <div class="container thanks-card">
+      <div class="thanks-check" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
       <p class="eyebrow">Solicitação recebida</p>
       <h1>Seu primeiro passo foi registrado.</h1>
       <p>A Registrium analisará as informações enviadas. Para continuar o atendimento agora, abra o WhatsApp pelo botão abaixo.</p>
@@ -18,7 +21,9 @@ const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig
 <style>
 .thanks { min-height: 70vh; display: grid; place-items: center; padding: 5rem 0; background: var(--color-navy-950); color: white; }
 .thanks-card { max-width: 48rem; text-align: center; }
-.thanks h1 { font-size: clamp(2.8rem,7vw,5.5rem); line-height: .98; margin: 0; }
+.thanks-check { width: 4rem; height: 4rem; margin: 0 auto 1.75rem; border-radius: 50%; background: var(--grad-brand); color: var(--color-white); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px -16px rgba(90,70,210,.7); }
+.thanks .eyebrow { color: #9fb4ff; }
+.thanks h1 { color: var(--color-white); font-size: clamp(2.8rem,7vw,5.5rem); line-height: .98; margin: 0; }
 .thanks p:not(.eyebrow) { color: rgba(255,255,255,.72); font-size: 1.1rem; }
 .back { display: block; margin-top: 1.5rem; color: rgba(255,255,255,.72); }
 </style>
