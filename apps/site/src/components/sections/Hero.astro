@@ -204,7 +204,12 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
   0%, 7%, 100% { background: rgba(255,255,255,.28); transform: scale(1); box-shadow: 0 0 0 4px var(--color-navy-950); }
   3.5% { background: #8fd0f5; transform: scale(1.7); box-shadow: 0 0 0 4px var(--color-navy-950), 0 0 10px 2px rgba(143,208,245,.65); }
 }
-@media (max-width: 700px) { .hj-label { display: none; } .hero-journey { padding-top: 1rem; } .hj-line { top: 1rem; } }
+@media (max-width: 700px) {
+  .hero-journey { padding-top: 1rem; gap: .2rem; }
+  .hj-line { top: 1rem; }
+  .hj-label { font-size: .5rem; letter-spacing: .01em; line-height: 1.15; overflow-wrap: anywhere; opacity: .85; }
+}
+@media (max-width: 460px) { .hj-label { font-size: .44rem; } }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); animation: spinSlow 34s linear infinite; }
 .hero-watermark { position: absolute; z-index: 0; top: -9rem; right: -9rem; width: 48rem; max-width: 130%; opacity: .5; filter: drop-shadow(0 0 70px rgba(90,120,240,.35)); pointer-events: none; user-select: none; animation: heroWatermarkFloat 12s ease-in-out infinite; }

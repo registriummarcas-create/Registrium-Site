@@ -41,7 +41,11 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
         <p class="fee-note">O desconto de 50% é autodeclarado no e-INPI para pessoa natural, MEI, ME/EPP, cooperativas, instituições de ensino, entidades sem fins lucrativos, órgãos públicos e agricultor familiar. Tabela completa, com todas as taxas do processo (oposição, recurso, PAN, renovação, transferência etc.), no <a href="/blog/taxas-inpi">nosso blog</a>.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<section class="section receive">
+  <div class="container">
     <div class="cert-strip reveal">
       <div class="cert-copy">
         <p class="eyebrow">O que você recebe</p>
@@ -165,7 +169,9 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .two-accounts p { color: var(--color-muted); font-size: .91rem; line-height: 1.65; margin: 0 0 .625rem; }
 .two-accounts p:last-child { margin-bottom: 0; }
 
-.cert-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2.75rem; padding-top: 2.75rem; border-top: 1px solid var(--color-border); }
+.detail { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.receive { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+.cert-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
 .cert-copy h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; line-height: 1.18; margin-bottom: .875rem; }
 .cert-copy h3 .hl { color: var(--color-violet); }
 .cert-copy p { color: var(--color-muted); font-size: .94rem; line-height: 1.65; max-width: 26rem; margin: 0; }

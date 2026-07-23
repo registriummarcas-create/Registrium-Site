@@ -19,6 +19,24 @@ const risks = [
     title: 'O nome sequestrado',
     description: 'Alguém registra o nome que você tornou conhecido e passa a poder cobrar para você continuar usando. Acontece justamente com quem cresce e aparece.',
     tags: ['Nome conhecido', 'Cobrança pelo uso']
+  },
+  {
+    icon: '<path d="M6 8h12l-1 12H7L6 8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
+    title: 'A loja derrubada',
+    description: 'Marketplaces e redes sociais só aceitam denúncia contra quem te copia se a marca for registrada. Sem o certificado, você não tira o imitador do ar, e ainda corre o risco de ver o seu próprio anúncio removido por quem registrou o nome antes.',
+    tags: ['Marketplace', 'Denúncia negada', 'Anúncio removido']
+  },
+  {
+    icon: '<path d="M4 20V11M12 20V4M20 20v-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3 20h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
+    title: 'A expansão travada',
+    description: 'Franquear, licenciar ou receber investimento exige marca registrada. Sem o certificado, o contrato não fecha, o franqueado recua e o investidor trava na hora da análise. O crescimento fica esperando um papel.',
+    tags: ['Franquia', 'Investidor', 'Licenciamento']
+  },
+  {
+    icon: '<path d="M12 4v16M8 20h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M5 8h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M5 8l-2.4 5.2a3 3 0 004.8 0L5 8zM19 8l-2.4 5.2a3 3 0 004.8 0L19 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+    title: 'A briga na Justiça',
+    description: 'Sem registro, defender o nome vira uma ação judicial cara e demorada, em que o ônus de provar que o nome é seu recai sobre você. Com o certificado do INPI, a propriedade já vale como prova em todo o Brasil.',
+    tags: ['Ação judicial', 'Ônus da prova', 'Anos de disputa']
   }
 ];
 ---
@@ -57,9 +75,12 @@ const risks = [
 .risk .container { position: relative; z-index: 1; }
 .risk-grid { grid-template-columns: repeat(3, 1fr); gap: 2.25rem; }
 .risk-card { position: relative; padding: 1.5rem 1.5rem; overflow: visible; border-left: 3px solid transparent; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-.risk-card--1 { border-left-color: rgba(138,87,206,.25); }
-.risk-card--2 { border-left-color: rgba(138,87,206,.5); }
-.risk-card--3 { border-left-color: rgba(138,87,206,.85); }
+.risk-card--1 { border-left-color: rgba(138,87,206,.2); }
+.risk-card--2 { border-left-color: rgba(138,87,206,.35); }
+.risk-card--3 { border-left-color: rgba(138,87,206,.5); }
+.risk-card--4 { border-left-color: rgba(138,87,206,.65); }
+.risk-card--5 { border-left-color: rgba(138,87,206,.8); }
+.risk-card--6 { border-left-color: rgba(138,87,206,.95); }
 .risk-index { position: absolute; top: 1.25rem; right: 1.375rem; font-family: var(--font-mono); font-weight: 600; font-size: 1rem; color: var(--color-hairline); }
 .risk-icon { background: var(--grad-brand); }
 .risk-card h3 { margin: 1.25rem 0 .5rem; }
@@ -68,7 +89,7 @@ const risks = [
 .risk-arrow { display: none; }
 .risk-close { text-align: center; margin-top: 2rem; }
 .risk-close p { font-size: 1.09rem; font-weight: 700; color: var(--color-text); margin: 0 0 1.375rem; }
-@media (min-width: 1041px) { .risk-arrow { display: block; position: absolute; top: 50%; right: -1.75rem; transform: translateY(-50%); color: var(--color-violet); opacity: .4; z-index: 2; animation: riskArrowPulse 3.2s ease-in-out infinite; } }
+@media (min-width: 1041px) { .risk-arrow { display: block; position: absolute; top: 50%; right: -1.75rem; transform: translateY(-50%); color: var(--color-violet); opacity: .4; z-index: 2; animation: riskArrowPulse 3.2s ease-in-out infinite; } .risk-card:nth-child(3n) .risk-arrow { display: none; } }
 @keyframes riskArrowPulse { 0%, 100% { opacity: .3; transform: translateY(-50%) translateX(0); } 50% { opacity: .7; transform: translateY(-50%) translateX(3px); } }
 @media (max-width: 1040px) { .risk-grid { grid-template-columns: 1fr; } }
 </style>

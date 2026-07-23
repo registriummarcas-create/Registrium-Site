@@ -13,17 +13,10 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
     </a>
     <div class="marks-intro reveal">
       <div class="owner-frame protection-rings">
-        <div class="owner reg-marks reg-marks--light">
-          <div class="owner-mosaic" aria-hidden="true">
-            <img src="/images/marcas/marca-02.jpg" alt="" loading="lazy" />
-            <img src="/images/marcas/marca-06.jpg" alt="" loading="lazy" />
-            <img src="/images/marcas/marca-10.jpg" alt="" loading="lazy" />
-            <img src="/images/marcas/marca-14.jpg" alt="" loading="lazy" />
-            <img src="/images/marcas/marca-18.jpg" alt="" loading="lazy" />
-            <img src="/images/marcas/marca-04.jpg" alt="" loading="lazy" />
-          </div>
+        <div class="owner">
+          <img class="owner-main" src="/images/owner-certificates.jpg" alt="Titular da Registrium ao lado das marcas registradas" loading="lazy" />
           <div class="plate">Registrium · Copyright e Marcas</div>
-          <div class="owner-seal"><img src="/images/logo-mark.png" alt="Registrium" loading="lazy" /></div>
+          <div class="owner-inset"><img src="/images/owner-portrait.jpg" alt="Titular da Registrium" loading="lazy" /></div>
         </div>
       </div>
       <div class="marks-intro-copy">
@@ -84,31 +77,30 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
   </div>
 </section>
 <style>
-.marks :global(.section-title) { margin-bottom: 2rem; }
-.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: -1rem auto 2.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
+.marks :global(.section-title) { margin-bottom: 1.75rem; }
+.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: .25rem auto 3.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
 .story-cta svg { transition: transform .16s ease; }
 .story-cta:hover svg { transform: translateX(3px); }
-.marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 2.25rem; }
+.marks-intro { display: grid; grid-template-columns: .62fr 1.38fr; gap: 3.75rem; align-items: center; margin-bottom: 4rem; }
 .owner { position: relative; z-index: 1; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; box-shadow: 0 30px 60px -34px rgba(30,20,80,.45); }
-.owner-mosaic { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px; }
-.owner-mosaic img { width: 100%; height: 100%; object-fit: cover; opacity: .8; filter: saturate(.8); }
-.owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.6) 0%, rgba(8,10,36,.15) 45%, transparent 70%); pointer-events: none; }
-.owner-seal { position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42%; aspect-ratio: 1; border-radius: 50%; padding: 15%; background: rgba(10,11,36,.82); border: 1px solid rgba(255,255,255,.22); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 24px 44px -18px rgba(8,10,36,.75); }
-.owner-seal img { width: 100%; height: 100%; object-fit: contain; }
+.owner-main { width: 100%; height: 100%; object-fit: cover; }
+.owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.55) 0%, transparent 42%); pointer-events: none; }
+.owner-inset { position: absolute; left: 1.125rem; bottom: 1.125rem; width: 30%; aspect-ratio: 1/1; border-radius: .875rem; overflow: hidden; border: 3px solid rgba(255,255,255,.9); box-shadow: 0 14px 28px -10px rgba(8,10,36,.6); z-index: 2; }
+.owner-inset img { width: 100%; height: 100%; object-fit: cover; }
 .owner .plate { position: absolute; left: 1.125rem; top: 1.125rem; background: rgba(10,11,36,.72); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(6px); border-radius: 999px; padding: .5rem 1.125rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .81rem; font-weight: 700; color: var(--color-white); white-space: nowrap; z-index: 2; }
 .marks-intro-copy .mi-kicker { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .625rem; }
-.marks-intro-copy h3 { font-size: 1.375rem; font-weight: 800; margin-bottom: .75rem; line-height: 1.25; }
-.marks-intro-copy p { font-size: .94rem; color: var(--color-muted); line-height: 1.65; margin: 0 0 .875rem; }
-.marks-stats { display: flex; gap: 1.75rem; margin-top: 1.125rem; flex-wrap: wrap; }
+.marks-intro-copy h3 { font-size: 1.4375rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3; }
+.marks-intro-copy p { font-size: .94rem; color: var(--color-muted); line-height: 1.7; margin: 0 0 .875rem; }
+.marks-stats { display: flex; gap: 2.25rem; margin-top: 1.875rem; flex-wrap: wrap; }
 .marks-stats div { display: flex; flex-direction: column; position: relative; padding-bottom: .5rem; }
 .marks-stats div::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 1.75rem; background: var(--grad-brand); transform-origin: left; transform: scaleX(0); transition: transform .5s ease .25s; }
 .marks-intro.in .marks-stats div::after { transform: scaleX(1); }
 .marks-stats .mn { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
 .marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
-.marks-audit { display: inline-flex; align-items: center; gap: .4rem; margin: 1.125rem 0 0; font-family: var(--font-ui); font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--color-muted); }
+.marks-audit { display: inline-flex; align-items: center; gap: .4rem; margin: 1.5rem 0 0; font-family: var(--font-ui); font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--color-muted); }
 .marks-audit svg { flex: none; color: var(--color-violet); }
-.credential-group { margin-top: 1.5rem; display: flex; flex-direction: column; gap: .75rem; }
-.credential { display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: .75rem 1rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
+.credential-group { margin-top: 2rem; display: flex; flex-direction: column; gap: .875rem; }
+.credential { display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: .9rem 1.1rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
 .credential:hover { border-color: var(--color-blue); transform: translateY(-2px); }
 .credential--static { cursor: default; }
 .credential--static:hover { border-color: var(--color-border); transform: none; }
@@ -118,19 +110,19 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .credential-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .84rem; font-weight: 700; color: var(--color-text); line-height: 1.3; }
 .credential-sub { font-size: .75rem; color: var(--color-muted); margin-top: .15rem; }
 .credential-arrow { flex: none; margin-left: auto; color: var(--color-violet); }
-.pb-pride { margin-top: .875rem; display: flex; align-items: center; gap: .625rem; font-size: .84rem; color: var(--color-muted); font-style: italic; }
+.pb-pride { margin-top: 1.5rem; display: flex; align-items: center; gap: .625rem; font-size: .84rem; color: var(--color-muted); font-style: italic; }
 .pb-pride img { width: 1.5rem; height: 1.05rem; object-fit: cover; border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
-.logo-marquee { display: flex; flex-direction: column; gap: 1rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.logo-marquee { display: flex; flex-direction: column; gap: 1.25rem; overflow: hidden; padding: .5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-row { overflow: hidden; }
-.marquee-track { display: flex; width: max-content; gap: 1rem; animation: marquee 34s linear infinite; }
+.marquee-track { display: flex; width: max-content; gap: 1.25rem; animation: marquee 34s linear infinite; }
 .marquee-row.reverse .marquee-track { animation-direction: reverse; animation-duration: 40s; }
 .marquee-row:hover .marquee-track { animation-play-state: paused; }
-.tile { flex: none; width: 9rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1rem; box-shadow: 0 14px 28px -24px rgba(30,20,80,.4); display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.tile { flex: none; width: 9rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.15rem; box-shadow: 0 14px 28px -24px rgba(30,20,80,.4); display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
 .tile:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -22px rgba(60,40,150,.4); border-color: var(--color-blue); }
 .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marks-note { margin-top: 1.5rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
-@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 1.75rem; } .owner-frame { max-width: 22rem; margin: 0 auto; } }
+.marks-note { margin-top: 2.25rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
+@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 2.75rem; margin-bottom: 3rem; } .owner-frame { max-width: 22rem; margin: 0 auto; } }
 @media (max-width: 560px) { .owner-frame::after { display: none; } }
 @media (max-width: 560px) { .tile { width: 7rem; } }
 </style>
