@@ -1,0 +1,50 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+
+const risks = [
+  {
+    icon: '<path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 16v.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    title: 'A notificação',
+    description: 'Anos de operação, clientela formada, reputação construída. Aí chega uma carta exigindo que você pare de usar o próprio nome. Quem registrou primeiro chega com a lei do lado.'
+  },
+  {
+    icon: '<path d="M6 3v18M18 3v18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6 8h6M6 13h9M6 18h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
+    title: 'A conta do recomeço',
+    description: 'Fachada, embalagem, uniforme, domínio, perfil, material impresso, anúncio pago. Trocar de nome custa muitas vezes o valor de ter registrado.'
+  },
+  {
+    icon: '<rect x="5" y="10" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 018 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 14v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
+    title: 'O nome sequestrado',
+    description: 'Alguém registra o nome que você tornou conhecido e passa a poder cobrar para você continuar usando. Acontece justamente com quem cresce e aparece.'
+  }
+];
+---
+<section class="section section--soft risk">
+  <div class="container">
+    <SectionTitle eyebrow="O custo de esperar" title="O que acontece quando o nome não é seu no papel" />
+    <div class="grid risk-grid reveal">
+      {risks.map((risk) => (
+        <article class="card risk-card">
+          <div class="icon-tile risk-icon"><svg viewBox="0 0 24 24" fill="none" set:html={risk.icon} /></div>
+          <h3>{risk.title}</h3>
+          <p>{risk.description}</p>
+        </article>
+      ))}
+    </div>
+    <div class="risk-close reveal">
+      <p>Nenhum desses cenários exige azar. Exige só demora.</p>
+      <a class="button button--primary" href="#cadastro">
+        Quero registrar minha marca
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+.risk-grid { grid-template-columns: repeat(3, 1fr); }
+.risk-icon { background: linear-gradient(135deg, #e0524a, #c23b5a); }
+.risk-card h3 { margin: 1.4rem 0 .6rem; }
+.risk-close { text-align: center; margin-top: 2.75rem; }
+.risk-close p { font-size: 1.09rem; font-weight: 700; color: var(--color-text); margin: 0 0 1.375rem; }
+@media (max-width: 1040px) { .risk-grid { grid-template-columns: 1fr; } }
+</style>

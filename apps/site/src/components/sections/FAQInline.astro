@@ -1,0 +1,96 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+
+const faqItems = [
+  {
+    question: 'Em quanto tempo minha marca fica protegida?',
+    answer: 'O que vale na fila do INPI é a data do depósito, e ela passa a ser sua em até 48h após a contratação. A decisão final do órgão leva mais tempo, e a gente acompanha cada etapa até lá, com relatório mensal.'
+  },
+  {
+    question: 'E se o INPI negar?',
+    answer: 'Nos planos Prata e Ouro, refazemos o pedido. Você paga apenas a nova taxa oficial, porque ela é do INPI e não nossa. Vale para indeferimento por qualquer motivo.'
+  },
+  {
+    question: 'O que exatamente eu pago?',
+    answer: 'Duas contas separadas, e você conhece as duas antes de assinar. O valor da Registrium, publicado no site, pago uma vez só. E a taxa oficial do INPI, que vai direto para o órgão. Não existe cobrança por movimentação, por petição nem por etapa.'
+  },
+  {
+    question: 'Por que vocês não somam os dois valores?',
+    answer: 'Porque a taxa não é nossa. Ela é do INPI e vai inteira para o órgão federal. Somar daria a impressão de que a Registrium recebe tudo, e não recebe. Preferimos mostrar as duas contas separadas e dizer exatamente quanto é cada uma.'
+  },
+  {
+    question: 'E se alguém se opuser ao meu pedido?',
+    answer: 'A gente responde. Oposição, manifestação e recurso estão dentro dos nossos honorários, sem cobrança nova. Você paga apenas a taxa oficial do ato, que é do INPI e está na tabela pública.'
+  },
+  {
+    question: 'Já uso esse nome há anos. Isso me protege?',
+    answer: 'Em parte. Quem usa de boa-fé há pelo menos seis meses pode ter direito de precedência ao registro, mas precisa provar, e prova custa tempo e dinheiro. O registro transforma prova em certidão.'
+  },
+  {
+    question: 'Sou MEI. Posso registrar?',
+    answer: 'Pode, e paga metade da taxa. O INPI cobra R$ 880 por classe, e R$ 440 para pessoa física, MEI, ME e EPP. A GRU do MEI também pode ser parcelada.'
+  }
+] as const;
+---
+<section id="faq" class="section section--soft faq">
+  <div class="container">
+    <SectionTitle eyebrow="Perguntas frequentes" title="Dúvida é normal. Ficar sem resposta é que não pode." />
+    <div class="faq-list reveal">
+      {faqItems.map((item) => (
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            {item.question}
+            <span class="plus"></span>
+          </button>
+          <div class="faq-a">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="faq-out">
+      <a href="/blog/duvidas-frequentes">Ver todas as perguntas na Central de Dúvidas</a>
+    </div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('#faq .faq-item').forEach((item) => {
+    const question = item.querySelector('.faq-q') as HTMLButtonElement | null;
+    const answer = item.querySelector('.faq-a') as HTMLElement | null;
+    if (!question || !answer) return;
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('#faq .faq-item.open').forEach((openItem) => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+          (openItem.querySelector('.faq-a') as HTMLElement | null)?.style.removeProperty('max-height');
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        question.setAttribute('aria-expanded', 'false');
+        answer.style.removeProperty('max-height');
+      } else {
+        item.classList.add('open');
+        question.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+      }
+    });
+  });
+</script>
+<style>
+.faq-list { max-width: 51rem; margin: 0 auto; display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-q { width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 1.5rem .25rem; display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--color-text); }
+.faq-q .plus { flex: none; width: 1.375rem; height: 1.375rem; position: relative; }
+.faq-q .plus::before, .faq-q .plus::after { content: ""; position: absolute; background: var(--color-violet); top: 50%; left: 50%; transform: translate(-50%, -50%); transition: transform .2s ease; }
+.faq-q .plus::before { width: .875rem; height: 2px; }
+.faq-q .plus::after { width: 2px; height: .875rem; }
+.faq-item.open .faq-q .plus::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.faq-a p { font-size: .94rem; color: var(--color-muted); line-height: 1.65; padding: 0 .25rem 1.5rem; max-width: 45rem; margin: 0; }
+.faq-out { text-align: center; margin-top: 2.25rem; }
+.faq-out a { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; }
+.faq-out a:hover { text-decoration: underline; }
+</style>

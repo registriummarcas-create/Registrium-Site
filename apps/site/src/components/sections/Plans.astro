@@ -6,18 +6,21 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
 ---
 <section class="section plans" id="planos">
   <div class="container">
-    <SectionTitle eyebrow="Planos" title="Escolha a proteção ideal para sua marca" description="Valor único por forma de apresentação em uma classe de marca. À vista com 15% de desconto ou em 12x no cartão. Taxas do INPI não inclusas." />
+    <SectionTitle eyebrow="Planos" title="Escolha a proteção ideal para sua marca" description="Cada plano cobre 1 marca, em 1 forma de apresentação e 1 classe. Precisa de mais? A gente cota antes, nunca depois." />
+    <p class="plans-subnote">O valor abaixo é o da Registrium, pago uma vez só. A taxa do INPI vai direto para o órgão federal, e a gente diz quanto é antes de você contratar.</p>
     <div class="grid plans-grid reveal">
       {plans.map((plan) => (
         <div class:list={['plan', { featured: plan.featured }]}>
           {plan.featured && 'badge' in plan && <span class="badge">{plan.badge}</span>}
           <h3>{plan.name}</h3>
           <p class="who">{plan.who}</p>
-          {'installment' in plan && <span class="pfx">{plan.installment}</span>}
+          <p class="tagline">{plan.tagline}</p>
           <div class:list={['val', { consulta: plan.price === 'Sob consulta' }]}>
             {plan.price === 'Sob consulta' ? plan.price : <><span class="cur">R$</span>{plan.price.replace('R$ ', '')}</>}
           </div>
-          <p class="fine">{plan.fine}</p>
+          <p class="price-note">{plan.priceNote}</p>
+          {'installment' in plan && <p class="installment">{plan.installment}</p>}
+          <p class="inpi-note">{plan.inpiNote}</p>
           <ul>
             {plan.items.map((item) => (
               <li>
@@ -26,11 +29,17 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
               </li>
             ))}
           </ul>
+          {'footnote' in plan && (
+            <p class="plan-footnote">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              {plan.footnote}
+            </p>
+          )}
           <a class:list={['button', plan.featured ? 'button--primary' : 'button--ghost']} href={buildWhatsAppUrl(contactConfig.whatsappNumber, plan.whatsappMessage)} target="_blank" rel="noreferrer">{plan.cta}</a>
         </div>
       ))}
     </div>
-    <p class="plans-note">Valor por 1 forma de apresentação em uma classe de marca. Para mais formas ou classes, fale conosco. Taxas do INPI não inclusas (detalhadas abaixo). Para MEI, a taxa GRU-INPI também pode ser parcelada.</p>
+    <p class="plans-note">Nossos honorários cobrem todo o trabalho, inclusive oposições, manifestações e recursos nos planos que os incluem. As taxas oficiais desses atos são do INPI e seguem a tabela pública dele. Para MEI, a GRU também pode ser parcelada.</p>
   </div>
 </section>
 <style>
@@ -39,16 +48,21 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
 .plan.featured { border-color: transparent; box-shadow: var(--shadow-lg); background: linear-gradient(var(--color-white), var(--color-white)) padding-box, var(--grad-brand) border-box; border: 1.5px solid transparent; }
 .plan .badge { position: absolute; top: -.875rem; left: 1.875rem; background: var(--grad-brand); color: var(--color-white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: .44rem .94rem; border-radius: 999px; font-weight: 700; }
 .plan h3 { font-size: 1.375rem; font-weight: 800; margin-bottom: .25rem; }
-.plan .who { font-size: .875rem; color: var(--color-muted); margin-bottom: 1.375rem; }
-.plan .pfx { font-size: .8rem; color: var(--color-muted); font-weight: 600; }
+.plan .who { font-size: .875rem; color: var(--color-muted); margin-bottom: .625rem; }
+.plan .tagline { font-size: .87rem; color: var(--color-text); font-weight: 600; margin: 0 0 1.125rem; line-height: 1.4; }
 .plan .val { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2.5rem; line-height: 1.05; color: var(--color-text); margin: .125rem 0 .25rem; }
 .plan .val .cur { font-size: 1.25rem; color: var(--color-muted); margin-right: .25rem; font-weight: 700; }
 .plan .val.consulta { font-size: 1.875rem; color: var(--color-violet); }
-.plan .fine { font-size: .78rem; color: var(--color-muted); margin: 0 0 1.375rem; line-height: 1.5; }
-.plan ul { list-style: none; margin: 0 0 1.625rem; padding: 0; display: flex; flex-direction: column; gap: .8rem; flex: 1; }
+.plan .price-note { font-size: .78rem; color: var(--color-muted); margin: 0 0 .25rem; }
+.plan .installment { font-size: .82rem; color: var(--color-text); font-weight: 600; margin: 0 0 .625rem; }
+.plan .inpi-note { font-size: .75rem; color: var(--color-violet); font-weight: 700; margin: 0 0 1.375rem; }
+.plan ul { list-style: none; margin: 0 0 1.25rem; padding: 0; display: flex; flex-direction: column; gap: .8rem; flex: 1; }
 .plan li { display: flex; gap: .7rem; font-size: .91rem; color: var(--color-text); line-height: 1.4; }
 .plan li svg { flex: none; color: var(--color-good); margin-top: .1rem; }
+.plan-footnote { display: flex; gap: .5rem; align-items: flex-start; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .65rem; padding: .7rem .875rem; font-size: .78rem; color: var(--color-text); line-height: 1.45; margin: 0 0 1.375rem; }
+.plan-footnote svg { flex: none; color: var(--color-violet); margin-top: .1rem; }
 .plan .button { width: 100%; }
+.plans-subnote { max-width: 42.5rem; margin: -2.5rem auto 3.5rem; text-align: center; color: var(--color-muted); font-size: 1.06rem; line-height: 1.6; }
 .plans-note { margin: 1.625rem auto 0; font-size: .8rem; color: var(--color-muted); text-align: center; max-width: 41rem; }
 @media (max-width: 1040px) { .plans-grid { grid-template-columns: 1fr; max-width: 32rem; margin: 0 auto; } }
 </style>

@@ -15,7 +15,8 @@ export const includedGroups = [
       'Protocolo formal do pedido de registro no INPI',
       'Acompanhamento diário e notificação de situações contingenciais',
       'Confecção dos documentos legais e relatório mensal de andamento',
-      'Defesa total em caso de oposições',
+      'Defesa total em caso de oposições, sem honorários adicionais',
+      'Manifestações e recursos conduzidos pela equipe, dentro do escopo do plano contratado',
       'Emissão do certificado de registro válido por 10 anos'
     ]
   }

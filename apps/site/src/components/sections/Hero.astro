@@ -1,27 +1,32 @@
 ---
 import { contactConfig } from '../../config/contact';
+import { buildWhatsAppUrl } from '../../lib/whatsapp';
+const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Olá! Vim pelo site e quero falar com um especialista sobre o registro da minha marca.');
 ---
 <header class="hero" id="top">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
-        Credenciada no INPI
-      </span>
-      <h1>Sua marca protegida com <span class="g-cyan">transparência e</span> <span class="g-purple">tecnologia.</span></h1>
-      <p class="hero-sub">Registramos e protegemos sua marca no INPI com pesquisa por inteligência artificial, acompanhamento diário e um pagamento único — sem pegadinhas.</p>
+      <div class="cred-row">
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
+          Credenciada no INPI
+        </span>
+        <a class="cred-link" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">ver credenciamento</a>
+      </div>
+      <h1>Sua marca é o seu <span class="g-cyan">patrimônio</span>. Registre antes que <span class="g-purple">alguém registre por você.</span></h1>
+      <p class="hero-sub">No INPI, a fila pesa mais do que a história. A Registrium cuida do caminho inteiro: pesquisa de viabilidade, protocolo em até 48h, defesa em oposições e acompanhamento de cada prazo até o certificado. Pagamento único, sem cobrança a cada movimentação.</p>
       <div class="hero-ctas">
-        <a class="button button--secondary" href="#planos">Ver planos
+        <a class="button button--secondary" href="#cadastro">Quero registrar minha marca
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="button button--dark" href="/blog/duvidas-frequentes">Tirar dúvidas</a>
+        <a class="button button--dark" href={specialistWhatsappUrl} target="_blank" rel="noreferrer">Falar com um especialista</a>
       </div>
       <div class="hero-divider"></div>
       <div class="hero-stats">
-        <div><div class="s-num">48h</div><div class="s-lbl">para protocolo</div></div>
-        <div><div class="s-num">10 anos</div><div class="s-lbl">de validade</div></div>
-        <div><div class="s-num">100%</div><div class="s-lbl">transparência</div></div>
-        <div><div class="s-num">88%</div><div class="s-lbl">aprovação no INPI</div></div>
+        <div><div class="s-num">Desde 2021</div><div class="s-lbl">Cuidando de marcas brasileiras</div></div>
+        <div><div class="s-num">Até 48h</div><div class="s-lbl">Do contrato ao protocolo no INPI</div></div>
+        <div><div class="s-num">88%</div><div class="s-lbl">de aprovação no INPI</div><div class="s-foot">nos pedidos protocolados pela Registrium desde 2021</div></div>
+        <div><div class="s-num">Valor único</div><div class="s-lbl">Sem cobrança a cada ato do processo</div></div>
       </div>
     </div>
     <div class="hero-visual reveal">
@@ -32,11 +37,11 @@ import { contactConfig } from '../../config/contact';
           <div class="chat-avatar"><img src="/images/logo-mark.png" alt="Registrium" /></div>
           <div>
             <div class="chat-name">Registrium</div>
-            <div class="chat-status"><span class="dot"></span> Vamos registrar sua marca</div>
+            <div class="chat-status"><span class="dot"></span> Vamos garantir esse nome</div>
           </div>
         </div>
         <div class="chat-body" id="chatBody">
-          <div class="msg bot">Olá! 👋 Vamos começar o registro da sua marca. Qual é o seu nome completo?</div>
+          <div class="msg bot">Olá! 👋 Vamos garantir esse nome. Qual é o seu nome completo?</div>
         </div>
         <form class="chat-input-row" id="chatForm">
           <input id="chatInput" name="chatInput" type="text" placeholder="Seu nome completo" autocomplete="off" required />
@@ -44,7 +49,7 @@ import { contactConfig } from '../../config/contact';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2 15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </form>
-        <p class="hero-form-note">Sem compromisso. Você fala direto com a Registrium pelo WhatsApp.</p>
+        <p class="hero-form-note">Dois minutos, e o resto do trabalho é nosso. Seus dados são usados só para o atendimento, nada de lista, nada de spam.</p>
       </div>
     </div>
   </div>
@@ -61,8 +66,8 @@ import { contactConfig } from '../../config/contact';
     type Step = { key: string; type: string; placeholder: string; question?: (d: Record<string, string>) => string };
     const steps: Step[] = [
       { key: 'nome', type: 'text', placeholder: 'Seu nome completo' },
-      { key: 'marca', type: 'text', placeholder: 'Nome da marca', question: (d) => `Prazer, ${d.nome.split(' ')[0]}! Qual é o nome da marca que você quer registrar?` },
-      { key: 'area', type: 'text', placeholder: 'Ex: moda, alimentação, tecnologia...', question: () => 'Em qual área ela atua?' },
+      { key: 'marca', type: 'text', placeholder: 'Nome da marca', question: (d) => `Prazer, ${d.nome.split(' ')[0]}! Qual nome você quer proteger?` },
+      { key: 'area', type: 'text', placeholder: 'Ex: moda, alimentação, tecnologia...', question: () => 'O que sua empresa faz? Em uma frase.' },
       { key: 'cnpj', type: 'text', placeholder: 'CNPJ (ou "não tenho")', question: () => 'Você já tem CNPJ? Se ainda não tiver, pode digitar "não tenho".' },
       { key: 'whats', type: 'tel', placeholder: '(00) 00000-0000', question: () => 'Perfeito! Por último, qual o seu WhatsApp para a gente continuar por lá?' }
     ];
@@ -156,8 +161,11 @@ import { contactConfig } from '../../config/contact';
     linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 45%, var(--color-purple-900) 100%); }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 3rem; align-items: center; padding: 6rem 0 5.25rem; }
 .hero-grid > * { min-width: 0; }
+.cred-row { display: flex; align-items: center; gap: .875rem; flex-wrap: wrap; }
 .pill { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: var(--color-white); border-radius: 999px; padding: .55rem 1.05rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .pill svg { width: .95rem; height: .95rem; color: #8fd0f5; }
+.cred-link { font-size: .78rem; font-weight: 600; color: var(--color-on-dark); text-decoration: underline; text-underline-offset: 3px; }
+.cred-link:hover { color: var(--color-white); }
 .hero h1 { color: var(--color-white); font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; margin-top: 1.6rem; }
 .hero h1 .g-cyan { background: var(--grad-cyan); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1 .g-purple { background: var(--grad-purple); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -167,6 +175,7 @@ import { contactConfig } from '../../config/contact';
 .hero-stats { display: flex; gap: 2.25rem; margin-top: 1.6rem; flex-wrap: wrap; }
 .hero-stats .s-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2.1rem; color: var(--color-white); line-height: 1; }
 .hero-stats .s-lbl { font-size: .84rem; color: var(--color-on-dark-soft); margin-top: .5rem; }
+.hero-stats .s-foot { font-size: .68rem; color: var(--color-on-dark-soft); font-style: italic; margin-top: .3rem; max-width: 11rem; line-height: 1.3; opacity: .8; }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); }
 .hero-watermark { position: absolute; z-index: 0; top: -9rem; right: -9rem; width: 48rem; max-width: 130%; opacity: .5; filter: drop-shadow(0 0 70px rgba(90,120,240,.35)); pointer-events: none; user-select: none; }

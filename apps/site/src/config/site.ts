@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: 'Registrium',
-  title: 'Registrium — Registro de marca no INPI com transparência e tecnologia',
+  title: 'Registrium | Registro de marca no INPI com preço publicado',
   description:
-    'Registre sua marca no INPI com transparência, tecnologia e preço justo. Pesquisa com IA, acompanhamento diário e garantia de novo pedido em caso de indeferimento. Empresa credenciada no INPI.',
+    'Pesquisa de viabilidade, protocolo em até 48h, defesa em oposições e acompanhamento diário no INPI. Pagamento único, preço publicado, sem cobrança a cada ato. Cuidando de marcas brasileiras desde 2021.',
   locale: 'pt-BR',
   url: import.meta.env.PUBLIC_SITE_URL || 'https://registrium.pages.dev'
 } as const;
