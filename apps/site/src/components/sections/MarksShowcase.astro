@@ -1,6 +1,8 @@
 ---
 import SectionTitle from '../common/SectionTitle.astro';
 const logos = Array.from({ length: 20 }, (_, i) => `/images/marcas/marca-${String(i + 1).padStart(2, '0')}.jpg`);
+const rowSize = Math.ceil(logos.length / 2);
+const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 ---
 <section class="section marks" id="marcas">
   <div class="container">
@@ -22,9 +24,15 @@ const logos = Array.from({ length: 20 }, (_, i) => `/images/marcas/marca-${Strin
         </div>
       </div>
     </div>
-    <div class="logo-wall reveal">
-      {logos.map((src) => (
-        <div class="tile"><img src={src} alt="Marca registrada pela Registrium junto ao INPI" loading="lazy" /></div>
+    <div class="logo-marquee reveal">
+      {rows.map((row, rowIndex) => (
+        <div class:list={['marquee-row', { reverse: rowIndex % 2 === 1 }]}>
+          <div class="marquee-track">
+            {[...row, ...row].map((src) => (
+              <div class="tile"><img src={src} alt="Marca registrada pela Registrium junto ao INPI" loading="lazy" /></div>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
     <p class="marks-note">Logotipos de marcas reais registradas pela Registrium junto ao INPI, exibidos a título de portfólio.</p>
@@ -45,12 +53,16 @@ const logos = Array.from({ length: 20 }, (_, i) => `/images/marcas/marca-${Strin
 .marks-stats div { display: flex; flex-direction: column; }
 .marks-stats .mn { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
 .marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
-.logo-wall { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
-.logo-wall .tile { background: var(--color-white); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1rem; box-shadow: 0 14px 28px -24px rgba(30,20,80,.4); display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
-.logo-wall .tile:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -22px rgba(60,40,150,.4); border-color: var(--color-blue); }
-.logo-wall .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
+.logo-marquee { display: flex; flex-direction: column; gap: 1rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-row { overflow: hidden; }
+.marquee-track { display: flex; width: max-content; gap: 1rem; animation: marquee 34s linear infinite; }
+.marquee-row.reverse .marquee-track { animation-direction: reverse; animation-duration: 40s; }
+.marquee-row:hover .marquee-track { animation-play-state: paused; }
+.tile { flex: none; width: 9rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1rem; box-shadow: 0 14px 28px -24px rgba(30,20,80,.4); display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.tile:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -22px rgba(60,40,150,.4); border-color: var(--color-blue); }
+.tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marks-note { margin-top: 1.5rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
-@media (max-width: 1040px) { .logo-wall { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 1.75rem; } .owner { max-width: 22rem; margin: 0 auto; } }
-@media (max-width: 560px) { .logo-wall { grid-template-columns: repeat(3, 1fr); gap: .625rem; } }
+@media (max-width: 560px) { .tile { width: 7rem; } }
 </style>
