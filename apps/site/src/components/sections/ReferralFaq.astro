@@ -3,7 +3,7 @@
 <section class="section section--soft referral">
   <div class="container referral-grid reveal">
     <div class="referral-copy">
-      <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Programa de parceiros</p>
+      <p class="eyebrow"><span class="chapter-mark"><span class="chapter-num">13</span><span class="chapter-dash">—</span></span><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></span>Programa de parceiros</p>
       <h2>Quem indica também protege.</h2>
       <p>Você conhece alguém que construiu um nome bom e ainda não registrou. Contadores, designers e parceiros que indicam clientes recebem comissão por indicação convertida. Sem exclusividade, sem burocracia, e sua indicação segue com o mesmo acompanhamento de sempre.</p>
       <a class="button button--primary" href="/parceiros">
@@ -36,7 +36,7 @@
         <text x="186" y="195" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="17" fill="#f5a623">%</text>
         <circle cx="120" cy="120" r="38" fill="url(#refHubGrad)"/>
       </svg>
-      <img class="ra-hub-mark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
+      <img class="ra-hub-mark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" loading="lazy" />
       <div class="ra-badge one">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
         Comissão por indicação
@@ -50,6 +50,9 @@
 </section>
 <style>
 .referral-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3rem; align-items: center; }
+.chapter-mark { display: inline-flex; align-items: center; gap: .3rem; flex: none; }
+.chapter-num { font-family: var(--font-mono); font-weight: 700; }
+.chapter-dash { opacity: .75; }
 .referral-copy h2 { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; margin: .75rem 0 1.125rem; line-height: 1.06; }
 .referral-copy p { color: var(--color-muted); font-size: 1rem; line-height: 1.65; max-width: 30rem; margin: 0 0 1.75rem; }
 .referral-art { position: relative; display: flex; align-items: center; justify-content: center; min-height: 16rem; }

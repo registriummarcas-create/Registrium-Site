@@ -19,11 +19,11 @@ const checkIcon = '<path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="
 const crossIcon = '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
 ---
 <section class="section section--dark compare" id="comparativo">
-  <img class="compare-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
+  <img class="compare-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" loading="lazy" />
   <div class="container">
-    <SectionTitle eyebrow="Por que isso importa" title="Registrium × Concorrência" description="Mesma necessidade, experiências opostas. Enquanto o mercado cobra caro e some no meio do caminho, aqui o preço está publicado e o processo é acompanhado por uma única equipe." />
+    <SectionTitle chapter="08" eyebrow="Por que isso importa" title="Registrium × Concorrência" description="Mesma necessidade, experiências opostas. Enquanto o mercado cobra caro e some no meio do caminho, aqui o preço está publicado e o processo é acompanhado por uma única equipe." />
     <div class="compare-wrap reveal">
-      <div class="compare-table-scroll">
+      <div class="compare-table-scroll reg-marks reg-marks--light">
         <table class="compare-table">
           <thead>
             <tr>
@@ -47,6 +47,42 @@ const crossIcon = '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-w
           </tbody>
         </table>
       </div>
+
+      <div class="compare-cards">
+        <div class="cc-head">
+          <div class="cc-head-col cc-head-us">
+            <span class="cc-head-name">Registrium</span>
+            <span class="price grad">a partir de R$ 680,00</span>
+          </div>
+          <div class="cc-head-col cc-head-them">
+            <span class="cc-head-name">Concorrência</span>
+            <span class="price">R$ 2.000 a R$ 4.500 + custos por etapa</span>
+          </div>
+        </div>
+        {rows.map((row, i) => (
+          <div class="compare-card reveal" style={`transition-delay:${i * 45}ms`}>
+            <div class="cc-label">{row.label}</div>
+            <div class="cc-line">
+              <span class="cc-tag cc-tag--us">Registrium</span>
+              <span class="cc-status cc-status--yes"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" set:html={checkIcon} />Incluído</span>
+            </div>
+            <div class="cc-line">
+              <span class="cc-tag">Concorrência</span>
+              {row.competitor === false
+                ? <span class="cc-status cc-status--no"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" set:html={crossIcon} />Não incluído</span>
+                : <span class="cc-status cc-status--dash">Varia conforme fornecedor</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="compare-legend">
+        <span class="cl-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" set:html={checkIcon} /> Incluído</span>
+        <span class="cl-item cl-item--cross"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" set:html={crossIcon} /> Não incluído</span>
+        <span class="cl-item cl-item--dash">— Varia conforme fornecedor</span>
+        <span class="process-tag compare-process-tag">Ref. Nº 08/2026</span>
+      </div>
+      <p class="compare-methodology">Valores e práticas da concorrência identificados em pesquisa de mercado realizada em 2025/2026. As condições podem variar conforme fornecedor, complexidade e escopo contratado.</p>
       <div class="compare-cta">
         <a class="button button--primary" href="#cadastro">
           Quero registrar minha marca
@@ -67,14 +103,45 @@ const crossIcon = '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-w
 .compare-table .col-label { text-align: left; }
 .compare-table thead th { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 800; color: var(--color-white); border-bottom: 1px solid rgba(255,255,255,.14); }
 .compare-table thead .col-label { font-size: .81rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-on-dark-soft); }
-.compare-table .price { display: block; font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600; color: var(--color-on-dark-soft); margin-top: .3rem; border-radius: 999px; padding: .25rem .6rem; border: 1px solid rgba(255,255,255,.18); }
-.compare-table .price.grad { color: var(--color-white); background: var(--grad-brand); border-color: transparent; }
+.price { display: inline-block; font-family: var(--font-mono); font-size: .76rem; font-weight: 600; color: var(--color-on-dark-soft); margin-top: .3rem; border-radius: 999px; padding: .3rem .7rem; border: 1px solid rgba(255,255,255,.18); }
+.price.grad { color: var(--color-white); background: var(--grad-brand); border-color: transparent; box-shadow: 0 8px 18px -8px rgba(90,70,210,.8); }
 .compare-table tbody td { border-bottom: 1px solid rgba(255,255,255,.08); font-size: .88rem; color: #d7d3ee; }
 .compare-table tbody tr:last-child td { border-bottom: none; }
 .compare-table tbody tr:nth-child(even) { background: rgba(255,255,255,.03); }
 .compare-table .col-us svg { color: #8fd0f5; }
 .compare-table .col-them svg { color: #8b84ae; }
 .compare-table .col-them .dash { color: var(--color-on-dark-soft); }
+.compare-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.375rem; margin-top: 1.125rem; }
+.cl-item { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--color-on-dark-soft); }
+.cl-item svg { flex: none; color: #8fd0f5; }
+.cl-item--cross svg { color: #8b84ae; }
+.cl-item--dash { color: var(--color-on-dark-soft); }
+.compare-process-tag { color: #8fd0f5; border-color: rgba(255,255,255,.22); }
+.compare-methodology { max-width: 42rem; margin: 1rem auto 0; text-align: center; font-size: .74rem; color: var(--color-on-dark-soft); line-height: 1.5; }
 .compare-cta { display: flex; justify-content: center; margin-top: 2rem; }
-@media (max-width: 560px) { .compare-table th, .compare-table td { padding: .8rem 1rem; } }
+
+/* Cartões verticais — leitura em telas pequenas, sem tabela rolando na horizontal */
+.compare-cards { display: none; }
+.cc-head { display: flex; gap: .75rem; margin-bottom: 1rem; }
+.cc-head-col { flex: 1; display: flex; flex-direction: column; gap: .4rem; padding: .875rem 1rem; border-radius: .75rem; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03); }
+.cc-head-us { border-color: rgba(143,208,245,.35); }
+.cc-head-name { font-family: var(--font-ui); font-size: .78rem; font-weight: 800; color: var(--color-white); }
+.cc-head .price { font-size: .7rem; }
+.compare-card { border: 1px solid rgba(255,255,255,.12); border-radius: .75rem; padding: .875rem 1rem; margin-bottom: .625rem; background: rgba(255,255,255,.025); }
+.cc-label { font-size: .87rem; font-weight: 600; color: var(--color-white); margin-bottom: .625rem; }
+.cc-line { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .375rem 0; }
+.cc-line + .cc-line { border-top: 1px dashed rgba(255,255,255,.1); }
+.cc-tag { font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .04em; color: var(--color-on-dark-soft); }
+.cc-tag--us { color: #8fd0f5; }
+.cc-status { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; font-weight: 600; }
+.cc-status svg { flex: none; }
+.cc-status--yes { color: #8fd0f5; }
+.cc-status--no { color: #8b84ae; }
+.cc-status--dash { color: var(--color-on-dark-soft); font-style: italic; }
+
+@media (max-width: 640px) {
+  .compare-table-scroll { display: none; }
+  .compare-cards { display: block; }
+  .cc-head { flex-direction: column; }
+}
 </style>

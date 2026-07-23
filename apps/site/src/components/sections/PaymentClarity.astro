@@ -2,6 +2,8 @@
 ---
 <section class="section clarity">
   <div class="container">
+    <h2 class="sr-only">Duas contas, sempre separadas</h2>
+    <p class="eyebrow clarity-eyebrow"><span class="chapter-mark"><span class="chapter-num">10</span><span class="chapter-dash">—</span></span><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></span>Duas contas</p>
     <div class="pay-split reveal">
       <div class="pay-col us">
         <h4>O que você paga para a Registrium</h4>
@@ -19,6 +21,10 @@
 </section>
 <style>
 .clarity { position: relative; }
+.clarity-eyebrow { justify-content: center; text-align: center; width: 100%; margin: 0 0 2rem; }
+.chapter-mark { display: inline-flex; align-items: center; gap: .3rem; flex: none; }
+.chapter-num { font-family: var(--font-mono); font-weight: 700; }
+.chapter-dash { opacity: .75; }
 .pay-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 56rem; margin: 0 auto; }
 .pay-col { border-radius: var(--radius-md); padding: 1.75rem 1.875rem; }
 .pay-col.us { background: var(--color-white); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }

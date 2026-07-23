@@ -1,9 +1,14 @@
 ---
-interface Props { eyebrow?: string; title: string; description?: string; }
-const { eyebrow, title, description } = Astro.props;
+interface Props { eyebrow?: string; title: string; description?: string; chapter?: string; }
+const { eyebrow, title, description, chapter } = Astro.props;
 ---
 <div class="section-title">
-  {eyebrow && <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>{eyebrow}</p>}
+  {eyebrow && <p class="eyebrow">{chapter && <span class="chapter-mark"><span class="chapter-num">{chapter}</span><span class="chapter-dash">—</span></span>}<span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></span>{eyebrow}</p>}
   <h2>{title}</h2>
   {description && <p>{description}</p>}
 </div>
+<style>
+.chapter-mark { display: inline-flex; align-items: center; gap: .3rem; flex: none; }
+.chapter-num { font-family: var(--font-mono); font-weight: 700; }
+.chapter-dash { opacity: .75; }
+</style>

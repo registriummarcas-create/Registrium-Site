@@ -23,6 +23,7 @@ const paymentMethods = [
 const plansData = plans.map((p) => ({
   id: p.id,
   name: p.name,
+  category: p.category,
   who: p.who,
   tagline: p.tagline,
   priceNote: p.priceNote,
@@ -40,6 +41,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
   <div class="sim-pattern" aria-hidden="true"></div>
   <div class="container">
     <SectionTitle
+      chapter="09"
       eyebrow="Simulador de investimento"
       title="Veja o custo antes de contratar"
       description="Escolha o perfil, a quantidade de classes, o plano e a forma de pagamento. Mostramos as duas contas separadas: o que é da Registrium e o que vai direto para o INPI — e tudo que está incluso no plano escolhido."
@@ -74,7 +76,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
             {plansData.map((p, i) => (
               <label class="sim-opt">
                 <input type="radio" name="sim-plano" value={p.id} checked={i === 0} />
-                <span>{p.name}</span>
+                <span>{p.name} — {p.category}</span>
               </label>
             ))}
           </div>
@@ -119,6 +121,8 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
             <span class="sim-val" id="simTotal" role="cell">R$ 1.120,00</span>
           </div>
         </div>
+        <p class="sim-savings" id="simSavings"></p>
+        <p class="sim-card-terms" id="simCardTerms">Parcelamos em até 3x sem juros no cartão. Parcelas adicionais, até 12x, e eventuais juros ficam a critério da sua operadora de cartão.</p>
         <p class="sim-note" id="simNote">O valor da Registrium é pago uma vez só. A taxa do INPI vai inteira para o órgão federal e não passa pela Registrium.</p>
         <a class="button button--primary sim-cta" id="simCta" href="#cadastro" target="_blank" rel="noreferrer">
           Falar sobre este cenário
@@ -131,9 +135,9 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
       <div class="sim-included-head">
         <div>
           <span class="sim-included-who" id="simIncludedWho">MEI e Pessoa Física</span>
-          <h3 id="simIncludedTitle">O que está incluso no Bronze</h3>
+          <h3><span id="simIncludedTitle">O que está incluso no Bronze</span> <span class="sim-included-cat" id="simIncludedCat">Essencial</span></h3>
         </div>
-        <p class="sim-included-tagline" id="simIncludedTagline">Para quem quer o nome garantido, sem complicação.</p>
+        <p class="sim-included-tagline" id="simIncludedTagline">Para quem deseja iniciar o registro com segurança, clareza e acompanhamento profissional.</p>
       </div>
       <ul class="sim-included-list" id="simIncludedList"></ul>
       <p class="sim-included-footnote" id="simIncludedFootnote"></p>
@@ -155,12 +159,21 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
     const planoHintEl = document.getElementById('simPlanoHint');
     const incWhoEl = document.getElementById('simIncludedWho');
     const incTitleEl = document.getElementById('simIncludedTitle');
+    const incCatEl = document.getElementById('simIncludedCat');
     const incTaglineEl = document.getElementById('simIncludedTagline');
     const incListEl = document.getElementById('simIncludedList');
     const incFootnoteEl = document.getElementById('simIncludedFootnote');
+    const savingsEl = document.getElementById('simSavings');
+    const cardTermsEl = document.getElementById('simCardTerms');
+
+    // A Registrium parcela em até 3x sem juros no cartão. O rótulo do seletor
+    // continua anunciando "até 12x" (parcelas extras + juros ficam com a operadora do cliente).
+    const CARD_DISPLAY_INSTALLMENTS = 3;
 
     const checkIcon =
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    const inheritedIcon =
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
     const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -169,8 +182,17 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
 
     const baseNote =
       'O valor da Registrium é pago uma vez só. A taxa do INPI vai inteira para o órgão federal e não passa pela Registrium.';
-    const quoteNote =
-      'Cada plano cobre 1 classe. Para mais de uma, o valor da Registrium é cotado antes — por isso mostramos “a partir de”. A taxa do INPI ao lado é exata.';
+    const negotiateNote =
+      'A partir de 3 classes, aplicamos um desconto especial, negociado diretamente com o CEO da Registrium. A taxa do INPI ao lado já considera a quantidade de classes.';
+
+    const FORCED_PLAN_BY_PROFILE = { meepp: 'prata', demais: 'ouro' };
+
+    function applyProfileDefault(perfilId) {
+      const forced = FORCED_PLAN_BY_PROFILE[perfilId];
+      if (!forced) return;
+      const target = card.querySelector(`input[name="sim-plano"][value="${forced}"]`);
+      if (target && !target.checked) target.checked = true;
+    }
 
     function syncPlanEligibility(perfilId) {
       const planoInputs = [...card.querySelectorAll('input[name="sim-plano"]')];
@@ -183,7 +205,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
         if (!eligible) blocked.push(plan.name);
       });
       const current = getChecked('sim-plano');
-      if (!current) {
+      if (!current || current.disabled) {
         const firstEligible = planoInputs.find((el) => !el.disabled);
         if (firstEligible) firstEligible.checked = true;
       }
@@ -211,39 +233,58 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
       const rate = Number(perfilInput.dataset.rate);
       const count = Number(clsInput.dataset.count);
       const atLeast = clsInput.dataset.atleast === '1';
-      const multiClass = count > 1;
+      const negotiate = atLeast; // "3 ou mais": honorários sob negociação direta com o CEO
 
       const inpiValue = count * rate;
       inpiEl.textContent = (atLeast ? 'a partir de ' : '') + brl(inpiValue);
 
-      const hasPrice = plan.pixValue !== null;
+      const hasPrice = plan.pixValue !== null && !negotiate;
       let regValue = null;
 
-      if (!hasPrice) {
+      if (negotiate) {
+        regEl.textContent = 'Negociação direta';
+        regSubEl.textContent = '3 ou mais classes · fale com o CEO';
+      } else if (plan.pixValue === null) {
         regEl.textContent = 'Sob consulta';
         regSubEl.textContent = plan.priceNote;
       } else {
-        const base = payMethod === 'cartao' ? plan.cardTotal : plan.pixValue;
+        const basePix = plan.pixValue * count;
+        const baseCard = plan.cardTotal * count;
+        const base = payMethod === 'cartao' ? baseCard : basePix;
         regValue = base;
-        const prefix = multiClass ? 'a partir de ' : '';
-        regEl.textContent = prefix + brl(base);
+        regEl.textContent = brl(base);
         regSubEl.textContent =
           payMethod === 'cartao'
-            ? `${prefix}${plan.cardInstallments}x de ${brl(base / plan.cardInstallments)}`
-            : `${prefix}pagamento único no Pix (15% off)`;
+            ? `${CARD_DISPLAY_INSTALLMENTS}x de ${brl(base / CARD_DISPLAY_INSTALLMENTS)} sem juros`
+            : 'pagamento único no Pix (15% off)';
       }
 
-      if (regValue === null) {
+      if (negotiate) {
+        totalEl.textContent = 'Negociação direta';
+      } else if (regValue === null) {
         totalEl.textContent = 'Sob consulta';
       } else {
-        totalEl.textContent = (multiClass ? 'a partir de ' : '') + brl(regValue + inpiValue);
+        totalEl.textContent = brl(regValue + inpiValue);
       }
 
-      if (!hasPrice) {
+      if (hasPrice) {
+        const economy = plan.cardTotal * count - plan.pixValue * count;
+        savingsEl.textContent =
+          payMethod === 'cartao'
+            ? `Economize ${brl(economy)} pagando no Pix / à vista.`
+            : `Você já está economizando ${brl(economy)} pagando no Pix.`;
+        savingsEl.style.display = 'block';
+      } else {
+        savingsEl.style.display = 'none';
+      }
+
+      cardTermsEl.style.display = hasPrice && payMethod === 'cartao' ? 'block' : 'none';
+
+      if (negotiate) {
+        noteEl.textContent = negotiateNote;
+      } else if (!hasPrice) {
         noteEl.textContent =
           'O plano Ouro é sob consulta, com diagnóstico gratuito antes de qualquer valor. A taxa do INPI ao lado já é a oficial para o perfil escolhido.';
-      } else if (multiClass) {
-        noteEl.textContent = quoteNote;
       } else {
         noteEl.textContent = baseNote;
       }
@@ -251,8 +292,15 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
       // Painel "o que está incluso"
       incWhoEl.textContent = plan.who;
       incTitleEl.textContent = `O que está incluso no ${plan.name}`;
+      incCatEl.textContent = plan.category;
       incTaglineEl.textContent = plan.tagline;
-      incListEl.innerHTML = plan.items.map((item) => `<li>${checkIcon}${item}</li>`).join('');
+      incListEl.innerHTML = plan.items
+        .map((item) => {
+          const inherited = item.startsWith('Tudo do');
+          const icon = inherited ? inheritedIcon : checkIcon;
+          return `<li class="${inherited ? 'sim-item-inherited' : 'sim-item-new'}">${icon}${item}</li>`;
+        })
+        .join('');
       if (plan.footnote) {
         incFootnoteEl.innerHTML = checkIcon + `<span>${plan.footnote}</span>`;
         incFootnoteEl.style.display = 'flex';
@@ -264,7 +312,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
       let msg = 'Olá! Fiz uma simulação no site e quero falar sobre este cenário.\n\n';
       msg += `Perfil: ${profileLabels[perfilId]}\n`;
       msg += `Classes: ${clsInput.parentElement?.querySelector('span')?.textContent ?? ''}\n`;
-      msg += `Plano: ${plan.name}\n`;
+      msg += `Plano: ${plan.name} (${plan.category})\n`;
       msg += `Pagamento: ${payMethod === 'cartao' ? 'Cartão parcelado' : 'Pix / à vista'}\n`;
       msg += `Registrium: ${regEl.textContent}\n`;
       msg += `INPI: ${inpiEl.textContent}\n`;
@@ -272,7 +320,15 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
       ctaEl.href = whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}` : '#cadastro';
     }
 
-    card.querySelectorAll('input[type="radio"]').forEach((el) => el.addEventListener('change', update));
+    card.querySelectorAll('input[name="sim-perfil"]').forEach((el) =>
+      el.addEventListener('change', () => {
+        applyProfileDefault(el.value);
+        update();
+      })
+    );
+    card
+      .querySelectorAll('input[name="sim-classes"], input[name="sim-plano"], input[name="sim-pagamento"]')
+      .forEach((el) => el.addEventListener('change', update));
     update();
   }
 </script>
@@ -294,6 +350,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
 .sim-opt span { display: inline-flex; align-items: center; justify-content: center; padding: .6rem 1rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.05); color: var(--color-on-dark); font-family: var(--font-ui); font-size: .87rem; font-weight: 600; cursor: pointer; transition: border-color .2s var(--ease-premium), background .2s ease, color .2s ease, transform .2s var(--ease-premium), opacity .2s ease; }
 .sim-opt span:hover { border-color: rgba(255,255,255,.4); color: var(--color-white); }
 .sim-opt input:checked + span { background: var(--grad-brand); border-color: transparent; color: var(--color-white); transform: translateY(-1px); box-shadow: 0 10px 22px -12px rgba(90,70,210,.9); }
+.sim-opt input:checked + span::before { content: "✓"; margin-right: .4rem; font-weight: 800; }
 .sim-opt input:focus-visible + span { outline: 2.5px solid #8fd0f5; outline-offset: 2px; }
 .sim-opt input:disabled + span { opacity: .32; cursor: not-allowed; text-decoration: line-through; }
 .sim-opt input:disabled + span:hover { border-color: rgba(255,255,255,.18); color: var(--color-on-dark); transform: none; }
@@ -314,17 +371,23 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
 .sim-total { border-bottom: none; padding-bottom: .25rem; margin-top: .25rem; }
 .sim-total .sim-dest { font-family: var(--font-ui); font-weight: 800; font-size: 1.06rem; color: var(--color-white); }
 .sim-total .sim-val { font-size: 1.4rem; background: var(--grad-cyan); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: normal; text-align: right; }
-.sim-note { position: relative; z-index: 1; font-size: .76rem; color: var(--color-on-dark); line-height: 1.55; margin: 1rem 0 1.25rem; min-height: 2.4rem; }
+.sim-savings { display: none; position: relative; z-index: 1; font-family: var(--font-ui); font-size: .78rem; font-weight: 700; color: #8fd0f5; margin: 1rem 0 0; }
+.sim-card-terms { display: none; position: relative; z-index: 1; font-size: .7rem; color: var(--color-on-dark-soft); line-height: 1.5; margin: .5rem 0 0; }
+.sim-note { position: relative; z-index: 1; font-size: .76rem; color: var(--color-on-dark); line-height: 1.55; margin: .5rem 0 1.25rem; min-height: 2.4rem; }
 .sim-cta { position: relative; z-index: 1; width: 100%; margin-top: auto; }
 
 .sim-included { position: relative; z-index: 1; margin: 1.5rem auto 0; max-width: 60rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-md); padding: 1.75rem; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .sim-included-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .375rem 1.5rem; margin-bottom: 1.25rem; padding-bottom: 1.125rem; border-bottom: 1px solid rgba(255,255,255,.1); }
 .sim-included-who { display: block; font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #9fb4ff; margin-bottom: .375rem; }
-.sim-included-head h3 { font-family: var(--font-ui); font-size: 1.19rem; font-weight: 700; color: var(--color-white); margin: 0; }
+.sim-included-head h3 { display: flex; align-items: center; gap: .625rem; flex-wrap: wrap; font-family: var(--font-ui); font-size: 1.19rem; font-weight: 700; color: var(--color-white); margin: 0; }
+.sim-included-cat { font-family: var(--font-ui); font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-white); background: var(--grad-brand); padding: .25rem .625rem; border-radius: 999px; }
 .sim-included-tagline { font-size: .87rem; color: var(--color-on-dark-soft); margin: 0; max-width: 22rem; }
 .sim-included-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem 1.5rem; }
 .sim-included-list li { display: flex; gap: .625rem; font-size: .89rem; color: var(--color-on-dark); line-height: 1.45; }
-.sim-included-list li svg { flex: none; color: #8fd0f5; margin-top: .15rem; }
+.sim-included-list li svg { flex: none; margin-top: .15rem; }
+.sim-item-new svg { color: #8fd0f5; }
+.sim-item-inherited { opacity: .58; }
+.sim-item-inherited svg { color: var(--color-on-dark-soft); }
 .sim-included-footnote { display: flex; gap: .625rem; align-items: flex-start; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: .65rem; padding: .75rem .95rem; font-size: .78rem; color: var(--color-on-dark); line-height: 1.5; margin: 1.375rem 0 0; }
 .sim-included-footnote svg { flex: none; color: #8fd0f5; margin-top: .1rem; }
 .sim-legal { max-width: 46rem; margin: 1.5rem auto 0; font-size: .74rem; color: var(--color-on-dark-soft); text-align: center; line-height: 1.55; }

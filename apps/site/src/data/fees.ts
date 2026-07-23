@@ -30,21 +30,21 @@ export const inpiFees = [
 
 export const guarantees = [
   {
-    icon: '<path d="M7 3h7l4 4v14H7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 13l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+    icon: '<circle cx="7" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M11 12h9M16 12v4M19 12v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/>',
     title: 'Direito sobre a marca por 10 anos',
     description: 'O certificado funciona como a escritura da sua marca: você pode vender, licenciar e franquear (só marcas registradas podem franquear).',
     result: 'Um ativo que você pode negociar, licenciar ou usar como garantia do negócio.'
   },
   {
-    icon: '<path d="M12 3l7 3v5c0 4.2-2.9 7.4-7 8.6C7.9 18.4 5 15.2 5 11V6l7-3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 11.5l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
-    title: 'Novo pedido grátis',
-    description: 'Nos planos Prata e Ouro, se a marca for indeferida, refazemos o pedido sem nenhum custo adicional.',
+    icon: '<path d="M5 16 12 7l7 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/><path d="M12 7v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/>',
+    title: 'Novo pedido sem novos honorários',
+    description: 'Nos planos Prata e Ouro, se a marca for indeferida, refazemos o pedido sem nova cobrança de honorários. A nova taxa oficial permanece devida diretamente ao INPI.',
     result: 'Você não paga duas vezes por um risco que já era nosso de gerenciar.'
   },
   {
     icon: '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
     title: 'Pagamento único, sem pegadinhas',
-    description: 'Custos reduzidos por software que controla os processos e faz a colidência com IA. Você paga um valor só.',
+    description: 'Custos reduzidos por software que controla os processos e faz a colidência com inteligência artificial. Você paga um valor só.',
     result: 'Sabe o valor total no dia da contratação — sem cobrança surpresa depois.'
   }
 ] as const;

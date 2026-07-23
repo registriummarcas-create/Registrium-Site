@@ -4,7 +4,7 @@
   <div class="manifesto-pattern" aria-hidden="true"></div>
   <div class="manifesto-vignette" aria-hidden="true"></div>
   <div class="container manifesto-inner reveal">
-    <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Propósito</p>
+    <p class="eyebrow"><span class="chapter-mark"><span class="chapter-num">01</span><span class="chapter-dash">—</span></span><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></span>Propósito</p>
     <h2>Por que a Registrium existe</h2>
     <div class="manifesto-body">
       <p>Ninguém abre um negócio pensando em perder o nome dele.</p>
@@ -25,4 +25,7 @@
 .manifesto h2 { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 700; margin: .75rem 0 2.25rem; line-height: 1.1; }
 .manifesto-body p { color: var(--color-on-dark); font-size: 1.09rem; line-height: 1.7; margin: 0 0 1.25rem; }
 .manifesto-body p.manifesto-close { color: var(--color-white); font-weight: 700; font-size: 1.19rem; margin-top: 1.75rem; }
+.chapter-mark { display: inline-flex; align-items: center; gap: .3rem; flex: none; }
+.chapter-num { font-family: var(--font-mono); font-weight: 700; }
+.chapter-dash { opacity: .75; }
 </style>

@@ -5,30 +5,37 @@ const risks = [
   {
     icon: '<path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 16v.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
     title: 'A notificação',
-    description: 'Anos de operação, clientela formada, reputação construída. Aí chega uma carta exigindo que você pare de usar o próprio nome. Quem registrou primeiro chega com a lei do lado.'
+    description: 'Anos de operação, clientela formada, reputação construída. Aí chega uma carta exigindo que você pare de usar o próprio nome. Quem registrou primeiro chega com a lei do lado.',
+    tags: ['Clientela formada', 'Reputação construída', 'Carta de exigência']
   },
   {
     icon: '<path d="M6 3v18M18 3v18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6 8h6M6 13h9M6 18h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
     title: 'A conta do recomeço',
-    description: 'Fachada, embalagem, uniforme, domínio, perfil, material impresso, anúncio pago. Trocar de nome custa muitas vezes o valor de ter registrado.'
+    description: 'Fachada, embalagem, uniforme, domínio, perfil, material impresso, anúncio pago. Trocar de nome custa muitas vezes o valor de ter registrado.',
+    tags: ['Fachada', 'Embalagem', 'Domínio', 'Anúncio pago']
   },
   {
     icon: '<rect x="5" y="10" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 018 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 14v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>',
     title: 'O nome sequestrado',
-    description: 'Alguém registra o nome que você tornou conhecido e passa a poder cobrar para você continuar usando. Acontece justamente com quem cresce e aparece.'
+    description: 'Alguém registra o nome que você tornou conhecido e passa a poder cobrar para você continuar usando. Acontece justamente com quem cresce e aparece.',
+    tags: ['Nome conhecido', 'Cobrança pelo uso']
   }
 ];
 ---
 <section class="section section--soft risk">
+  <div class="risk-lines" aria-hidden="true"></div>
   <div class="container">
-    <SectionTitle eyebrow="O custo de esperar" title="O que acontece quando o nome não é seu no papel" />
+    <SectionTitle chapter="05" eyebrow="O custo de esperar" title="O que acontece quando o nome não é seu no papel" />
     <div class="grid risk-grid">
       {risks.map((risk, i) => (
-        <article class="card risk-card reveal" style={`transition-delay:${i * 80}ms`}>
+        <article class:list={['card', 'risk-card', `risk-card--${i + 1}`, 'reveal']} style={`transition-delay:${i * 80}ms`}>
           <span class="risk-index">0{i + 1}</span>
           <div class="icon-tile risk-icon"><svg viewBox="0 0 24 24" fill="none" set:html={risk.icon} /></div>
           <h3>{risk.title}</h3>
           <p>{risk.description}</p>
+          <div class="risk-tags">
+            {risk.tags.map((tag) => <span class="risk-tag">{tag}</span>)}
+          </div>
           {i < risks.length - 1 && (
             <svg class="risk-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           )}
@@ -45,14 +52,23 @@ const risks = [
   </div>
 </section>
 <style>
+.risk { position: relative; overflow: hidden; }
+.risk-lines { position: absolute; z-index: 0; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(12deg, rgba(21,17,56,.035) 0 1px, transparent 1px 42px); }
+.risk .container { position: relative; z-index: 1; }
 .risk-grid { grid-template-columns: repeat(3, 1fr); gap: 2.25rem; }
-.risk-card { position: relative; padding: 1.5rem 1.5rem; overflow: visible; }
+.risk-card { position: relative; padding: 1.5rem 1.5rem; overflow: visible; border-left: 3px solid transparent; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.risk-card--1 { border-left-color: rgba(138,87,206,.25); }
+.risk-card--2 { border-left-color: rgba(138,87,206,.5); }
+.risk-card--3 { border-left-color: rgba(138,87,206,.85); }
 .risk-index { position: absolute; top: 1.25rem; right: 1.375rem; font-family: var(--font-mono); font-weight: 600; font-size: 1rem; color: var(--color-hairline); }
 .risk-icon { background: var(--grad-brand); }
 .risk-card h3 { margin: 1.25rem 0 .5rem; }
+.risk-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.125rem; }
+.risk-tag { font-family: var(--font-mono); font-size: .64rem; font-weight: 600; letter-spacing: .01em; color: var(--color-muted); background: var(--color-white); border: 1px solid var(--color-border); border-radius: .3rem; padding: .28rem .55rem; }
 .risk-arrow { display: none; }
 .risk-close { text-align: center; margin-top: 2rem; }
 .risk-close p { font-size: 1.09rem; font-weight: 700; color: var(--color-text); margin: 0 0 1.375rem; }
-@media (min-width: 1041px) { .risk-arrow { display: block; position: absolute; top: 50%; right: -1.75rem; transform: translateY(-50%); color: var(--color-violet); opacity: .4; z-index: 2; } }
+@media (min-width: 1041px) { .risk-arrow { display: block; position: absolute; top: 50%; right: -1.75rem; transform: translateY(-50%); color: var(--color-violet); opacity: .4; z-index: 2; animation: riskArrowPulse 3.2s ease-in-out infinite; } }
+@keyframes riskArrowPulse { 0%, 100% { opacity: .3; transform: translateY(-50%) translateX(0); } 50% { opacity: .7; transform: translateY(-50%) translateX(3px); } }
 @media (max-width: 1040px) { .risk-grid { grid-template-columns: 1fr; } }
 </style>

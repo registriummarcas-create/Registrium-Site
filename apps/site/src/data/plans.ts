@@ -2,8 +2,9 @@ export const plans = [
   {
     id: 'bronze',
     name: 'Bronze',
+    category: 'Essencial',
     who: 'MEI e Pessoa Física',
-    tagline: 'Para quem quer o nome garantido, sem complicação.',
+    tagline: 'Para quem deseja iniciar o registro com segurança, clareza e acompanhamento profissional.',
     price: 'R$ 680',
     priceNote: 'à vista',
     installment: 'ou 12x de R$ 66,67 no cartão',
@@ -27,8 +28,9 @@ export const plans = [
   {
     id: 'prata',
     name: 'Prata',
+    category: 'Estratégico',
     who: 'ME e EPP',
-    tagline: 'Registro com rede de proteção.',
+    tagline: 'Para quem busca cobertura ampliada durante o processo e maior proteção contra contingências.',
     price: 'R$ 1.487,50',
     priceNote: 'à vista',
     installment: 'ou 12x de R$ 145,83 no cartão',
@@ -45,15 +47,16 @@ export const plans = [
       'Buscas e análises ilimitadas',
       'Alerta se alguém depositar marca parecida com a sua'
     ],
-    footnote: 'Se o INPI indeferir, refazemos o pedido. Você paga apenas a nova taxa oficial.',
+    footnote: 'Se o INPI indeferir, refazemos o pedido sem novos honorários. A nova taxa oficial do INPI permanece devida.',
     cta: 'Quero o Plano Prata',
     whatsappMessage: 'Olá! Quero o Plano Prata para registrar minha marca.'
   },
   {
     id: 'ouro',
     name: 'Ouro',
+    category: 'Integral',
     who: 'Proteção completa',
-    tagline: 'Para quem tem mais de um nome a defender.',
+    tagline: 'Para marcas que exigem acompanhamento máximo, vigilância e resposta completa aos riscos do processo.',
     price: 'Sob consulta',
     priceNote: 'com diagnóstico gratuito antes de qualquer valor',
     inpiNote: 'Taxa do INPI: R$ 880 por classe',
@@ -68,7 +71,7 @@ export const plans = [
       'Oposições, manifestações e recursos conduzidos pela Registrium por 2 anos',
       'Monitoramento contínuo após o registro e gestão da renovação'
     ],
-    footnote: 'Se o INPI indeferir, refazemos o pedido. Você paga apenas a nova taxa oficial.',
+    footnote: 'Se o INPI indeferir, refazemos o pedido sem novos honorários. A nova taxa oficial do INPI permanece devida.',
     cta: 'Quero um diagnóstico gratuito',
     whatsappMessage: 'Olá! Quero um diagnóstico gratuito para a minha marca.'
   }

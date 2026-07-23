@@ -11,7 +11,7 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
           Empresa credenciada no INPI
         </span>
-        <a class="cred-link" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">ver certificado</a>
+        <a class="cred-link" href="/#marcas">ver credenciais</a>
       </div>
       <h1>Sua marca é o seu <span class="g-cyan">patrimônio</span>. Registre antes que <span class="g-purple">alguém registre por você.</span></h1>
       <p class="hero-sub">No INPI, a fila pesa mais do que a história. A Registrium cuida do caminho inteiro: pesquisa de viabilidade, protocolo em até 48h, defesa em oposições e acompanhamento de cada prazo até o certificado. Pagamento único, sem cobrança a cada movimentação.</p>
@@ -29,6 +29,20 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
         <div><div class="s-num">Valor único</div><div class="s-lbl">Sem cobrança a cada ato do processo</div></div>
         <div><div class="s-num">10 anos</div><div class="s-lbl">de validade</div></div>
         <div><div class="s-num">100%</div><div class="s-lbl">transparência</div></div>
+      </div>
+      <p class="hero-audit">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.2l2.3 2.3L16 9.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Dados auditáveis · atualizado em 2026
+      </p>
+      <div class="hero-journey" aria-hidden="true">
+        <div class="hj-line"></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:0s"></span><span class="hj-label">Nome</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:1.14s"></span><span class="hj-label">Análise</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:2.28s"></span><span class="hj-label">Comparação</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:3.42s"></span><span class="hj-label">Protocolo</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:4.56s"></span><span class="hj-label">Acompanhamento</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:5.7s"></span><span class="hj-label">Certificado</span></div>
+        <div class="hj-node"><span class="hj-dot" style="animation-delay:6.84s"></span><span class="hj-label">Proteção · 10 anos</span></div>
       </div>
     </div>
     <div class="hero-visual reveal">
@@ -178,6 +192,19 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
 .hero-stats .s-num { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 1.375rem; color: var(--color-white); line-height: 1; }
 .hero-stats .s-lbl { font-size: .72rem; color: var(--color-on-dark-soft); margin-top: .3rem; line-height: 1.25; }
 .hero-stats .s-foot { font-size: .62rem; color: var(--color-on-dark-soft); font-style: italic; margin-top: .2rem; max-width: 9rem; line-height: 1.25; opacity: .8; }
+.hero-audit { display: inline-flex; align-items: center; gap: .4rem; margin: 1.125rem 0 0; font-family: var(--font-ui); font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--color-on-dark-soft); }
+.hero-audit svg { flex: none; color: #8fd0f5; }
+
+.hero-journey { position: relative; display: flex; justify-content: space-between; gap: .375rem; margin-top: 1.625rem; padding-top: 1.375rem; max-width: 38rem; border-top: 1px solid rgba(255,255,255,.1); }
+.hj-line { position: absolute; top: calc(1.375rem + 2px); left: 2%; right: 2%; height: 1px; background: rgba(255,255,255,.14); }
+.hj-node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: .5rem; flex: 1; min-width: 0; }
+.hj-dot { width: .4rem; height: .4rem; border-radius: 50%; background: rgba(255,255,255,.28); box-shadow: 0 0 0 4px var(--color-navy-950); animation: hjPulse 8s ease-in-out infinite; }
+.hj-label { font-family: var(--font-mono); font-size: .56rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--color-on-dark-soft); text-align: center; line-height: 1.25; opacity: .8; }
+@keyframes hjPulse {
+  0%, 7%, 100% { background: rgba(255,255,255,.28); transform: scale(1); box-shadow: 0 0 0 4px var(--color-navy-950); }
+  3.5% { background: #8fd0f5; transform: scale(1.7); box-shadow: 0 0 0 4px var(--color-navy-950), 0 0 10px 2px rgba(143,208,245,.65); }
+}
+@media (max-width: 700px) { .hj-label { display: none; } .hero-journey { padding-top: 1rem; } .hj-line { top: 1rem; } }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); animation: spinSlow 34s linear infinite; }
 .hero-watermark { position: absolute; z-index: 0; top: -9rem; right: -9rem; width: 48rem; max-width: 130%; opacity: .5; filter: drop-shadow(0 0 70px rgba(90,120,240,.35)); pointer-events: none; user-select: none; animation: heroWatermarkFloat 12s ease-in-out infinite; }

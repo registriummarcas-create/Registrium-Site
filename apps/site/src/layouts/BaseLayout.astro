@@ -44,7 +44,7 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url);
   <body>
     <div class="scroll-progress" id="scrollProgress">
       <div class="scroll-progress-bar" id="scrollProgressBar"></div>
-      <div class="scroll-progress-mark" id="scrollProgressMark"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></div>
+      <div class="scroll-progress-mark" id="scrollProgressMark"><img src="/images/logo-mark.png" alt="" aria-hidden="true" loading="lazy" /></div>
     </div>
     <Header />
     <main><slot /></main>

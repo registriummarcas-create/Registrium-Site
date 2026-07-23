@@ -82,6 +82,62 @@ h3, h4 { font-family: var(--font-ui); letter-spacing: -0.02em; }
 /* ---------- DIAGONAL SECTION DIVIDER (echoes the logomark's angular cut) ---------- */
 .divider-cut { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--divider-cut))); padding-bottom: calc(clamp(3.5rem, 7vw, 5.25rem) + var(--divider-cut)); }
 
+/* =========================================================
+   PROPRIETARY GRAPHIC SYSTEM
+   A small set of reusable marks derived from the brand's own
+   vocabulary (protocol, registration, certification), applied
+   sparingly across institutional surfaces. Not decoration —
+   identity that should read as Registrium even without the logo.
+   ========================================================= */
+
+/* Registration marks — corner tick marks, like a document's print
+   registration crosses. For certificates, credentials, the simulator
+   result and other "this is official" surfaces. */
+.reg-marks { position: relative; }
+.reg-marks::before {
+  content: "";
+  position: absolute; inset: .65rem; z-index: 2; pointer-events: none;
+  --rm: var(--reg-mark-color, rgba(21,17,56,.32));
+  background-image:
+    linear-gradient(var(--rm), var(--rm)), linear-gradient(var(--rm), var(--rm)),
+    linear-gradient(var(--rm), var(--rm)), linear-gradient(var(--rm), var(--rm)),
+    linear-gradient(var(--rm), var(--rm)), linear-gradient(var(--rm), var(--rm)),
+    linear-gradient(var(--rm), var(--rm)), linear-gradient(var(--rm), var(--rm));
+  background-repeat: no-repeat;
+  background-size: 9px 1.5px, 1.5px 9px, 9px 1.5px, 1.5px 9px, 9px 1.5px, 1.5px 9px, 9px 1.5px, 1.5px 9px;
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+}
+.reg-marks--light { --reg-mark-color: rgba(255,255,255,.4); }
+
+/* Protection rings — concentric circles, the "coverage" motif.
+   Piloted around the owner-mosaic seal in Marcas; reusable anywhere
+   a circular focal point deserves a quiet halo of protection. */
+.protection-rings { position: relative; }
+.protection-rings::before, .protection-rings::after { content: ""; position: absolute; border-radius: 999px; pointer-events: none; }
+.protection-rings::before { inset: -1.25rem; border: 1px solid rgba(138,87,206,.22); }
+.protection-rings::after { inset: -2.75rem; border: 1px solid rgba(63,160,222,.14); }
+
+/* Process tag — a small monospace code, styled like a protocol or
+   Nice-classification stamp. Purely stylistic (not a real case number). */
+.process-tag { display: inline-flex; align-items: center; gap: .35rem; font-family: var(--font-mono); font-size: .64rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .22rem .55rem; border: 1px solid currentColor; border-radius: .3rem; opacity: .6; white-space: nowrap; }
+
+/* Documental grid — a faint ruled/graph texture for surfaces that
+   want to feel like an official ledger rather than a flat card. */
+.doc-grid { position: relative; }
+.doc-grid::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(21,17,56,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21,17,56,.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+.doc-grid--dark::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+}
+
 /* ---------- BUTTON SHINE SWEEP ---------- */
 .button { position: relative; overflow: hidden; transition: transform .16s var(--ease-premium), box-shadow .16s ease, filter .16s ease, background .16s ease; }
 .button::after {
@@ -108,7 +164,7 @@ h3, h4 { font-family: var(--font-ui); letter-spacing: -0.02em; }
 .back-to-top:hover { border-color: var(--color-blue); box-shadow: 0 18px 34px -12px rgba(62,111,230,.4); transform: translateY(-2px); }
 .back-to-top img { width: 60%; height: 60%; object-fit: contain; transition: transform .3s var(--ease-premium); }
 .back-to-top:hover img { transform: rotate(-8deg) scale(1.08); }
-@media (max-width: 560px) { .back-to-top { left: 1rem; bottom: 1rem; width: 2.75rem; height: 2.75rem; } }
+@media (max-width: 760px) { .back-to-top { display: none; } }
 
 /* ---------- AMBIENT DRIFT ---------- */
 @keyframes driftA { 0%, 100% { transform: translate(-50%, 0) scale(1); } 50% { transform: translate(-47%, -3%) scale(1.08); } }

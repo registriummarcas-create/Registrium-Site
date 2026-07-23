@@ -4,11 +4,13 @@ import { services } from '../../data/services';
 ---
 <section id="servicos" class="section section--soft svc-section">
   <div class="svc-glow" aria-hidden="true"></div>
+  <div class="svc-lines" aria-hidden="true"></div>
   <div class="container">
-    <SectionTitle eyebrow="Outros serviços" title="Proteção completa para sua marca" />
+    <SectionTitle chapter="11" eyebrow="Outros serviços" title="Proteção completa para sua marca" />
     <div class="grid services-grid">
       {services.map((service, i) => (
         <article class="card svc reveal" style={`transition-delay:${i * 60}ms`}>
+          <div class="icon-tile svc-icon"><svg viewBox="0 0 24 24" fill="none" set:html={service.icon} /></div>
           <div class="svc-top">
             <h3>{service.title}</h3>
             <span class:list={['svc-price', { consulta: service.price === 'Sob consulta' }]}>{service.price}</span>
@@ -22,8 +24,11 @@ import { services } from '../../data/services';
 <style>
 .svc-section { position: relative; overflow: hidden; }
 .svc-glow { position: absolute; z-index: 0; bottom: -10rem; right: -6rem; width: 32rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(138,87,206,.1), transparent 70%); pointer-events: none; animation: driftB 22s ease-in-out infinite; }
+.svc-lines { position: absolute; z-index: 0; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(12deg, rgba(99,102,232,.04) 0 1px, transparent 1px 42px); }
 .svc-section .container { position: relative; z-index: 1; }
 .svc { transition: transform .28s var(--ease-premium), box-shadow .28s ease, border-color .28s ease; }
+.svc-icon { width: 2.75rem; height: 2.75rem; margin-bottom: 1.125rem; }
+.svc-icon svg { width: 1.3rem; height: 1.3rem; }
 .svc:hover .svc-price { transform: scale(1.05); }
 .svc-price { transition: transform .2s var(--ease-premium); }
 .services-grid { grid-template-columns: repeat(3, 1fr); }

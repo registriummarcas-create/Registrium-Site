@@ -4,9 +4,9 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 ---
 <section class="section section--soft detail" id="incluso">
   <div class="container">
-    <SectionTitle eyebrow="Transparência total" title="O que está incluso — e o que é taxa do INPI" description="Desde o início explicamos toda a viabilidade e as possibilidades do processo. Sem surpresa, sem cobrança a cada ato: você paga um valor único pelo serviço." />
+    <SectionTitle chapter="07" eyebrow="Transparência total" title="O que está incluso — e o que é taxa do INPI" description="Desde o início explicamos toda a viabilidade e as possibilidades do processo. Sem surpresa, sem cobrança a cada ato: você paga um valor único pelo serviço." />
     <div class="detail-grid reveal">
-      <div class="inc-card">
+      <div class="inc-card reg-marks">
         <h3>O que está incluso</h3>
         <p class="sub">No valor do plano está incluso todo o serviço, do estudo à emissão do certificado.</p>
         {includedGroups.map((group) => (
@@ -23,8 +23,8 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
           </div>
         ))}
       </div>
-      <div class="inc-card dark">
-        <img class="inc-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
+      <div class="inc-card dark doc-grid doc-grid--dark">
+        <img class="inc-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" loading="lazy" />
         <h3>Taxas do INPI (não inclusas)</h3>
         <p class="sub">Valores oficiais da Portaria GM/MDIC nº 110/2025, pagos diretamente ao INPI.</p>
         <div class="fees">
@@ -47,8 +47,9 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
         <p class="eyebrow">O que você recebe</p>
         <h3>Um certificado de registro válido por <span class="hl">10 anos</span></h3>
         <p>Documento oficial emitido pelo INPI comprovando, por lei, que a marca é sua — com exclusividade de uso em todo o território nacional.</p>
+        <span class="process-tag cert-process-tag">Modelo ilustrativo · Nº 07/2026</span>
       </div>
-      <div class="cert-mockup-wrap">
+      <div class="cert-mockup-wrap reg-marks">
         <div class="cert-mockup">
           <div class="cert-flag"><span class="cf-green"></span><span class="cf-yellow"></span></div>
           <div class="cert-seal">
@@ -77,6 +78,10 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
             <div class="cert-row">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 11h6M9 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               <span class="line w-40"></span>
+            </div>
+            <div class="cert-row cert-row--num">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="cert-regnum">Nº 000.000.000</span>
             </div>
           </div>
           <div class="cert-sign">
@@ -164,12 +169,27 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .cert-copy h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; line-height: 1.18; margin-bottom: .875rem; }
 .cert-copy h3 .hl { color: var(--color-violet); }
 .cert-copy p { color: var(--color-muted); font-size: .94rem; line-height: 1.65; max-width: 26rem; margin: 0; }
+.cert-process-tag { display: inline-flex; margin-top: 1.125rem; color: var(--color-violet); border-color: var(--color-border); }
 .cert-mockup-wrap { position: relative; display: flex; justify-content: center; padding: 1.5rem 0 2rem; }
-.cert-mockup { position: relative; width: 19.5rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.5rem 1.375rem 2.25rem; box-shadow: 0 30px 60px -30px rgba(30,20,80,.4); transform: rotate(-2deg); overflow: hidden; }
+.cert-mockup { position: relative; width: 19.5rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.5rem 1.375rem 2.25rem; box-shadow: 0 8px 16px -10px rgba(30,20,80,.3), 0 34px 60px -26px rgba(30,20,80,.45); transform: rotate(-2deg) scale(.93); transition: transform .9s var(--ease-premium) .1s, box-shadow .3s ease; overflow: hidden; }
+.cert-strip.in .cert-mockup { transform: rotate(-2deg) scale(1); }
+.cert-mockup::before {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 90px 90px;
+}
+.cert-mockup::after {
+  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.4) 50%, transparent 58%);
+  transform: translateX(-130%);
+  animation: certShine 9s ease-in-out infinite;
+}
+@keyframes certShine { 0%, 68%, 100% { transform: translateX(-130%); } 84% { transform: translateX(130%); } }
 .cert-flag { position: absolute; left: 0; top: 0; bottom: 0; width: .875rem; display: flex; }
 .cert-flag .cf-green { width: 40%; background: #0a7a3d; }
 .cert-flag .cf-yellow { width: 60%; background: #ffcc29; }
-.cert-seal { position: absolute; top: 1.125rem; right: 1.125rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #f5a623); display: flex; align-items: center; justify-content: center; color: var(--color-white); }
+.cert-seal { position: absolute; top: 1.125rem; right: 1.125rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #f5a623); display: flex; align-items: center; justify-content: center; color: var(--color-white); box-shadow: inset 1px 1px 2px rgba(255,255,255,.7), inset -1px -1px 3px rgba(0,0,0,.3), 0 2px 5px rgba(0,0,0,.25); }
 .cert-top { display: flex; align-items: flex-start; gap: .55rem; margin-bottom: 1rem; padding-right: 1.75rem; }
 .cert-emblem { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--color-cream); color: var(--color-violet); display: flex; align-items: center; justify-content: center; }
 .cert-top-text { padding-top: .1rem; }
@@ -182,6 +202,7 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .cert-row svg { flex: none; }
 .cert-row .line { display: block; height: .4rem; border-radius: 999px; background: var(--color-border); }
 .cert-row .w-70 { width: 70%; } .cert-row .w-55 { width: 55%; } .cert-row .w-40 { width: 40%; }
+.cert-regnum { font-family: var(--font-mono); font-size: .62rem; font-weight: 600; letter-spacing: .02em; color: var(--color-muted); }
 .cert-sign { margin-bottom: 1rem; }
 .cert-sign-city { font-size: .6rem; color: var(--color-muted); margin-bottom: .125rem; }
 .cert-sign-mark { width: 5.5rem; height: 1.6rem; color: var(--color-text); }
