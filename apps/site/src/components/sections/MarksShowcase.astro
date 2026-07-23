@@ -12,6 +12,20 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
 
+    <!-- Portfólio: marcas registradas -->
+    <div class="logo-marquee reveal">
+      {rows.map((row, rowIndex) => (
+        <div class:list={['marquee-row', { reverse: rowIndex % 2 === 1 }]}>
+          <div class="marquee-track">
+            {[...row, ...row].map((src) => (
+              <div class="tile"><img src={src} alt="Marca registrada pela Registrium junto ao INPI" loading="lazy" /></div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="marks-note">Logotipos de marcas reais registradas pela Registrium junto ao INPI, exibidos a título de portfólio.</p>
+
     <!-- Narrativa: foto + texto -->
     <div class="marks-intro reveal">
       <div class="owner-frame protection-rings">
@@ -68,30 +82,16 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
         <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-
-    <!-- Portfólio -->
-    <div class="logo-marquee reveal">
-      {rows.map((row, rowIndex) => (
-        <div class:list={['marquee-row', { reverse: rowIndex % 2 === 1 }]}>
-          <div class="marquee-track">
-            {[...row, ...row].map((src) => (
-              <div class="tile"><img src={src} alt="Marca registrada pela Registrium junto ao INPI" loading="lazy" /></div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-    <p class="marks-note">Logotipos de marcas reais registradas pela Registrium junto ao INPI, exibidos a título de portfólio.</p>
   </div>
 </section>
 <style>
 .marks :global(.section-title) { margin-bottom: 1.75rem; }
-.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: .25rem auto 3.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
+.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: .25rem auto 2.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
 .story-cta svg { transition: transform .16s ease; }
 .story-cta:hover svg { transform: translateX(3px); }
 
 /* Narrativa */
-.marks-intro { display: grid; grid-template-columns: .62fr 1.38fr; gap: 3.75rem; align-items: center; }
+.marks-intro { display: grid; grid-template-columns: .62fr 1.38fr; gap: 3.75rem; align-items: center; margin-top: 4rem; }
 .owner { position: relative; z-index: 1; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; box-shadow: 0 30px 60px -34px rgba(30,20,80,.45); }
 .owner-main { width: 100%; height: 100%; object-fit: cover; }
 .owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.55) 0%, transparent 42%); pointer-events: none; }
@@ -127,7 +127,7 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .credential-arrow { flex: none; margin-left: auto; color: var(--color-violet); }
 
 /* Portfólio */
-.logo-marquee { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; overflow: hidden; padding: .5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.logo-marquee { margin-top: 0; display: flex; flex-direction: column; gap: 1.25rem; overflow: hidden; padding: .5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-row { overflow: hidden; }
 .marquee-track { display: flex; width: max-content; gap: 1.25rem; animation: marquee 34s linear infinite; }
 .marquee-row.reverse .marquee-track { animation-direction: reverse; animation-duration: 40s; }
@@ -136,7 +136,7 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .tile:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -22px rgba(60,40,150,.4); border-color: var(--color-blue); }
 .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marks-note { margin-top: 2.25rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
+.marks-note { margin-top: 1.25rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
 
 @media (max-width: 920px) {
   .marks-intro { grid-template-columns: 1fr; gap: 2rem; }
