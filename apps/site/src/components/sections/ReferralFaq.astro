@@ -1,0 +1,55 @@
+---
+---
+<section class="section referral">
+  <div class="container referral-grid reveal">
+    <div class="referral-copy">
+      <p class="eyebrow">Programa de parceiros</p>
+      <h2>Indique e ganhe</h2>
+      <p>Contadores, designers e parceiros que indicam clientes para a Registrium recebem comissão por cada indicação convertida. Simples assim — sem exclusividade, sem burocracia, e sua indicação segue com o mesmo acompanhamento e transparência de sempre.</p>
+      <a class="button button--primary" href="/parceiros">
+        Quero indicar
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="referral-art">
+      <div class="ra-blob"></div>
+      <div class="ra-icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19c.6-3 2.6-5 4.5-5s3.9 2 4.5 5M12.5 19c.6-3 2.6-5 4.5-5s3.9 2 4.5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </div>
+      <div class="ra-badge one">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Comissão por indicação
+      </div>
+      <div class="ra-badge two">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Sem exclusividade
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-teaser">
+    <div class="container">
+      <h3>Ficou com alguma dúvida?</h3>
+      <p>Veja as perguntas mais frequentes sobre registro de marca e taxas do INPI, ou fale direto com nossa equipe pelo WhatsApp.</p>
+      <a class="button button--dark" href="#duvidas">Central de dúvidas</a>
+    </div>
+  </div>
+</section>
+<style>
+.referral { padding-bottom: 0; }
+.referral-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3rem; align-items: center; }
+.referral-copy h2 { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 800; margin: .75rem 0 1.125rem; line-height: 1.08; }
+.referral-copy p { color: var(--color-muted); font-size: 1rem; line-height: 1.65; max-width: 30rem; margin: 0 0 1.75rem; }
+.referral-art { position: relative; display: flex; align-items: center; justify-content: center; min-height: 16rem; }
+.ra-blob { position: relative; width: 12rem; height: 12rem; border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; background: var(--grad-brand); box-shadow: 0 40px 70px -30px rgba(90,70,210,.55); }
+.ra-icon { position: absolute; width: 12rem; height: 12rem; display: flex; align-items: center; justify-content: center; color: var(--color-white); }
+.ra-badge { position: absolute; display: inline-flex; align-items: center; gap: .5rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: 999px; padding: .55rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(30,20,80,.35); white-space: nowrap; animation: badgeFloat 5s ease-in-out infinite; }
+.ra-badge.one { top: 8%; right: 2%; }
+.ra-badge.two { bottom: 10%; left: 0; animation-delay: 1.2s; }
+@keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.faq-teaser { margin-top: 4.5rem; background: var(--color-cream); padding: 3.5rem 0; text-align: center; }
+.faq-teaser h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin: 0 0 .875rem; }
+.faq-teaser p { color: var(--color-muted); font-size: .97rem; line-height: 1.6; max-width: 32rem; margin: 0 auto 1.625rem; }
+@media (max-width: 920px) { .referral-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; } .referral-copy p { margin-inline: auto; } .referral-art { order: -1; } }
+@media (max-width: 560px) { .faq-teaser { padding: 2.75rem 0; margin-top: 3.5rem; } }
+</style>
