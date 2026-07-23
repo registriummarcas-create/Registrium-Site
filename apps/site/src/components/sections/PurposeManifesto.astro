@@ -1,7 +1,8 @@
 ---
 ---
-<section class="section manifesto" id="proposito">
-  <img class="manifesto-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
+<section class="section section--dark manifesto" id="proposito">
+  <div class="manifesto-pattern" aria-hidden="true"></div>
+  <div class="manifesto-vignette" aria-hidden="true"></div>
   <div class="container manifesto-inner reveal">
     <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Propósito</p>
     <h2>Por que a Registrium existe</h2>
@@ -14,10 +15,13 @@
   </div>
 </section>
 <style>
-.manifesto { position: relative; overflow: hidden; background: var(--color-white); }
-.manifesto-watermark { position: absolute; z-index: 0; top: 50%; left: 50%; width: 34rem; max-width: 90%; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; user-select: none; }
+.manifesto { position: relative; overflow: hidden; background:
+    radial-gradient(60% 90% at 50% 0%, rgba(99,102,232,.22), transparent 70%),
+    var(--color-navy-900); }
+.manifesto-pattern { position: absolute; inset: -2rem; z-index: 0; background-image: url('/images/logo-mark-white.png'); background-repeat: repeat; background-size: 6.5rem 6.1rem; background-position: center; opacity: .06; pointer-events: none; user-select: none; }
+.manifesto-vignette { position: absolute; inset: 0; z-index: 0; background: radial-gradient(60% 55% at 50% 45%, var(--color-navy-900) 0%, rgba(14,16,48,.55) 45%, transparent 78%); pointer-events: none; }
 .manifesto-inner { position: relative; z-index: 1; max-width: 42rem; margin: 0 auto; text-align: center; }
 .manifesto h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 800; margin: .75rem 0 2.25rem; line-height: 1.15; }
-.manifesto-body p { color: var(--color-muted); font-size: 1.09rem; line-height: 1.7; margin: 0 0 1.25rem; }
-.manifesto-body p.manifesto-close { color: var(--color-text); font-weight: 700; font-size: 1.19rem; margin-top: 1.75rem; }
+.manifesto-body p { color: var(--color-on-dark); font-size: 1.09rem; line-height: 1.7; margin: 0 0 1.25rem; }
+.manifesto-body p.manifesto-close { color: var(--color-white); font-weight: 700; font-size: 1.19rem; margin-top: 1.75rem; }
 </style>
