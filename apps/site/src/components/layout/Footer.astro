@@ -54,7 +54,8 @@ import { contactConfig } from '../../config/contact';
   </div>
 </footer>
 <style>
-.footer { padding: 3.5rem 0 2.2rem; border-top: 1px solid var(--color-border); background: var(--color-white); }
+.footer { position: relative; padding: 3.5rem 0 2.2rem; border-top: 1px solid var(--color-border); background: var(--color-white); }
+.footer::before { content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 3px; background: var(--grad-brand); }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.1fr; gap: 2.5rem; }
 .footer-about img { height: 2.5rem; width: auto; margin-bottom: 1rem; }
 .footer-about p { font-size: .9rem; color: var(--color-muted); max-width: 19rem; line-height: 1.6; margin: 0; }

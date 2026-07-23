@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#071625"/><path d="M15 15h27l7 7v27H22l-7-7z" fill="none" stroke="#18d5d1" stroke-width="5"/><circle cx="39" cy="25" r="6" fill="#ffd700"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="rgMarkBlue" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2f66db"/>
+      <stop offset="100%" stop-color="#5fc8f3"/>
+    </linearGradient>
+    <linearGradient id="rgMarkPurple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8a57ce"/>
+      <stop offset="100%" stop-color="#4a2a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#080a24"/>
+  <path d="M13 33 L25 19 L32 26 L26 33 L32 40 L23 49 L20 40 L14 40 Z" fill="url(#rgMarkBlue)"/>
+  <path d="M30 47 L46 17 L52 23 L37 51 Z" fill="url(#rgMarkPurple)"/>
+</svg>

@@ -33,9 +33,10 @@ const steps = [
 ];
 ---
 <section id="como-funciona" class="section section--soft process">
+  <div class="proc-glow" aria-hidden="true"></div>
   <div class="container proc-grid">
     <div class="reveal proc-intro">
-      <span class="eyebrow" style="color:var(--color-cyan);">Como funciona</span>
+      <span class="eyebrow" style="color:var(--color-cyan);"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Como funciona</span>
       <h2>Um processo claro, do início ao certificado</h2>
       <p>Você acompanha cada etapa do conforto da sua empresa, sem burocracia e sem cobranças a cada movimento processual.</p>
     </div>
@@ -56,6 +57,9 @@ const steps = [
   </div>
 </section>
 <style>
+.process { position: relative; overflow: hidden; }
+.proc-glow { position: absolute; z-index: 0; top: -6rem; right: -10rem; width: 44rem; max-width: 120%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(62,111,230,.07), transparent 70%); pointer-events: none; }
+.process .container { position: relative; z-index: 1; }
 .proc-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 3.25rem; align-items: start; }
 .proc-intro { position: sticky; top: calc(var(--header-height) + 2rem); }
 .process h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-top: .75rem; line-height: 1.12; }

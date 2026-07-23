@@ -3,7 +3,10 @@
   "short_name": "Registrium",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#071625",
-  "theme_color": "#071625",
-  "icons": []
+  "background_color": "#080a24",
+  "theme_color": "#080a24",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/images/logo-mark.png", "type": "image/png", "sizes": "440x415", "purpose": "any" }
+  ]
 }

@@ -24,6 +24,7 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
         ))}
       </div>
       <div class="inc-card dark">
+        <img class="inc-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
         <h3>Taxas do INPI (não inclusas)</h3>
         <p class="sub">Valores oficiais da Portaria GM/MDIC nº 110/2025, pagos diretamente ao INPI.</p>
         <div class="fees">
@@ -123,8 +124,10 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 </section>
 <style>
 .detail-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.5rem; align-items: start; }
-.inc-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem 1.875rem; box-shadow: var(--shadow-sm); }
-.inc-card.dark { background: linear-gradient(160deg, #241a52, #12123a); border-color: transparent; color: var(--color-white); }
+.inc-card { position: relative; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem 1.875rem; box-shadow: var(--shadow-sm); }
+.inc-card.dark { background: linear-gradient(160deg, #241a52, #12123a); border-color: transparent; color: var(--color-white); overflow: hidden; }
+.inc-watermark { position: absolute; z-index: 0; bottom: -2.25rem; right: -2rem; width: 11rem; opacity: .07; pointer-events: none; user-select: none; }
+.inc-card.dark > h3, .inc-card.dark > .sub, .inc-card.dark > .fees, .inc-card.dark > .fee-note { position: relative; z-index: 1; }
 .inc-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: .4rem; }
 .inc-card.dark h3 { color: var(--color-white); }
 .inc-card .sub { font-size: .8rem; color: var(--color-muted); margin-bottom: 1.25rem; }

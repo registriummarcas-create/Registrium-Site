@@ -5,6 +5,7 @@ import { contactConfig } from '../../config/contact';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
 ---
 <section class="section plans" id="planos">
+  <div class="plans-glow" aria-hidden="true"></div>
   <div class="container">
     <SectionTitle eyebrow="Planos" title="Escolha a proteção ideal para sua marca" description="Cada plano cobre 1 marca, em 1 forma de apresentação e 1 classe. Precisa de mais? A gente cota antes, nunca depois." />
     <p class="plans-subnote">O valor abaixo é o da Registrium, pago uma vez só. A taxa do INPI vai direto para o órgão federal, e a gente diz quanto é antes de você contratar.</p>
@@ -56,6 +57,9 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
   </div>
 </section>
 <style>
+.plans { position: relative; overflow: hidden; }
+.plans-glow { position: absolute; z-index: 0; top: -10rem; left: 50%; transform: translateX(-50%); width: 55rem; max-width: 140%; aspect-ratio: 2/1; background: radial-gradient(ellipse at center, rgba(138,87,206,.07), transparent 70%); pointer-events: none; }
+.plans .container { position: relative; z-index: 1; }
 .plans-grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
 .plan { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2.125rem 1.875rem; position: relative; display: flex; flex-direction: column; }
 .plan.featured { border-color: transparent; box-shadow: var(--shadow-lg); background: linear-gradient(var(--color-white), var(--color-white)) padding-box, var(--grad-brand) border-box; border: 1.5px solid transparent; }
