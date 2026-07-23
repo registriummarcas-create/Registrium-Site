@@ -2,12 +2,13 @@
 import SectionTitle from '../common/SectionTitle.astro';
 import { services } from '../../data/services';
 ---
-<section id="servicos" class="section section--soft">
+<section id="servicos" class="section section--soft svc-section">
+  <div class="svc-glow" aria-hidden="true"></div>
   <div class="container">
     <SectionTitle eyebrow="Outros serviços" title="Proteção completa para sua marca" />
-    <div class="grid services-grid reveal">
-      {services.map((service) => (
-        <article class="card svc">
+    <div class="grid services-grid">
+      {services.map((service, i) => (
+        <article class="card svc reveal" style={`transition-delay:${i * 60}ms`}>
           <div class="svc-top">
             <h3>{service.title}</h3>
             <span class:list={['svc-price', { consulta: service.price === 'Sob consulta' }]}>{service.price}</span>
@@ -19,6 +20,9 @@ import { services } from '../../data/services';
   </div>
 </section>
 <style>
+.svc-section { position: relative; overflow: hidden; }
+.svc-glow { position: absolute; z-index: 0; bottom: -10rem; right: -6rem; width: 32rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(138,87,206,.08), transparent 70%); pointer-events: none; }
+.svc-section .container { position: relative; z-index: 1; }
 .services-grid { grid-template-columns: repeat(3, 1fr); }
 .svc-top { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: .75rem; }
 .svc-top h3 { font-size: 1.09rem; margin: 0; line-height: 1.2; }

@@ -8,9 +8,9 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
   <div class="container">
     <SectionTitle eyebrow="Planos" title="Escolha a proteção ideal para sua marca" description="Cada plano cobre 1 marca, em 1 forma de apresentação e 1 classe. Precisa de mais? A gente cota antes, nunca depois." />
     <p class="plans-subnote">O valor abaixo é o da Registrium, pago uma vez só. A taxa do INPI vai direto para o órgão federal, e a gente diz quanto é antes de você contratar.</p>
-    <div class="grid plans-grid reveal">
-      {plans.map((plan) => (
-        <div class:list={['plan', { featured: plan.featured }]}>
+    <div class="grid plans-grid">
+      {plans.map((plan, i) => (
+        <div class:list={['plan', 'reveal', { featured: plan.featured }]} style={`transition-delay:${i * 90}ms`}>
           {plan.featured && 'badge' in plan && <span class="badge">{plan.badge}</span>}
           <h3>{plan.name}</h3>
           <p class="who">{plan.who}</p>

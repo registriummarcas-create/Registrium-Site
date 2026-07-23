@@ -21,6 +21,7 @@ const items = [
 ];
 ---
 <section class="section section--dark partners" id="parceiros">
+  <img class="partners-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
   <div class="container">
     <SectionTitle eyebrow="Programa de parceiros" title="Contadores e designers: registrem marcas com a gente" description="Você já está perto de quem precisa proteger uma marca. Indique ou registre em parceria com a Registrium e ganhe comissão por indicação." />
     <div class="partners-grid">
@@ -84,6 +85,12 @@ const items = [
   }
 </script>
 <style>
+.partners { position: relative; overflow: hidden; background:
+    radial-gradient(75% 75% at 88% 12%, rgba(62,111,230,.32), transparent 65%),
+    radial-gradient(65% 65% at 8% 95%, rgba(138,87,206,.28), transparent 68%),
+    var(--color-navy-950); }
+.partners-watermark { position: absolute; z-index: 0; top: 50%; right: -6rem; transform: translateY(-50%); width: 30rem; max-width: 70%; opacity: .06; pointer-events: none; user-select: none; }
+.partners .container { position: relative; z-index: 1; }
 .partners-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 2.75rem; align-items: center; max-width: 65rem; margin: 0 auto; }
 .partners-copy .p-item { display: flex; gap: .875rem; margin-bottom: 1.125rem; }
 .partners-copy .pt { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .91rem; margin-bottom: .2rem; color: var(--color-white); }

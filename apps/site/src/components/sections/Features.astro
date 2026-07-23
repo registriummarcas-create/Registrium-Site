@@ -23,12 +23,13 @@ const features = [
   }
 ];
 ---
-<section class="section" id="empresa">
+<section class="section feat-section" id="empresa">
+  <div class="feat-glow" aria-hidden="true"></div>
   <div class="container">
     <SectionTitle eyebrow="Por que Registrium" title="Registro de marca sem burocracia e com transparência" description="Desmitificamos o processo de registro e trazemos a segurança de uma equipe credenciada no INPI para empresas de todos os portes." />
-    <div class="grid feat-grid reveal">
-      {features.map((feature) => (
-        <article class="card feat">
+    <div class="grid feat-grid">
+      {features.map((feature, i) => (
+        <article class="card feat reveal" style={`transition-delay:${i * 70}ms`}>
           <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" set:html={feature.icon} /></div>
           <h3>{feature.title}</h3>
           <p set:html={feature.description} />
@@ -38,6 +39,9 @@ const features = [
   </div>
 </section>
 <style>
+.feat-section { position: relative; overflow: hidden; }
+.feat-glow { position: absolute; z-index: 0; top: -8rem; left: 50%; transform: translateX(-50%); width: 60rem; max-width: 140%; aspect-ratio: 2/1; background: radial-gradient(ellipse at center, rgba(99,102,232,.06), transparent 70%); pointer-events: none; }
+.feat-section .container { position: relative; z-index: 1; }
 .feat-grid { grid-template-columns: repeat(4, 1fr); }
 .feat h3 { margin: 1.4rem 0 .6rem; }
 .feat p strong { color: var(--color-text); font-weight: 700; }

@@ -2,5 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Página não encontrada | Registrium" noindex>
-  <section class="section container"><p class="eyebrow">Erro 404</p><h1>Página não encontrada.</h1><p>O endereço pode ter sido alterado.</p><a class="button button--dark" href="/">Voltar ao início</a></section>
+  <section class="section container error-page">
+    <img class="error-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
+    <p class="eyebrow">Erro 404</p><h1>Página não encontrada.</h1><p>O endereço pode ter sido alterado.</p><a class="button button--dark" href="/">Voltar ao início</a>
+  </section>
 </BaseLayout>
+<style>
+.error-page { position: relative; overflow: hidden; min-height: 55vh; display: flex; flex-direction: column; justify-content: center; }
+.error-watermark { position: absolute; top: 50%; right: -3rem; transform: translateY(-50%); width: 20rem; max-width: 55%; opacity: .05; pointer-events: none; user-select: none; }
+</style>

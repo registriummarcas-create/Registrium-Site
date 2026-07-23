@@ -95,9 +95,9 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
       </div>
     </div>
 
-    <div class="guarantees reveal">
-      {guarantees.map((g) => (
-        <div class="g-card">
+    <div class="guarantees">
+      {guarantees.map((g, i) => (
+        <div class="g-card reveal" style={`transition-delay:${i * 80}ms`}>
           <div class="g-card-top">
             <div class="icon-tile gi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={g.icon} /></div>
             <div>

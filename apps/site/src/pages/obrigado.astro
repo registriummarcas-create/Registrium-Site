@@ -6,6 +6,7 @@ const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig
 ---
 <BaseLayout title="Solicitação recebida | Registrium" description="A Registrium recebeu sua solicitação de análise.">
   <section class="thanks">
+    <img class="thanks-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
     <div class="container thanks-card">
       <div class="thanks-check" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -19,8 +20,12 @@ const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig
   </section>
 </BaseLayout>
 <style>
-.thanks { min-height: 70vh; display: grid; place-items: center; padding: 5rem 0; background: var(--color-navy-950); color: white; }
-.thanks-card { max-width: 48rem; text-align: center; }
+.thanks { position: relative; overflow: hidden; min-height: 70vh; display: grid; place-items: center; padding: 5rem 0; background:
+    radial-gradient(70% 70% at 85% 20%, rgba(62,111,230,.35), transparent 68%),
+    radial-gradient(60% 60% at 10% 90%, rgba(138,87,206,.3), transparent 70%),
+    var(--color-navy-950); color: white; }
+.thanks-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34rem; max-width: 90%; opacity: .07; pointer-events: none; user-select: none; }
+.thanks-card { position: relative; z-index: 1; max-width: 48rem; text-align: center; }
 .thanks-check { width: 4rem; height: 4rem; margin: 0 auto 1.75rem; border-radius: 50%; background: var(--grad-brand); color: var(--color-white); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px -16px rgba(90,70,210,.7); }
 .thanks .eyebrow { color: #9fb4ff; }
 .thanks h1 { color: var(--color-white); font-size: clamp(2.8rem,7vw,5.5rem); line-height: .98; margin: 0; }

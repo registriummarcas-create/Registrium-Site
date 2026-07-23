@@ -30,6 +30,7 @@ const { title, description, pill, heroTitle, heroDescription, meta, backHref, ba
 ---
 <BaseLayout title={title} description={description}>
   <header class="blog-hero">
+    <img class="blog-hero-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
     <div class="container">
       <a class="back" href={backHref}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -88,6 +89,8 @@ const { title, description, pill, heroTitle, heroDescription, meta, backHref, ba
     radial-gradient(90% 80% at 10% 90%, rgba(120,70,200,.22), transparent 60%),
     linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 55%, var(--color-purple-900) 100%);
   padding: 4.5rem 0 3.5rem; color: var(--color-white); }
+.blog-hero-watermark { position: absolute; z-index: 0; top: 50%; right: -4rem; transform: translateY(-50%); width: 22rem; max-width: 45%; opacity: .06; pointer-events: none; user-select: none; }
+.blog-hero .container { position: relative; z-index: 1; }
 .blog-hero .back { display: inline-flex; align-items: center; gap: .5rem; color: var(--color-on-dark); text-decoration: none; font-size: .84rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1.375rem; }
 .blog-hero .back:hover { color: var(--color-white); }
 .blog-hero .pill { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: var(--color-white); border-radius: 999px; padding: .55rem 1.05rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
