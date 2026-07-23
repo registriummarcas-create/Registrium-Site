@@ -8,10 +8,12 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
   <div class="container">
     <SectionTitle eyebrow="Prova real" title="Marcas já registradas" description="Marcas que protegemos junto ao INPI — cada certificado é a garantia de exclusividade de uso por 10 anos." />
     <div class="marks-intro reveal">
-      <div class="owner">
-        <img src="/images/owner-certificates.jpg" alt="Titular da Registrium ao lado das marcas registradas" />
-        <div class="plate">Registrium · Copyright e Marcas</div>
-        <div class="owner-inset"><img src="/images/owner-portrait.jpg" alt="Registrium" /></div>
+      <div class="owner-frame">
+        <div class="owner">
+          <img src="/images/owner-certificates.jpg" alt="Titular da Registrium ao lado das marcas registradas" />
+          <div class="plate">Registrium · Copyright e Marcas</div>
+          <div class="owner-inset"><img src="/images/owner-portrait.jpg" alt="Registrium" /></div>
+        </div>
       </div>
       <div class="marks-intro-copy">
         <div class="mi-kicker">Confiança que se vê</div>
@@ -40,7 +42,11 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 </section>
 <style>
 .marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 3rem; }
-.owner { position: relative; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; }
+.owner-frame { position: relative; }
+.owner-frame::before, .owner-frame::after { content: ""; position: absolute; border-radius: 999px; pointer-events: none; }
+.owner-frame::before { inset: -1.25rem; border: 1px solid rgba(138,87,206,.22); }
+.owner-frame::after { inset: -2.75rem; border: 1px solid rgba(63,160,222,.14); }
+.owner { position: relative; z-index: 1; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; box-shadow: 0 30px 60px -34px rgba(30,20,80,.45); }
 .owner img { width: 100%; height: 100%; object-fit: cover; }
 .owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.55) 0%, transparent 38%); pointer-events: none; }
 .owner-inset { position: absolute; left: 1.125rem; bottom: 1.125rem; width: 30%; aspect-ratio: 1/1; border-radius: .875rem; overflow: hidden; border: 3px solid rgba(255,255,255,.9); box-shadow: 0 14px 28px -10px rgba(8,10,36,.6); z-index: 2; }
@@ -63,6 +69,7 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marks-note { margin-top: 1.5rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
-@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 1.75rem; } .owner { max-width: 22rem; margin: 0 auto; } }
+@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 1.75rem; } .owner-frame { max-width: 22rem; margin: 0 auto; } }
+@media (max-width: 560px) { .owner-frame::after { display: none; } }
 @media (max-width: 560px) { .tile { width: 7rem; } }
 </style>
