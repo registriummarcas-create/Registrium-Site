@@ -24,51 +24,130 @@ import { contactConfig } from '../../config/contact';
       </div>
     </div>
     <div class="hero-visual reveal">
-      <form class="hero-form" id="heroLeadForm" data-whatsapp-number={contactConfig.whatsappNumber} novalidate>
-        <span id="cadastro" class="hero-form-anchor" aria-hidden="true"></span>
-        <img class="hero-form-mark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
-        <p class="hero-form-eyebrow">Consulta rápida</p>
-        <h2>Vamos registrar sua marca?</h2>
-        <div class="hero-form-grid">
-          <div class="field"><label for="h-nome">Nome completo</label><input id="h-nome" name="nome" type="text" placeholder="Seu nome" required /></div>
-          <div class="field"><label for="h-whats">WhatsApp</label><input id="h-whats" name="whats" type="tel" placeholder="(00) 00000-0000" required /></div>
-          <div class="field"><label for="h-marca">Nome da marca</label><input id="h-marca" name="marca" type="text" placeholder="Como se chama sua marca" required /></div>
-          <div class="field"><label for="h-cnpj">CNPJ (se tiver)</label><input id="h-cnpj" name="cnpj" type="text" placeholder="00.000.000/0000-00" /></div>
-          <div class="field full"><label for="h-area">Área de atuação</label><input id="h-area" name="area" type="text" placeholder="Ex: moda, alimentação, tecnologia..." required /></div>
+      <span id="cadastro" class="hero-form-anchor" aria-hidden="true"></span>
+      <div class="chat-card" id="heroChat" data-whatsapp-number={contactConfig.whatsappNumber}>
+        <div class="chat-head">
+          <img src="/images/owner-portrait.jpg" alt="" class="chat-avatar" />
+          <div>
+            <div class="chat-name">Registrium</div>
+            <div class="chat-status"><span class="dot"></span> Vamos registrar sua marca</div>
+          </div>
         </div>
-        <button type="submit" class="button button--secondary">
-          Quero registrar minha marca
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <div class="chat-body" id="chatBody">
+          <div class="msg bot">Olá! 👋 Vamos começar o registro da sua marca. Qual é o seu nome completo?</div>
+        </div>
+        <form class="chat-input-row" id="chatForm">
+          <input id="chatInput" name="chatInput" type="text" placeholder="Seu nome completo" autocomplete="off" required />
+          <button type="submit" class="chat-send" aria-label="Enviar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2 15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
         <p class="hero-form-note">Sem compromisso. Você fala direto com a Registrium pelo WhatsApp.</p>
-        <div class="hero-form-ok" id="heroLeadOk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Abrindo o WhatsApp com seus dados…
-        </div>
-      </form>
+      </div>
       <div class="hero-form-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        +20 marcas já registradas no INPI
+        88% de aprovação no INPI
       </div>
     </div>
   </div>
 </header>
 <script>
-  const heroForm = document.getElementById('heroLeadForm') as HTMLFormElement | null;
-  if (heroForm) {
-    const whatsappNumber = heroForm.dataset.whatsappNumber;
-    heroForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!heroForm.checkValidity()) {
-        heroForm.reportValidity();
+  const chat = document.getElementById('heroChat') as HTMLElement | null;
+  if (chat) {
+    const whatsappNumber = chat.dataset.whatsappNumber;
+    const body = document.getElementById('chatBody') as HTMLElement;
+    const form = document.getElementById('chatForm') as HTMLFormElement;
+    const input = document.getElementById('chatInput') as HTMLInputElement;
+    const sendBtn = form.querySelector('.chat-send') as HTMLButtonElement;
+
+    type Step = { key: string; type: string; placeholder: string; question?: (d: Record<string, string>) => string };
+    const steps: Step[] = [
+      { key: 'nome', type: 'text', placeholder: 'Seu nome completo' },
+      { key: 'marca', type: 'text', placeholder: 'Nome da marca', question: (d) => `Prazer, ${d.nome.split(' ')[0]}! Qual é o nome da marca que você quer registrar?` },
+      { key: 'area', type: 'text', placeholder: 'Ex: moda, alimentação, tecnologia...', question: () => 'Em qual área ela atua?' },
+      { key: 'cnpj', type: 'text', placeholder: 'CNPJ (ou "não tenho")', question: () => 'Você já tem CNPJ? Se ainda não tiver, pode digitar "não tenho".' },
+      { key: 'whats', type: 'tel', placeholder: '(00) 00000-0000', question: () => 'Perfeito! Por último, qual o seu WhatsApp para a gente continuar por lá?' }
+    ];
+
+    const data: Record<string, string> = {};
+    let stepIndex = 0;
+    input.type = steps[0].type;
+    input.placeholder = steps[0].placeholder;
+
+    function scrollToEnd() {
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function addMessage(text: string, from: 'bot' | 'user') {
+      const div = document.createElement('div');
+      div.className = `msg ${from}`;
+      div.textContent = text;
+      body.appendChild(div);
+      scrollToEnd();
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'msg bot typing';
+      div.id = 'chatTyping';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(div);
+      scrollToEnd();
+    }
+
+    function removeTyping() {
+      document.getElementById('chatTyping')?.remove();
+    }
+
+    function finish() {
+      input.disabled = true;
+      sendBtn.disabled = true;
+      addTyping();
+      setTimeout(() => {
+        removeTyping();
+        addMessage('Perfeito! Vou te levar direto pro WhatsApp com tudo preenchido 🚀', 'bot');
+        let message = 'Olá! Quero registrar minha marca com a Registrium.\n\n';
+        message += `Nome: ${data.nome}\nMarca: ${data.marca}\nÁrea de atuação: ${data.area}\nWhatsApp: ${data.whats}`;
+        if (data.cnpj && !/n[ãa]o/i.test(data.cnpj)) message += `\nCNPJ: ${data.cnpj}`;
+        const cta = document.createElement('a');
+        cta.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        cta.target = '_blank';
+        cta.rel = 'noopener';
+        cta.className = 'button button--secondary chat-cta';
+        cta.textContent = 'Continuar no WhatsApp';
+        body.appendChild(cta);
+        scrollToEnd();
+      }, 600);
+    }
+
+    function askNext() {
+      if (stepIndex >= steps.length) {
+        finish();
         return;
       }
-      const data = Object.fromEntries(new FormData(heroForm).entries());
-      let message = 'Olá! Quero registrar minha marca com a Registrium.\n\n';
-      message += `Nome: ${data.nome}\nMarca: ${data.marca}\nWhatsApp: ${data.whats}\nÁrea de atuação: ${data.area}`;
-      if (data.cnpj) message += `\nCNPJ: ${data.cnpj}`;
-      document.getElementById('heroLeadOk')?.classList.add('show');
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+      const step = steps[stepIndex];
+      const question = step.question ? step.question(data) : undefined;
+      if (question) {
+        addTyping();
+        setTimeout(() => {
+          removeTyping();
+          addMessage(question, 'bot');
+        }, 600);
+      }
+      input.type = step.type;
+      input.placeholder = step.placeholder;
+      input.focus();
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const value = input.value.trim();
+      if (!value) return;
+      addMessage(value, 'user');
+      data[steps[stepIndex].key] = value;
+      input.value = '';
+      stepIndex += 1;
+      askNext();
     });
   }
 </script>
@@ -92,24 +171,33 @@ import { contactConfig } from '../../config/contact';
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-visual::before { content: ""; position: absolute; width: 80%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(90,120,240,.45), transparent 68%); filter: blur(34px); }
 
-.hero-form { position: relative; width: 100%; max-width: 27rem; background: rgba(255,255,255,.97); border-radius: var(--radius-lg); padding: 2rem 1.875rem 1.75rem; box-shadow: 0 40px 80px -30px rgba(6,8,30,.55); }
-.hero-form-mark { position: absolute; top: -1.4rem; right: 1.5rem; width: 3rem; filter: drop-shadow(0 10px 20px rgba(60,40,150,.4)); animation: float 6s ease-in-out infinite; }
-.hero-form-eyebrow { margin: 0 0 .3rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-violet); }
-.hero-form h2 { font-size: 1.375rem; font-weight: 800; color: var(--color-text); margin-bottom: 1.25rem; line-height: 1.2; }
-.hero-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin-bottom: .875rem; }
-.hero-form .field { display: flex; flex-direction: column; gap: .4rem; }
-.hero-form .field.full { grid-column: 1 / -1; }
-.hero-form .field label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; color: var(--color-text); }
-.hero-form .field input { font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--color-text); background: var(--color-white); border: 1px solid var(--color-border); border-radius: .65rem; padding: .7rem .85rem; outline: none; transition: border-color .15s ease; width: 100%; }
-.hero-form .field input:focus { border-color: var(--color-blue); }
-.hero-form .button { width: 100%; margin-top: .4rem; }
+.chat-card { position: relative; width: 100%; max-width: 25rem; background: rgba(255,255,255,.97); border-radius: var(--radius-lg); padding: 1.375rem 1.375rem 1.25rem; box-shadow: 0 40px 80px -30px rgba(6,8,30,.55); display: flex; flex-direction: column; }
+.chat-head { display: flex; align-items: center; gap: .75rem; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); }
+.chat-avatar { width: 2.75rem; height: 2.75rem; border-radius: 50%; object-fit: cover; flex: none; }
+.chat-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: .97rem; color: var(--color-text); }
+.chat-status { display: flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--color-muted); margin-top: .1rem; }
+.chat-status .dot { width: .45rem; height: .45rem; border-radius: 50%; background: #2fbf6e; flex: none; }
+.chat-body { display: flex; flex-direction: column; gap: .625rem; min-height: 13rem; max-height: 18rem; overflow-y: auto; padding-right: .25rem; }
+.msg { max-width: 85%; font-size: .87rem; line-height: 1.45; padding: .6rem .875rem; border-radius: .875rem; }
+.msg.bot { align-self: flex-start; background: var(--color-cream); color: var(--color-text); border-bottom-left-radius: .25rem; }
+.msg.user { align-self: flex-end; background: var(--grad-brand); color: var(--color-white); border-bottom-right-radius: .25rem; }
+.msg.typing { display: flex; align-items: center; gap: .3rem; padding: .75rem .95rem; }
+.msg.typing span { width: .4rem; height: .4rem; border-radius: 50%; background: var(--color-muted); opacity: .5; animation: typingDot 1.1s ease-in-out infinite; }
+.msg.typing span:nth-child(2) { animation-delay: .15s; }
+.msg.typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes typingDot { 0%, 60%, 100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-2px); } }
+.chat-cta { align-self: flex-start; margin-top: .25rem; }
+.chat-input-row { display: flex; gap: .5rem; margin-top: 1rem; }
+.chat-input-row input { flex: 1; font-family: 'Inter', sans-serif; font-size: .89rem; color: var(--color-text); background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .65rem; padding: .7rem .9rem; outline: none; transition: border-color .15s ease; }
+.chat-input-row input:focus { border-color: var(--color-blue); }
+.chat-input-row input:disabled { opacity: .55; }
+.chat-send { flex: none; width: 2.6rem; height: 2.6rem; border-radius: .65rem; background: var(--grad-brand); color: var(--color-white); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; transition: transform .15s ease, filter .15s ease; }
+.chat-send:hover { filter: brightness(1.08); }
+.chat-send:disabled { opacity: .5; cursor: default; }
 .hero-form-note { font-size: .72rem; color: var(--color-muted); text-align: center; margin: .75rem 0 0; }
-.hero-form-ok { display: none; align-items: center; gap: .5rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: .65rem; padding: .6rem .8rem; font-size: .78rem; font-weight: 600; margin-top: .75rem; }
-.hero-form-ok.show { display: flex; }
 .hero-form-badge { position: absolute; left: 1.5rem; bottom: -1.1rem; z-index: 2; display: inline-flex; align-items: center; gap: .5rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: 999px; padding: .55rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(6,8,30,.5); animation: badgeFloat 5s ease-in-out infinite; }
 .hero-form-badge svg { flex: none; color: #1f7a4d; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 4rem 0 4.25rem; } .hero-visual { order: -1; max-width: 27rem; margin: 0 auto; padding-bottom: 1.5rem; } }
-@media (max-width: 560px) { .hero-ctas { flex-direction: column; } .hero-ctas .button { width: 100%; } .hero-stats { gap: 1.875rem; } .hero-form { padding: 1.75rem 1.375rem 1.5rem; } .hero-form-grid { grid-template-columns: 1fr; } .hero-form-badge { font-size: .68rem; padding: .5rem .8rem; left: 1.1rem; } }
+@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 4rem 0 4.25rem; } .hero-visual { order: -1; max-width: 25rem; margin: 0 auto; padding-bottom: 1.5rem; } }
+@media (max-width: 560px) { .hero-ctas { flex-direction: column; } .hero-ctas .button { width: 100%; } .hero-stats { gap: 1.875rem; } .chat-card { padding: 1.125rem 1.125rem 1rem; } .hero-form-badge { font-size: .68rem; padding: .5rem .8rem; left: 1.1rem; } }
 </style>

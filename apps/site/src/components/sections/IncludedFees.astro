@@ -41,6 +41,29 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
       </div>
     </div>
 
+    <div class="cert-strip reveal">
+      <div class="cert-copy">
+        <p class="eyebrow">O que você recebe</p>
+        <h3>Um certificado de registro válido por <span class="hl">10 anos</span></h3>
+        <p>Documento oficial emitido pelo INPI comprovando, por lei, que a marca é sua — com exclusividade de uso em todo o território nacional.</p>
+      </div>
+      <div class="cert-mockup-wrap">
+        <div class="cert-mockup">
+          <div class="cert-stripe"></div>
+          <div class="cert-seal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 5 5.6.6-4 4 1 5.6L12 14.8 7 17.2l1-5.6-4-4 5.6-.6z" fill="currentColor"/></svg>
+          </div>
+          <div class="cert-lines"><span class="line w-60"></span><span class="line w-40"></span></div>
+          <div class="cert-brand-box">SUA MARCA</div>
+          <div class="cert-lines"><span class="line w-80"></span><span class="line w-50"></span></div>
+        </div>
+        <div class="cert-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Certificado válido por 10 anos
+        </div>
+      </div>
+    </div>
+
     <div class="guarantees reveal">
       {guarantees.map((g) => (
         <div class="g-card">
@@ -91,5 +114,21 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .g-card .gr strong { color: var(--color-violet); }
 .paynote { margin-top: 1.375rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.25rem 1.375rem; font-size: .84rem; color: var(--color-muted); line-height: 1.6; }
 .paynote strong { color: var(--color-text); }
-@media (max-width: 920px) { .detail-grid { grid-template-columns: 1fr; } .guarantees { grid-template-columns: 1fr; } }
+
+.cert-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2.75rem; padding-top: 2.75rem; border-top: 1px solid var(--color-border); }
+.cert-copy h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; line-height: 1.18; margin-bottom: .875rem; }
+.cert-copy h3 .hl { color: var(--color-violet); }
+.cert-copy p { color: var(--color-muted); font-size: .94rem; line-height: 1.65; max-width: 26rem; margin: 0; }
+.cert-mockup-wrap { position: relative; display: flex; justify-content: center; padding: 1.5rem 0 2rem; }
+.cert-mockup { position: relative; width: 17rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.375rem 1.5rem 2rem; box-shadow: 0 30px 60px -30px rgba(30,20,80,.4); transform: rotate(-3deg); overflow: hidden; }
+.cert-stripe { position: absolute; left: 0; top: 0; bottom: 0; width: .5rem; background: var(--grad-brand); }
+.cert-seal { position: absolute; top: 1.125rem; right: 1.125rem; width: 2rem; height: 2rem; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #f5a623); display: flex; align-items: center; justify-content: center; color: var(--color-white); }
+.cert-lines { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
+.cert-lines .line { display: block; height: .45rem; border-radius: 999px; background: var(--color-border); }
+.cert-lines .w-60 { width: 60%; } .cert-lines .w-40 { width: 40%; } .cert-lines .w-80 { width: 80%; } .cert-lines .w-50 { width: 50%; }
+.cert-brand-box { border: 1px dashed var(--color-violet); border-radius: .5rem; padding: .55rem .7rem; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 800; letter-spacing: .08em; color: var(--color-violet); margin-bottom: 1rem; }
+.cert-badge { position: absolute; left: 1.5rem; bottom: .5rem; display: inline-flex; align-items: center; gap: .5rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: 999px; padding: .5rem .9rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(30,20,80,.35); white-space: nowrap; }
+.cert-badge svg { flex: none; }
+@media (max-width: 920px) { .detail-grid { grid-template-columns: 1fr; } .guarantees { grid-template-columns: 1fr; } .cert-strip { grid-template-columns: 1fr; text-align: center; gap: 1rem; } .cert-copy p { margin: 0 auto; } }
+@media (max-width: 560px) { .cert-badge { left: 50%; transform: translateX(-50%); font-size: .64rem; } }
 </style>
