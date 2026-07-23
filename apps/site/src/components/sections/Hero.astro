@@ -179,8 +179,9 @@ const specialistWhatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, 'Ol
 .hero-stats .s-lbl { font-size: .72rem; color: var(--color-on-dark-soft); margin-top: .3rem; line-height: 1.25; }
 .hero-stats .s-foot { font-size: .62rem; color: var(--color-on-dark-soft); font-style: italic; margin-top: .2rem; max-width: 9rem; line-height: 1.25; opacity: .8; }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
-.hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); }
-.hero-watermark { position: absolute; z-index: 0; top: -9rem; right: -9rem; width: 48rem; max-width: 130%; opacity: .5; filter: drop-shadow(0 0 70px rgba(90,120,240,.35)); pointer-events: none; user-select: none; }
+.hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); animation: spinSlow 34s linear infinite; }
+.hero-watermark { position: absolute; z-index: 0; top: -9rem; right: -9rem; width: 48rem; max-width: 130%; opacity: .5; filter: drop-shadow(0 0 70px rgba(90,120,240,.35)); pointer-events: none; user-select: none; animation: heroWatermarkFloat 12s ease-in-out infinite; }
+@keyframes heroWatermarkFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
 
 .chat-card { position: relative; z-index: 1; width: 100%; max-width: 25rem; background: rgba(255,255,255,.97); border: 1px solid rgba(255,255,255,.6); border-radius: var(--radius-lg); padding: 0 1.375rem 1.25rem; box-shadow: 0 40px 80px -30px rgba(6,8,30,.55), 0 1px 0 rgba(255,255,255,.4) inset; display: flex; flex-direction: column; overflow: hidden; }
 .chat-head { position: relative; display: flex; align-items: center; gap: .75rem; margin: 0 -1.375rem 1.125rem; padding: 1.125rem 1.375rem; background: var(--grad-brand); }

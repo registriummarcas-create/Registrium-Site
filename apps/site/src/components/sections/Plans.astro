@@ -58,8 +58,11 @@ import { buildWhatsAppUrl } from '../../lib/whatsapp';
 </section>
 <style>
 .plans { position: relative; overflow: hidden; }
-.plans-glow { position: absolute; z-index: 0; top: -10rem; left: 50%; transform: translateX(-50%); width: 55rem; max-width: 140%; aspect-ratio: 2/1; background: radial-gradient(ellipse at center, rgba(138,87,206,.07), transparent 70%); pointer-events: none; }
+.plans-glow { position: absolute; z-index: 0; top: -10rem; left: 50%; transform: translateX(-50%); width: 55rem; max-width: 140%; aspect-ratio: 2/1; background: radial-gradient(ellipse at center, rgba(138,87,206,.09), transparent 70%); pointer-events: none; animation: driftA 20s ease-in-out infinite; }
 .plans .container { position: relative; z-index: 1; }
+.plan { transition: transform .3s var(--ease-premium), box-shadow .3s var(--ease-premium), border-color .3s ease; }
+.plan:hover { transform: translateY(-6px); box-shadow: 0 34px 60px -34px rgba(90,70,210,.55); }
+.plan.featured:hover { transform: translateY(-6px) scale(1.015); }
 .plans-grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
 .plan { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2.125rem 1.875rem; position: relative; display: flex; flex-direction: column; }
 .plan.featured { border-color: transparent; box-shadow: var(--shadow-lg); background: linear-gradient(var(--color-white), var(--color-white)) padding-box, var(--grad-brand) border-box; border: 1.5px solid transparent; }

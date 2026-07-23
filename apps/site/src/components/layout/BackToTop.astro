@@ -1,0 +1,18 @@
+---
+---
+<button type="button" class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+  <img src="/images/logo-mark.png" alt="" aria-hidden="true" />
+</button>
+<script>
+  const btn = document.getElementById('backToTop');
+  if (btn) {
+    const onScroll = () => {
+      btn.classList.toggle('show', window.scrollY > window.innerHeight * 0.8);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>

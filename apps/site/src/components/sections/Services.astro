@@ -21,8 +21,11 @@ import { services } from '../../data/services';
 </section>
 <style>
 .svc-section { position: relative; overflow: hidden; }
-.svc-glow { position: absolute; z-index: 0; bottom: -10rem; right: -6rem; width: 32rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(138,87,206,.08), transparent 70%); pointer-events: none; }
+.svc-glow { position: absolute; z-index: 0; bottom: -10rem; right: -6rem; width: 32rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(138,87,206,.1), transparent 70%); pointer-events: none; animation: driftB 22s ease-in-out infinite; }
 .svc-section .container { position: relative; z-index: 1; }
+.svc { transition: transform .28s var(--ease-premium), box-shadow .28s ease, border-color .28s ease; }
+.svc:hover .svc-price { transform: scale(1.05); }
+.svc-price { transition: transform .2s var(--ease-premium); }
 .services-grid { grid-template-columns: repeat(3, 1fr); }
 .svc-top { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: .75rem; }
 .svc-top h3 { font-size: 1.09rem; margin: 0; line-height: 1.2; }

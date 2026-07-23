@@ -18,7 +18,7 @@ const rows = [
 const checkIcon = '<path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
 const crossIcon = '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
 ---
-<section class="section section--dark compare" id="comparativo">
+<section class="section section--dark compare divider-cut" id="comparativo">
   <img class="compare-watermark" src="/images/logo-mark-white.png" alt="" aria-hidden="true" />
   <div class="container">
     <SectionTitle eyebrow="Por que isso importa" title="Registrium × Concorrência" description="Mesma necessidade, experiências opostas. Enquanto o mercado cobra caro e some no meio do caminho, aqui o preço está publicado e o processo é acompanhado por uma única equipe." />
@@ -58,7 +58,7 @@ const crossIcon = '<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-w
 </section>
 <style>
 .compare { position: relative; overflow: hidden; }
-.compare-watermark { position: absolute; z-index: 0; top: -4rem; left: -5rem; width: 24rem; max-width: 60%; opacity: .05; pointer-events: none; user-select: none; }
+.compare-watermark { position: absolute; z-index: 0; top: -4rem; left: -5rem; width: 24rem; max-width: 60%; opacity: .06; pointer-events: none; user-select: none; animation: spinSlow 90s linear infinite; transform-origin: 60% 60%; }
 .compare .container { position: relative; z-index: 1; }
 .compare-wrap { max-width: 56rem; margin: 0 auto; }
 .compare-table-scroll { overflow-x: auto; border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-md); background: rgba(255,255,255,.03); }
