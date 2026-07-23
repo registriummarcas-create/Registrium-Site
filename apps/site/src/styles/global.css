@@ -164,7 +164,7 @@ h3, h4 { font-family: var(--font-ui); letter-spacing: -0.02em; }
 .back-to-top:hover { border-color: var(--color-blue); box-shadow: 0 18px 34px -12px rgba(62,111,230,.4); transform: translateY(-2px); }
 .back-to-top img { width: 60%; height: 60%; object-fit: contain; transition: transform .3s var(--ease-premium); }
 .back-to-top:hover img { transform: rotate(-8deg) scale(1.08); }
-@media (max-width: 760px) { .back-to-top { display: none; } }
+@media (max-width: 560px) { .back-to-top { left: 1rem; bottom: 1rem; width: 2.9rem; height: 2.9rem; } }
 
 /* ---------- AMBIENT DRIFT ---------- */
 @keyframes driftA { 0%, 100% { transform: translate(-50%, 0) scale(1); } 50% { transform: translate(-47%, -3%) scale(1.08); } }
