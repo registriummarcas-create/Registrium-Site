@@ -43,10 +43,7 @@ import { contactConfig } from '../../config/contact';
     <span>© 2026 Registrium Copyright e Marcas. Todos os direitos reservados.</span>
     <span class="badges">
       <span class="pb">
-        <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-          <rect width="20" height="14" fill="#c8102e"/>
-          <polygon points="10,2 11.176,5.382 14.755,5.545 11.902,7.618 12.939,11.045 10,9 7.061,11.045 8.098,7.618 5.245,5.545 8.824,5.382" fill="#fff"/>
-        </svg>
+        <img src="/images/bandeira-paraiba.jpg" alt="Bandeira da Paraíba" width="20" height="14" />
         Empresa paraibana
       </span>
       <span class="inpi">
@@ -70,7 +67,7 @@ import { contactConfig } from '../../config/contact';
 .footer-bottom .badges { display: inline-flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .footer-bottom .inpi, .footer-bottom .pb { display: inline-flex; align-items: center; gap: .5rem; }
 .footer-bottom .inpi svg { color: var(--color-blue); }
-.footer-bottom .pb svg { border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
+.footer-bottom .pb img { width: 1.25rem; height: .875rem; object-fit: cover; border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 2rem; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 </style>

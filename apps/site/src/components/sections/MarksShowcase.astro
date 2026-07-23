@@ -6,7 +6,11 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 ---
 <section class="section marks" id="marcas">
   <div class="container">
-    <SectionTitle eyebrow="Prova real" title="Marcas já registradas" description="Marcas que protegemos junto ao INPI — cada certificado é a garantia de exclusividade de uso por 10 anos." />
+    <SectionTitle eyebrow="Propósito registrado" title="Histórias que nós já protegemos." description="Por trás de cada marca registrada existe uma decisão de não deixar o nome do negócio à mercê do acaso. Aqui estão os empreendedores que confiaram na Registrium para transformar uma ideia em patrimônio — com exclusividade garantida por lei." />
+    <a class="story-cta reveal" href="/#cadastro">
+      Quero que a minha história entre nessa lista
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
     <div class="marks-intro reveal">
       <div class="owner-frame">
         <div class="owner">
@@ -32,6 +36,10 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
           </div>
           <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+        <div class="pb-pride">
+          <img src="/images/bandeira-paraiba.jpg" alt="Bandeira da Paraíba" />
+          <span>Eu sou da Paraíba, é meu esse lugar</span>
+        </div>
       </div>
     </div>
     <div class="logo-marquee reveal">
@@ -49,6 +57,9 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
   </div>
 </section>
 <style>
+.story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: -1.75rem auto 3rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
+.story-cta svg { transition: transform .16s ease; }
+.story-cta:hover svg { transform: translateX(3px); }
 .marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 3rem; }
 .owner-frame { position: relative; }
 .owner-frame::before, .owner-frame::after { content: ""; position: absolute; border-radius: 999px; pointer-events: none; }
@@ -73,6 +84,8 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .credential-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .84rem; font-weight: 700; color: var(--color-text); line-height: 1.3; }
 .credential-sub { font-size: .75rem; color: var(--color-muted); margin-top: .15rem; }
 .credential-arrow { flex: none; margin-left: auto; color: var(--color-violet); }
+.pb-pride { margin-top: .875rem; display: flex; align-items: center; gap: .625rem; font-size: .84rem; color: var(--color-muted); font-style: italic; }
+.pb-pride img { width: 1.5rem; height: 1.05rem; object-fit: cover; border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
 .logo-marquee { display: flex; flex-direction: column; gap: 1rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-row { overflow: hidden; }
 .marquee-track { display: flex; width: max-content; gap: 1rem; animation: marquee 34s linear infinite; }

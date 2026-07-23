@@ -34,7 +34,7 @@ export const plans = [
     name: 'Plano Ouro',
     who: 'Proteção completa',
     price: 'Sob consulta',
-    fine: 'defesa ampla da marca · taxa GRU-INPI à parte (R$ 8.800,00)',
+    fine: 'defesa ampla da marca · taxa GRU-INPI à parte (R$ 880,00)',
     featured: false,
     items: [
       '1 pedido de registro de marca',
