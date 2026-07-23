@@ -11,6 +11,8 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
       Quero que a minha história entre nessa lista
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
+
+    <!-- Narrativa: foto + texto -->
     <div class="marks-intro reveal">
       <div class="owner-frame protection-rings">
         <div class="owner">
@@ -23,45 +25,51 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
         <div class="mi-kicker">Confiança que se vê</div>
         <h3>Cada logo aqui já foi só um nome escrito num caderno.</h3>
         <p>Hoje são patrimônio registrado. De clínicas a distribuidoras, de comércio a serviços, empresas de portes diferentes confiaram na Registrium para proteger o nome que construíram.</p>
-        <div class="marks-stats">
-          <div><div class="mn">95%</div><div class="ml">de satisfação dos clientes</div></div>
-          <div><div class="mn">10 anos</div><div class="ml">de proteção por certificado</div></div>
-          <div><div class="mn">100%</div><div class="ml">acompanhadas até o fim</div></div>
-        </div>
-        <p class="marks-audit">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.2l2.3 2.3L16 9.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Dados auditáveis · atualizado em 2026
-        </p>
-        <div class="credential-group">
-          <div class="credential credential--static">
-            <img class="credential-logo" src="/images/inpi-logo.png" alt="INPI" loading="lazy" />
-            <div class="credential-copy">
-              <span class="credential-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
-                Credenciamento institucional
-              </span>
-              <div class="credential-title">Empresa credenciada no INPI</div>
-            </div>
-          </div>
-          <a class="credential" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">
-            <img class="credential-logo" src="/images/inpi-logo.png" alt="WIPO Academy" loading="lazy" />
-            <div class="credential-copy">
-              <span class="credential-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
-                Formação da equipe
-              </span>
-              <div class="credential-title">Academia do INPI · WIPO Academy</div>
-              <div class="credential-sub">Curso Geral de Propriedade Intelectual — ver certificado de formação</div>
-            </div>
-            <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
         <div class="pb-pride">
           <img src="/images/bandeira-paraiba.jpg" alt="Bandeira da Paraíba" loading="lazy" />
           <span>Empresa paraibana. Protegendo marcas em todo o Brasil.</span>
         </div>
       </div>
     </div>
+
+    <!-- Faixa de números -->
+    <div class="marks-stats-band reveal">
+      <div class="msb"><div class="mn">95%</div><div class="ml">de satisfação dos clientes</div></div>
+      <div class="msb"><div class="mn">10 anos</div><div class="ml">de proteção por certificado</div></div>
+      <div class="msb"><div class="mn">100%</div><div class="ml">acompanhadas até o fim</div></div>
+    </div>
+    <p class="marks-audit">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.2l2.3 2.3L16 9.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Dados auditáveis · atualizado em 2026
+    </p>
+
+    <!-- Credenciais -->
+    <div class="credential-group reveal">
+      <div class="credential credential--static">
+        <img class="credential-logo" src="/images/inpi-logo.png" alt="INPI" loading="lazy" />
+        <div class="credential-copy">
+          <span class="credential-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            Credenciamento institucional
+          </span>
+          <div class="credential-title">Empresa credenciada no INPI</div>
+        </div>
+      </div>
+      <a class="credential" href="/images/certificado-wipo.png" target="_blank" rel="noreferrer">
+        <img class="credential-logo" src="/images/inpi-logo.png" alt="WIPO Academy" loading="lazy" />
+        <div class="credential-copy">
+          <span class="credential-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            Formação da equipe
+          </span>
+          <div class="credential-title">Academia do INPI · WIPO Academy</div>
+          <div class="credential-sub">Curso Geral de Propriedade Intelectual — ver certificado de formação</div>
+        </div>
+        <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- Portfólio -->
     <div class="logo-marquee reveal">
       {rows.map((row, rowIndex) => (
         <div class:list={['marquee-row', { reverse: rowIndex % 2 === 1 }]}>
@@ -81,26 +89,33 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .story-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; margin: .25rem auto 3.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .94rem; color: var(--color-violet); text-decoration: none; width: fit-content; }
 .story-cta svg { transition: transform .16s ease; }
 .story-cta:hover svg { transform: translateX(3px); }
-.marks-intro { display: grid; grid-template-columns: .62fr 1.38fr; gap: 3.75rem; align-items: center; margin-bottom: 4rem; }
+
+/* Narrativa */
+.marks-intro { display: grid; grid-template-columns: .62fr 1.38fr; gap: 3.75rem; align-items: center; }
 .owner { position: relative; z-index: 1; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; box-shadow: 0 30px 60px -34px rgba(30,20,80,.45); }
 .owner-main { width: 100%; height: 100%; object-fit: cover; }
 .owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.55) 0%, transparent 42%); pointer-events: none; }
 .owner-inset { position: absolute; left: 1.125rem; bottom: 1.125rem; width: 30%; aspect-ratio: 1/1; border-radius: .875rem; overflow: hidden; border: 3px solid rgba(255,255,255,.9); box-shadow: 0 14px 28px -10px rgba(8,10,36,.6); z-index: 2; }
 .owner-inset img { width: 100%; height: 100%; object-fit: cover; }
 .owner .plate { position: absolute; left: 1.125rem; top: 1.125rem; background: rgba(10,11,36,.72); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(6px); border-radius: 999px; padding: .5rem 1.125rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .81rem; font-weight: 700; color: var(--color-white); white-space: nowrap; z-index: 2; }
-.marks-intro-copy .mi-kicker { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .625rem; }
-.marks-intro-copy h3 { font-size: 1.4375rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3; }
-.marks-intro-copy p { font-size: .94rem; color: var(--color-muted); line-height: 1.7; margin: 0 0 .875rem; }
-.marks-stats { display: flex; gap: 2.25rem; margin-top: 1.875rem; flex-wrap: wrap; }
-.marks-stats div { display: flex; flex-direction: column; position: relative; padding-bottom: .5rem; }
-.marks-stats div::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 1.75rem; background: var(--grad-brand); transform-origin: left; transform: scaleX(0); transition: transform .5s ease .25s; }
-.marks-intro.in .marks-stats div::after { transform: scaleX(1); }
-.marks-stats .mn { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
-.marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
-.marks-audit { display: inline-flex; align-items: center; gap: .4rem; margin: 1.5rem 0 0; font-family: var(--font-ui); font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--color-muted); }
+.marks-intro-copy .mi-kicker { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .75rem; }
+.marks-intro-copy h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3; }
+.marks-intro-copy p { font-size: .96rem; color: var(--color-muted); line-height: 1.7; margin: 0; }
+.pb-pride { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .625rem; font-size: .84rem; color: var(--color-muted); font-style: italic; }
+.pb-pride img { width: 1.5rem; height: 1.05rem; object-fit: cover; border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
+
+/* Faixa de números */
+.marks-stats-band { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-top: 3.5rem; }
+.msb { position: relative; text-align: center; padding: 2rem 1rem; }
+.msb + .msb::before { content: ""; position: absolute; left: 0; top: 24%; bottom: 24%; width: 1px; background: var(--color-border); }
+.msb .mn { font-family: var(--font-mono); font-feature-settings: "tnum" 1; letter-spacing: -.03em; font-weight: 600; font-size: 2.25rem; color: var(--color-text); line-height: 1; }
+.msb .ml { font-size: .82rem; color: var(--color-muted); margin-top: .55rem; line-height: 1.35; }
+.marks-audit { display: flex; justify-content: center; align-items: center; gap: .4rem; margin: 1.125rem 0 0; font-family: var(--font-ui); font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--color-muted); }
 .marks-audit svg { flex: none; color: var(--color-violet); }
-.credential-group { margin-top: 2rem; display: flex; flex-direction: column; gap: .875rem; }
-.credential { display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: .9rem 1.1rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
+
+/* Credenciais */
+.credential-group { margin-top: 2.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 52rem; margin-inline: auto; }
+.credential { display: flex; align-items: center; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.1rem 1.25rem; text-decoration: none; transition: border-color .16s ease, transform .16s ease; }
 .credential:hover { border-color: var(--color-blue); transform: translateY(-2px); }
 .credential--static { cursor: default; }
 .credential--static:hover { border-color: var(--color-border); transform: none; }
@@ -110,9 +125,9 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .credential-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .84rem; font-weight: 700; color: var(--color-text); line-height: 1.3; }
 .credential-sub { font-size: .75rem; color: var(--color-muted); margin-top: .15rem; }
 .credential-arrow { flex: none; margin-left: auto; color: var(--color-violet); }
-.pb-pride { margin-top: 1.5rem; display: flex; align-items: center; gap: .625rem; font-size: .84rem; color: var(--color-muted); font-style: italic; }
-.pb-pride img { width: 1.5rem; height: 1.05rem; object-fit: cover; border-radius: 2px; border: 1px solid var(--color-border); flex: none; }
-.logo-marquee { display: flex; flex-direction: column; gap: 1.25rem; overflow: hidden; padding: .5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+
+/* Portfólio */
+.logo-marquee { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; overflow: hidden; padding: .5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-row { overflow: hidden; }
 .marquee-track { display: flex; width: max-content; gap: 1.25rem; animation: marquee 34s linear infinite; }
 .marquee-row.reverse .marquee-track { animation-direction: reverse; animation-duration: 40s; }
@@ -122,7 +137,19 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
 .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marks-note { margin-top: 2.25rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
-@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 2.75rem; margin-bottom: 3rem; } .owner-frame { max-width: 22rem; margin: 0 auto; } }
-@media (max-width: 560px) { .owner-frame::after { display: none; } }
-@media (max-width: 560px) { .tile { width: 7rem; } }
+
+@media (max-width: 920px) {
+  .marks-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .owner-frame { max-width: 20rem; margin: 0 auto; }
+  .marks-intro-copy { text-align: center; }
+  .pb-pride { justify-content: center; }
+}
+@media (max-width: 620px) {
+  .marks-stats-band { grid-template-columns: 1fr; }
+  .msb { padding: 1.25rem 1rem; }
+  .msb:not(:first-child) { border-top: 1px solid var(--color-border); }
+  .msb + .msb::before { display: none; }
+  .credential-group { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) { .owner-frame::after { display: none; } .tile { width: 7rem; } }
 </style>
