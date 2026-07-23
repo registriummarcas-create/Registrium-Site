@@ -1,0 +1,94 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+const fees = [
+  { label: 'Pedido de registro — especificação pré-aprovada', code: 'Código 389 · por classe', full: 'R$ 880,00', discounted: 'R$ 440,00' },
+  { label: 'Pedido de registro — especificação de livre preenchimento', code: 'Código 394 · por classe', full: 'R$ 1.720,00', discounted: 'R$ 860,00' },
+  { label: 'Concessão e proteção do 1º decênio', code: 'Códigos 372/373', extinct: true },
+  { label: 'Oposição', code: 'Código 332 · por classe', full: 'R$ 520,00', discounted: 'R$ 260,00' },
+  { label: 'Manifestação à oposição', code: 'Código 339', full: 'R$ 180,00', discounted: 'R$ 90,00' },
+  { label: 'Cumprimento de exigência em pedido', code: 'Código 340', full: 'R$ 180,00', discounted: 'R$ 90,00' },
+  { label: 'Recurso contra indeferimento', code: 'Código 3000 · por classe', full: 'R$ 700,00', discounted: 'R$ 350,00' },
+  { label: 'Processo administrativo de nulidade (PAN)', code: 'Código 336 · por classe', full: 'R$ 850,00', discounted: 'R$ 425,00' },
+  { label: 'Renovação decenal, dentro do prazo', code: 'Código 374', full: 'R$ 1.000,00', discounted: 'R$ 500,00' },
+  { label: 'Renovação decenal extraordinária', code: 'Código 375', full: 'R$ 2.000,00', discounted: 'R$ 1.000,00' },
+  { label: 'Caducidade — requerimento de terceiro', code: 'Código 337 · por classe', full: 'R$ 590,00', discounted: 'R$ 295,00' },
+  { label: 'Anotação de transferência de titular', code: 'Código 349 · 1º processo', single: 'R$ 170,00 (sem desconto)' },
+  { label: 'Anotação de transferência — processo adicional', code: 'Código 349', single: 'R$ 90,00 (sem desconto)' },
+  { label: 'Alteração de nome, sede e/ou endereço', code: 'Código 348', single: 'R$ 50,00 (sem desconto)' },
+  { label: 'Expedição de 2ª via de certificado', code: 'Código 351', single: 'R$ 140,00 (sem desconto)' }
+];
+
+const eligibility = [
+  'Pessoa Natural (sem participação em empresa do mesmo ramo da marca)',
+  'Microempreendedor Individual (MEI)',
+  'Microempresa (ME) e Empresa de Pequeno Porte (EPP)',
+  'Cooperativas',
+  'Instituições de ensino e pesquisa',
+  'Entidades sem fins lucrativos',
+  'Órgãos públicos',
+  'Agricultor familiar (Lei nº 11.326/2006)'
+];
+
+const related = [
+  { href: '/blog/como-funciona-registro', tag: 'Passo a passo', title: 'O passo a passo do registro de marca', description: 'Da pesquisa de viabilidade ao certificado: as 7 etapas do processo no INPI.' },
+  { href: '/blog/duvidas-frequentes', tag: 'Perguntas frequentes', title: 'Dúvidas comuns sobre registrar uma marca', description: 'CNPJ, prazos, indeferimento e outras perguntas respondidas direto.' },
+  { href: '/blog', tag: 'Blog', title: 'Ver todas as publicações', description: 'Volte ao índice do blog para ver todos os artigos disponíveis.' }
+];
+---
+<ArticleLayout
+  title="Taxas do INPI 2025/2026: tabela completa e quem tem desconto | Blog Registrium"
+  description="Todos os valores oficiais da Portaria GM/MDIC nº 110/2025, o que mudou com a extinção da taxa de concessão e a lista completa de quem pode declarar o desconto de 50%."
+  pill="Taxas oficiais"
+  heroTitle="Taxas do INPI 2025/2026: tabela completa e quem tem desconto"
+  heroDescription="Todos os valores oficiais da Portaria GM/MDIC nº 110/2025, o que mudou com a extinção da taxa de concessão e a lista completa de quem pode declarar o desconto de 50%."
+  meta={['Portaria GM/MDIC nº 110/2025', 'Atualizado em 2026', 'Leitura de 5 min']}
+  backHref="/blog"
+  backLabel="Voltar ao blog"
+  toc={[{ href: '#artigo', label: 'Tabela de taxas' }, { href: '#desconto', label: 'Quem tem desconto' }]}
+  related={related}
+>
+  <div class="art-block" id="artigo">
+    <h2>Tabela completa das taxas do INPI</h2>
+    <p class="lede">Valores oficiais em reais, conforme o Anexo I da Portaria GM/MDIC nº 110/2025. A coluna "com desconto" aplica-se aos requerentes elencados no art. 5º da norma (veja a lista na próxima seção).</p>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead>
+          <tr><th>Serviço</th><th>Valor cheio</th><th>Com desconto</th></tr>
+        </thead>
+        <tbody>
+          {fees.map((fee) => (
+            <tr>
+              <td>{fee.label}<span class="code">{fee.code}</span></td>
+              {fee.extinct ? (
+                <td colspan="2" style="text-align:center;color:var(--color-good);">R$ 0,00 — taxa extinta</td>
+              ) : fee.single ? (
+                <td colspan="2" style="text-align:center;">{fee.single}</td>
+              ) : (
+                <>
+                  <td>{fee.full}</td>
+                  <td>{fee.discounted}</td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">A taxa de concessão e proteção do 1º decênio (códigos 372/373) foi extinta pela Portaria 110/2025 — hoje o custo de entrada está concentrado no pedido de registro.</p>
+  </div>
+
+  <div class="art-block" id="desconto">
+    <h2>Quem tem direito ao desconto de 50%?</h2>
+    <p class="lede">O desconto é aplicado por autodeclaração diretamente no sistema e-INPI, sem necessidade de comprovação prévia.</p>
+    <div class="elig-grid">
+      {eligibility.map((item) => (
+        <div class="elig-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          {item}
+        </div>
+      ))}
+    </div>
+    <div class="warn-box"><strong>Atenção:</strong> declaração falsa pode acarretar a nulidade do ato praticado e a cobrança da diferença entre o valor com desconto e o valor cheio, conforme o art. 8º da Portaria GM/MDIC nº 110/2025.</div>
+  </div>
+</ArticleLayout>

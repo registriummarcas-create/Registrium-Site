@@ -1,44 +1,53 @@
 ---
-import { contactConfig } from '../../config/contact';
-import { buildWhatsAppUrl } from '../../lib/whatsapp';
-const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig.whatsappMessage);
 ---
-<section class="hero">
+<header class="hero" id="top">
   <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Proteção estratégica de marcas</p>
-      <h1>Antes de investir mais na sua marca, verifique se ela pode realmente ser sua.</h1>
-      <p class="lead">Pesquisa, definição de classes, protocolo e acompanhamento no INPI com comunicação clara e estratégia jurídica.</p>
-      <div class="actions">
-        <a class="button button--primary" href="#formulario" data-track="hero_cta_click">Consultar disponibilidade</a>
-        <a class="button button--secondary" href={whatsappUrl} data-track="whatsapp_click" data-location="hero">Falar com a Registrium</a>
+    <div class="reveal">
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
+        Credenciada no INPI
+      </span>
+      <h1>Sua marca protegida com <span class="g-cyan">transparência e</span> <span class="g-purple">tecnologia.</span></h1>
+      <p class="hero-sub">Registramos e protegemos sua marca no INPI com pesquisa por inteligência artificial, acompanhamento diário e um pagamento único — sem pegadinhas.</p>
+      <div class="hero-ctas">
+        <a class="button button--secondary" href="#cadastro">Quero registrar minha marca
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="button button--dark" href="#planos">Ver planos</a>
       </div>
-      <p class="disclaimer">Análise preliminar sem promessa de deferimento. A decisão final compete ao INPI.</p>
+      <div class="hero-divider"></div>
+      <div class="hero-stats">
+        <div><div class="s-num">48h</div><div class="s-lbl">para protocolo</div></div>
+        <div><div class="s-num">10 anos</div><div class="s-lbl">de validade</div></div>
+        <div><div class="s-num">100%</div><div class="s-lbl">transparência</div></div>
+      </div>
     </div>
-    <div class="hero-visual" aria-label="Representação visual de proteção da marca">
-      <div class="orbit orbit-one"></div>
-      <div class="orbit orbit-two"></div>
-      <div class="shield"><span>R</span></div>
-      <div class="tag tag-one">Pesquisa</div>
-      <div class="tag tag-two">Estratégia</div>
-      <div class="tag tag-three">Acompanhamento</div>
+    <div class="hero-visual reveal">
+      <img src="/images/logo-mark.png" alt="Registrium" />
     </div>
   </div>
-</section>
+</header>
 <style>
-.hero { overflow: hidden; background: radial-gradient(circle at 80% 20%, rgba(24,213,209,.22), transparent 32%), linear-gradient(135deg, var(--color-navy-950), var(--color-navy-800)); color: white; padding: clamp(4.5rem, 10vw, 8rem) 0; }
-.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 3rem; }
-.hero h1 { margin: 0; max-width: 48rem; font-size: clamp(2.65rem, 6.6vw, 5.8rem); line-height: .98; letter-spacing: -.055em; }
-.lead { max-width: 42rem; color: rgba(255,255,255,.78); font-size: clamp(1.05rem, 2vw, 1.28rem); }
-.actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.8rem; }
-.disclaimer { font-size: .82rem; color: rgba(255,255,255,.56); }
-.hero-visual { min-height: 28rem; position: relative; display: grid; place-items: center; }
-.shield { width: 12rem; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.35); border-radius: 2.5rem; transform: rotate(45deg); display: grid; place-items: center; background: rgba(255,255,255,.1); box-shadow: 0 40px 90px rgba(0,0,0,.3), inset 0 0 0 10px rgba(24,213,209,.08); }
-.shield span { transform: rotate(-45deg); font-weight: 900; font-size: 5rem; color: var(--color-gold); }
-.orbit { position: absolute; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; }
-.orbit-one { width: 22rem; height: 22rem; }
-.orbit-two { width: 29rem; height: 29rem; }
-.tag { position: absolute; padding: .55rem .8rem; border-radius: 999px; background: white; color: var(--color-navy-950); font-weight: 800; font-size: .82rem; box-shadow: var(--shadow-lg); }
-.tag-one { top: 14%; left: 3%; } .tag-two { right: 0; top: 34%; } .tag-three { bottom: 13%; left: 10%; }
-@media (max-width: 850px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { min-height: 22rem; } .orbit-two { width: 22rem; height: 22rem; } .orbit-one { width: 17rem; height: 17rem; } .shield { width: 9rem; } }
+.hero { position: relative; overflow: hidden; background:
+    radial-gradient(120% 90% at 85% 40%, rgba(70,110,230,.28), transparent 55%),
+    radial-gradient(90% 80% at 15% 10%, rgba(120,70,200,.22), transparent 60%),
+    linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 55%, var(--color-purple-900) 100%); }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 3rem; align-items: center; padding: 6rem 0 5.25rem; }
+.pill { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: var(--color-white); border-radius: 999px; padding: .55rem 1.05rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.pill svg { width: .95rem; height: .95rem; color: #8fd0f5; }
+.hero h1 { color: var(--color-white); font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; margin-top: 1.6rem; }
+.hero h1 .g-cyan { background: var(--grad-cyan); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 .g-purple { background: var(--grad-purple); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-sub { color: var(--color-on-dark); font-size: 1.125rem; line-height: 1.6; max-width: 31rem; margin-top: 1.6rem; }
+.hero-ctas { display: flex; gap: .875rem; margin-top: 2.1rem; flex-wrap: wrap; }
+.hero-divider { height: 1px; background: rgba(255,255,255,.12); margin-top: 3.25rem; max-width: 38rem; }
+.hero-stats { display: flex; gap: 3.5rem; margin-top: 1.6rem; flex-wrap: wrap; }
+.hero-stats .s-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2.1rem; color: var(--color-white); line-height: 1; }
+.hero-stats .s-lbl { font-size: .84rem; color: var(--color-on-dark-soft); margin-top: .5rem; }
+.hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-visual::before { content: ""; position: absolute; width: 72%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(90,120,240,.5), transparent 68%); filter: blur(34px); }
+.hero-visual img { width: 76%; position: relative; filter: drop-shadow(0 26px 70px rgba(90,70,200,.6)); animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 4rem 0 4.25rem; } .hero-visual { order: -1; max-width: 20rem; margin: 0 auto; } }
+@media (max-width: 560px) { .hero-ctas { flex-direction: column; } .hero-ctas .button { width: 100%; } .hero-stats { gap: 1.875rem; } }
 </style>

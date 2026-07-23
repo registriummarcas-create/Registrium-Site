@@ -1,8 +1,11 @@
 export const contactConfig = {
-  email: import.meta.env.PUBLIC_CONTACT_EMAIL || 'atendimento@registrium.com.br',
-  whatsappNumber: (import.meta.env.PUBLIC_WHATSAPP_NUMBER || '').replace(/\D/g, ''),
+  email: import.meta.env.PUBLIC_CONTACT_EMAIL || 'registriummarcas@gmail.com',
+  phoneDisplay: '(83) 9.9132-7014',
+  whatsappNumber: (import.meta.env.PUBLIC_WHATSAPP_NUMBER || '5583991327014').replace(/\D/g, ''),
   whatsappMessage:
     import.meta.env.PUBLIC_WHATSAPP_MESSAGE ||
-    'Olá! Acabei de solicitar uma análise pelo site da Registrium e gostaria de continuar o atendimento.',
-  instagramUrl: import.meta.env.PUBLIC_INSTAGRAM_URL || '#'
+    'Olá, quero registrar minha marca com a Registrium.',
+  instagramUrl: import.meta.env.PUBLIC_INSTAGRAM_URL || 'https://instagram.com/registriummarcas',
+  instagramHandle: '@registriummarcas',
+  cnpj: '48.978.110/0001-59'
 } as const;

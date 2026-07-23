@@ -2,20 +2,60 @@
 import SectionTitle from '../common/SectionTitle.astro';
 import { faqItems } from '../../data/faq';
 ---
-<section id="duvidas" class="section">
-  <div class="container faq-wrap">
-    <SectionTitle eyebrow="Perguntas frequentes" title="Informação clara antes da decisão." />
-    <div>
+<section id="duvidas" class="section section--soft faq">
+  <div class="container">
+    <SectionTitle eyebrow="Perguntas frequentes" title="Direto ao ponto — inclusive sobre preço" />
+    <div class="faq-list reveal">
       {faqItems.map((item) => (
-        <details><summary>{item.question}</summary><p>{item.answer}</p></details>
+        <div class:list={['faq-item', { open: 'open' in item && item.open }]}>
+          <button class="faq-q" aria-expanded={'open' in item && item.open ? 'true' : 'false'}>
+            {item.question}
+            <span class="plus"></span>
+          </button>
+          <div class="faq-a" style={'open' in item && item.open ? { maxHeight: '240px' } : undefined}>
+            <p set:html={item.answer} />
+          </div>
+        </div>
       ))}
     </div>
   </div>
 </section>
+<script>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const question = item.querySelector('.faq-q') as HTMLButtonElement | null;
+    const answer = item.querySelector('.faq-a') as HTMLElement | null;
+    if (!question || !answer) return;
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+          (openItem.querySelector('.faq-a') as HTMLElement | null)?.style.removeProperty('max-height');
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        question.setAttribute('aria-expanded', 'false');
+        answer.style.removeProperty('max-height');
+      } else {
+        item.classList.add('open');
+        question.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+      }
+    });
+  });
+</script>
 <style>
-.faq-wrap { max-width: 58rem; }
-details { border-top: 1px solid var(--color-border); padding: 1.25rem 0; }
-details:last-child { border-bottom: 1px solid var(--color-border); }
-summary { cursor: pointer; font-weight: 850; font-size: 1.1rem; }
-details p { color: var(--color-muted); max-width: 48rem; }
+.faq-list { max-width: 51rem; margin: 0 auto; display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-q { width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 1.5rem .25rem; display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--color-text); }
+.faq-q .plus { flex: none; width: 1.375rem; height: 1.375rem; position: relative; }
+.faq-q .plus::before, .faq-q .plus::after { content: ""; position: absolute; background: var(--color-violet); top: 50%; left: 50%; transform: translate(-50%, -50%); transition: transform .2s ease; }
+.faq-q .plus::before { width: .875rem; height: 2px; }
+.faq-q .plus::after { width: 2px; height: .875rem; }
+.faq-item.open .faq-q .plus::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.faq-a p { font-size: .94rem; color: var(--color-muted); line-height: 1.65; padding: 0 .25rem 1.5rem; max-width: 45rem; margin: 0; }
+.faq-a strong { color: var(--color-text); }
 </style>

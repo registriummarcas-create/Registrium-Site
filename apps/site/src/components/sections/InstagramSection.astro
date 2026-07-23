@@ -3,19 +3,26 @@ import fallback from '../../data/instagram-fallback.json';
 import { contactConfig } from '../../config/contact';
 const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
 ---
-<section class="section instagram-section" data-feed-url={feedUrl}>
+<section class="section ig instagram-section" id="instagram" data-feed-url={feedUrl}>
   <div class="container">
-    <div class="instagram-heading">
-      <div><p class="eyebrow">Conteúdo Registrium</p><h2>Acompanhe orientações e atualizações.</h2></div>
-      {contactConfig.instagramUrl !== '#' && <a class="button button--dark" href={contactConfig.instagramUrl} target="_blank" rel="noreferrer">Ver perfil no Instagram</a>}
+    <div class="ig-head reveal">
+      <div class="ig-profile">
+        <div class="ig-avatar"><div><img src="/images/logo-mark.png" alt="Registrium" /></div></div>
+        <div><div class="handle">{contactConfig.instagramHandle}</div><div class="name">Registrium · Copyright e Marcas</div></div>
+      </div>
+      <a class="button button--primary" href={contactConfig.instagramUrl} target="_blank" rel="noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+        Seguir no Instagram
+      </a>
     </div>
-    <div class="instagram-grid" id="instagram-grid">
+    <div class="ig-grid reveal" id="instagram-grid">
       {fallback.map((item) => (
-        <a class="instagram-card" href={item.permalink} aria-label={item.caption} data-fallback="true">
+        <a class="ig-tile" href={item.permalink} target="_blank" rel="noreferrer" aria-label={item.caption} data-fallback="true">
           <img src={item.mediaUrl} alt={item.caption} width="800" height="800" loading="lazy" />
         </a>
       ))}
     </div>
+    <p class="ig-pending">Conteúdo real do {contactConfig.instagramHandle}, atualizado automaticamente.</p>
   </div>
 </section>
 <script>
@@ -30,7 +37,7 @@ const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
         grid.innerHTML = '';
         for (const item of feed.items.slice(0, 9)) {
           const link = document.createElement('a');
-          link.className = 'instagram-card';
+          link.className = 'ig-tile';
           link.href = item.permalink;
           link.target = '_blank';
           link.rel = 'noreferrer';
@@ -50,11 +57,17 @@ const feedUrl = import.meta.env.PUBLIC_INSTAGRAM_FEED_URL || '';
   }
 </script>
 <style>
-.instagram-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
-.instagram-heading h2 { margin: 0; font-size: clamp(2rem,5vw,3.2rem); }
-.instagram-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; }
-.instagram-card { aspect-ratio: 1; overflow: hidden; background: var(--color-navy-900); }
-.instagram-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
-.instagram-card:hover img { transform: scale(1.035); }
-@media (max-width: 650px) { .instagram-heading { align-items: start; flex-direction: column; } .instagram-grid { gap: .2rem; } }
+.ig-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.125rem; }
+.ig-profile { display: flex; align-items: center; gap: 1.125rem; }
+.ig-avatar { width: 4.625rem; height: 4.625rem; border-radius: 50%; padding: 3px; background: var(--grad-brand); flex: none; }
+.ig-avatar div { width: 100%; height: 100%; border-radius: 50%; background: var(--color-white); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.ig-avatar img { width: 65%; height: 65%; object-fit: contain; }
+.ig-profile .handle { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.375rem; font-weight: 800; color: var(--color-text); }
+.ig-profile .name { font-size: .875rem; color: var(--color-muted); margin-top: .125rem; }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .875rem; }
+.ig-tile { position: relative; aspect-ratio: 1/1; border-radius: 1rem; overflow: hidden; border: 1px solid var(--color-border); display: block; }
+.ig-tile:hover img { transform: scale(1.035); }
+.ig-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.ig-pending { margin-top: 1.125rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
+@media (max-width: 650px) { .ig-head { align-items: start; flex-direction: column; } .ig-grid { grid-template-columns: repeat(2, 1fr); gap: .5rem; } }
 </style>

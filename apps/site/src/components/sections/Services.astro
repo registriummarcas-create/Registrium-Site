@@ -4,14 +4,26 @@ import { services } from '../../data/services';
 ---
 <section id="servicos" class="section section--soft">
   <div class="container">
-    <SectionTitle eyebrow="Atuação" title="Serviços para proteger, defender e acompanhar a marca." />
-    <div class="grid services-grid">
-      {services.map((service) => <article class="card"><h3>{service.title}</h3><p>{service.description}</p></article>)}
+    <SectionTitle eyebrow="Outros serviços" title="Proteção completa para sua marca" />
+    <div class="grid services-grid reveal">
+      {services.map((service) => (
+        <article class="card svc">
+          <div class="svc-top">
+            <h3>{service.title}</h3>
+            <span class:list={['svc-price', { consulta: service.price === 'Sob consulta' }]}>{service.price}</span>
+          </div>
+          <p>{service.description}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 <style>
 .services-grid { grid-template-columns: repeat(3, 1fr); }
+.svc-top { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: .75rem; }
+.svc-top h3 { font-size: 1.09rem; margin: 0; line-height: 1.2; }
+.svc-price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .81rem; font-weight: 700; color: var(--color-white); background: var(--grad-brand); border-radius: 999px; padding: .375rem .875rem; white-space: nowrap; }
+.svc-price.consulta { background: linear-gradient(135deg, #4e9ae6, #7c79e4); }
 @media (max-width: 850px) { .services-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } }
 </style>

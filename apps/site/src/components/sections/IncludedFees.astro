@@ -1,0 +1,89 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+import { includedGroups, inpiFees, guarantees } from '../../data/fees';
+---
+<section class="section detail" id="incluso">
+  <div class="container">
+    <SectionTitle eyebrow="Transparência total" title="O que está incluso — e o que é taxa do INPI" description="Desde o início explicamos toda a viabilidade e as possibilidades do processo. Sem surpresa, sem cobrança a cada ato: você paga um valor único pelo serviço." />
+    <div class="detail-grid reveal">
+      <div class="inc-card">
+        <h3>O que está incluso</h3>
+        <p class="sub">No valor do plano está incluso todo o serviço, do estudo à emissão do certificado.</p>
+        {includedGroups.map((group) => (
+          <div class="inc-group">
+            <div class="lbl">{group.label}</div>
+            <ul class="inc-list">
+              {group.items.map((item) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="inc-card dark">
+        <h3>Taxas do INPI (não inclusas)</h3>
+        <p class="sub">Valores oficiais da Portaria GM/MDIC nº 110/2025, pagos diretamente ao INPI.</p>
+        <div class="fees">
+          {inpiFees.map((fee) => (
+            <div class="fee-row">
+              <div class="fk">{fee.label}</div>
+              <div class="fee-vals">
+                <span class="fee-chip">Valor cheio · {fee.full}</span>
+                <span class="fee-chip">Com desconto · {fee.discounted}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="fee-note">O desconto de 50% é autodeclarado no e-INPI para pessoa natural, MEI, ME/EPP, cooperativas, instituições de ensino, entidades sem fins lucrativos, órgãos públicos e agricultor familiar. Tabela completa, com todas as taxas do processo (oposição, recurso, PAN, renovação, transferência etc.), no <a href="/blog/taxas-inpi-2025">nosso blog</a>.</p>
+      </div>
+    </div>
+
+    <div class="guarantees reveal">
+      {guarantees.map((g) => (
+        <div class="g-card">
+          <div class="icon-tile gi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={g.icon} /></div>
+          <div>
+            <div class="gt">{g.title}</div>
+            <div class="gd">{g.description}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="paynote reveal">
+      <strong>Pagamento:</strong> cobrança única, parcelada em até 12x no cartão via link, ou à vista com 15% de desconto. As taxas do INPI não estão inclusas. <strong>Sobre o contrato:</strong> junto ao orçamento enviamos o contrato com todas as cláusulas; este material não tem validade de registro.
+    </div>
+  </div>
+</section>
+<style>
+.detail-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.5rem; align-items: start; }
+.inc-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem 1.875rem; box-shadow: var(--shadow-sm); }
+.inc-card.dark { background: linear-gradient(160deg, #241a52, #12123a); border-color: transparent; color: var(--color-white); }
+.inc-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: .4rem; }
+.inc-card .sub { font-size: .8rem; color: var(--color-muted); margin-bottom: 1.25rem; }
+.inc-card.dark .sub { color: var(--color-on-dark); }
+.inc-group { margin-bottom: 1.125rem; }
+.inc-group .lbl { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .75rem; }
+.inc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .7rem; }
+.inc-list li { display: flex; gap: .7rem; font-size: .91rem; color: var(--color-text); line-height: 1.45; }
+.inc-list li svg { flex: none; color: var(--color-good); margin-top: .1rem; }
+.fees { display: flex; flex-direction: column; gap: .875rem; margin-top: .25rem; }
+.fee-row { border: 1px solid rgba(255,255,255,.14); border-radius: .75rem; padding: .875rem 1rem; background: rgba(255,255,255,.04); }
+.fee-row .fk { font-size: .81rem; color: var(--color-on-dark); margin-bottom: .375rem; }
+.fee-vals { display: flex; flex-wrap: wrap; gap: .5rem; }
+.fee-chip { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .78rem; font-weight: 700; color: var(--color-white); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: .3rem .75rem; }
+.fee-note { font-size: .75rem; color: var(--color-on-dark-soft); margin-top: .875rem; line-height: 1.5; }
+.fee-note a { color: #9fd3f2; font-weight: 600; }
+.guarantees { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; margin-top: 1.5rem; }
+.g-card { display: flex; gap: .875rem; align-items: flex-start; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.125rem 1.25rem; }
+.g-card .gi { width: 2.5rem; height: 2.5rem; border-radius: .69rem; }
+.g-card .gi svg { width: 1.1rem; height: 1.1rem; }
+.g-card .gt { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .91rem; color: var(--color-text); margin-bottom: .2rem; }
+.g-card .gd { font-size: .78rem; color: var(--color-muted); line-height: 1.45; }
+.paynote { margin-top: 1.375rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.25rem 1.375rem; font-size: .84rem; color: var(--color-muted); line-height: 1.6; }
+.paynote strong { color: var(--color-text); }
+@media (max-width: 920px) { .detail-grid { grid-template-columns: 1fr; } .guarantees { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,56 @@
+---
+import SectionTitle from '../common/SectionTitle.astro';
+const logos = Array.from({ length: 20 }, (_, i) => `/images/marcas/marca-${String(i + 1).padStart(2, '0')}.jpg`);
+---
+<section class="section marks" id="marcas">
+  <div class="container">
+    <SectionTitle eyebrow="Prova real" title="Marcas já registradas" description="Marcas que protegemos junto ao INPI — cada certificado é a garantia de exclusividade de uso por 10 anos." />
+    <div class="marks-intro reveal">
+      <div class="owner">
+        <img src="/images/owner-certificates.jpg" alt="Titular da Registrium ao lado das marcas registradas" />
+        <div class="plate">Registrium · Copyright e Marcas</div>
+        <div class="owner-inset"><img src="/images/owner-portrait.jpg" alt="Registrium" /></div>
+      </div>
+      <div class="marks-intro-copy">
+        <div class="mi-kicker">Confiança que se vê</div>
+        <h3>Cada logo abaixo é uma marca real, registrada pela Registrium junto ao INPI.</h3>
+        <p>De clínicas a distribuidoras, de comércio a serviços — empresas de portes diferentes confiaram na Registrium para proteger o nome que construíram.</p>
+        <div class="marks-stats">
+          <div><div class="mn">20+</div><div class="ml">marcas registradas</div></div>
+          <div><div class="mn">10 anos</div><div class="ml">de proteção por certificado</div></div>
+          <div><div class="mn">100%</div><div class="ml">acompanhadas até o fim</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="logo-wall reveal">
+      {logos.map((src) => (
+        <div class="tile"><img src={src} alt="Marca registrada pela Registrium junto ao INPI" loading="lazy" /></div>
+      ))}
+    </div>
+    <p class="marks-note">Logotipos de marcas reais registradas pela Registrium junto ao INPI, exibidos a título de portfólio.</p>
+  </div>
+</section>
+<style>
+.marks-intro { display: grid; grid-template-columns: .55fr 1.45fr; gap: 2.5rem; align-items: center; margin-bottom: 3rem; }
+.owner { position: relative; border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(160deg, #241a52, #12123a); border: 1px solid var(--color-border); aspect-ratio: 4/5; }
+.owner img { width: 100%; height: 100%; object-fit: cover; }
+.owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,10,36,.55) 0%, transparent 38%); pointer-events: none; }
+.owner-inset { position: absolute; left: 1.125rem; bottom: 1.125rem; width: 30%; aspect-ratio: 1/1; border-radius: .875rem; overflow: hidden; border: 3px solid rgba(255,255,255,.9); box-shadow: 0 14px 28px -10px rgba(8,10,36,.6); z-index: 2; }
+.owner-inset img { width: 100%; height: 100%; object-fit: cover; }
+.owner .plate { position: absolute; left: 1.125rem; top: 1.125rem; background: rgba(10,11,36,.72); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(6px); border-radius: 999px; padding: .5rem 1.125rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .81rem; font-weight: 700; color: var(--color-white); white-space: nowrap; z-index: 2; }
+.marks-intro-copy .mi-kicker { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); margin-bottom: .625rem; }
+.marks-intro-copy h3 { font-size: 1.375rem; font-weight: 800; margin-bottom: .75rem; line-height: 1.25; }
+.marks-intro-copy p { font-size: .94rem; color: var(--color-muted); line-height: 1.65; margin: 0 0 .875rem; }
+.marks-stats { display: flex; gap: 1.75rem; margin-top: 1.25rem; flex-wrap: wrap; }
+.marks-stats div { display: flex; flex-direction: column; }
+.marks-stats .mn { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.625rem; color: var(--color-text); line-height: 1; }
+.marks-stats .ml { font-size: .75rem; color: var(--color-muted); margin-top: .375rem; }
+.logo-wall { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.logo-wall .tile { background: var(--color-white); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1rem; box-shadow: 0 14px 28px -24px rgba(30,20,80,.4); display: flex; align-items: center; justify-content: center; aspect-ratio: 1/1; transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.logo-wall .tile:hover { transform: translateY(-3px); box-shadow: 0 20px 34px -22px rgba(60,40,150,.4); border-color: var(--color-blue); }
+.logo-wall .tile img { width: 100%; height: 100%; object-fit: contain; border-radius: .375rem; }
+.marks-note { margin-top: 1.5rem; font-size: .78rem; color: var(--color-muted); text-align: center; }
+@media (max-width: 1040px) { .logo-wall { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 920px) { .marks-intro { grid-template-columns: 1fr; gap: 1.75rem; } .owner { max-width: 22rem; margin: 0 auto; } }
+@media (max-width: 560px) { .logo-wall { grid-template-columns: repeat(3, 1fr); gap: .625rem; } }
+</style>

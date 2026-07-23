@@ -1,21 +1,34 @@
 :root {
-  --color-navy-950: #071625;
-  --color-navy-900: #0b2136;
-  --color-navy-800: #12324d;
-  --color-turmaline: #18d5d1;
-  --color-turmaline-dark: #0aa8a5;
-  --color-gold: #ffd700;
-  --color-cream: #f7f4ec;
+  --color-navy-950: #080a24;
+  --color-navy-900: #0e1030;
+  --color-indigo-900: #1a1250;
+  --color-purple-900: #361a5a;
+
+  --grad-brand: linear-gradient(135deg, #3e6fe6 0%, #8a57ce 100%);
+  --grad-cyan: linear-gradient(100deg, #5fc8f3 0%, #b9a6f0 100%);
+  --grad-purple: linear-gradient(100deg, #9e73d8 0%, #c6a9ec 100%);
+
+  --color-text: #151138;
+  --color-muted: #5b5676;
+  --color-on-dark: #c7c2e4;
+  --color-on-dark-soft: #9c97be;
+
   --color-white: #ffffff;
-  --color-text: #102335;
-  --color-muted: #5b6b78;
-  --color-border: #dbe4e8;
-  --color-danger: #8f2430;
-  --shadow-sm: 0 8px 24px rgba(7, 22, 37, 0.08);
-  --shadow-lg: 0 24px 70px rgba(7, 22, 37, 0.16);
-  --radius-sm: 0.65rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --container: 72rem;
-  --header-height: 4.75rem;
+  --color-cream: #f5f6fc;
+  --color-border: #e7e8f3;
+
+  --color-periwinkle: #6366e8;
+  --color-cyan: #3fa0de;
+  --color-violet: #8a57ce;
+  --color-blue: #3e6fe6;
+  --color-good: #1f7a4d;
+  --color-gold: #ffd700;
+
+  --shadow-sm: 0 14px 28px -24px rgba(30, 20, 80, 0.4);
+  --shadow-lg: 0 30px 60px -30px rgba(90, 70, 210, 0.5);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.25rem;
+  --container: 75rem;
+  --header-height: 4.6rem;
 }

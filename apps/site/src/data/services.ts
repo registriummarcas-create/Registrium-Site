@@ -1,8 +1,8 @@
 export const services = [
-  { title: 'Registro de marca', description: 'Estratégia, definição de classes, protocolo e acompanhamento do pedido no INPI.' },
-  { title: 'Pesquisa de viabilidade', description: 'Análise prévia de anterioridades e riscos antes do investimento na marca.' },
-  { title: 'Oposição e manifestação', description: 'Atuação técnica em conflitos surgidos durante o exame administrativo.' },
-  { title: 'Exigências e recursos', description: 'Resposta a exigências e impugnação de decisões de indeferimento.' },
-  { title: 'Renovação e acompanhamento', description: 'Controle de vigência e acompanhamento das publicações relevantes.' },
-  { title: 'Proteção estratégica', description: 'Planejamento de classes, apresentação nominativa, mista e extensão da proteção.' }
+  { title: 'Monitoramento e Vigilância', price: 'R$ 300,00', description: 'Acompanhamento ativo para identificar marcas similares e evitar diluição.' },
+  { title: 'Análise de Viabilidade', price: 'R$ 300,00', description: 'Estudo aprofundado para planejamento estratégico do registro.' },
+  { title: 'Criação de Logotipo', price: 'R$ 2.000,00', description: 'Identidade visual profissional pronta para registro.' },
+  { title: 'Criação de Nome', price: 'R$ 2.000,00', description: 'Naming estratégico com verificação de disponibilidade.' },
+  { title: 'Cessão e Licença de Marca', price: 'Sob consulta', description: 'Assessoria em contratos de transferência e licenciamento.' },
+  { title: 'Defesa Judicial e Extrajudicial', price: 'Sob consulta', description: 'Proteção da sua marca contra concorrência desleal.' }
 ] as const;

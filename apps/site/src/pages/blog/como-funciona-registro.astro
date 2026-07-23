@@ -1,0 +1,57 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+const steps = [
+  { title: 'Pesquisa de viabilidade', description: 'Análise no banco de dados do INPI para identificar marcas idênticas ou semelhantes já registradas na mesma classe (ou em classes afins), além de riscos de colidência.' },
+  { title: 'Classificação e montagem do processo', description: 'A marca é enquadrada em uma ou mais classes pelo Acordo de Nice (classificação internacional de produtos e serviços), a logomarca é adequada ao formato exigido e é emitida a guia de recolhimento (GRU) para pagamento da taxa.' },
+  { title: 'Protocolo do pedido', description: 'O pedido é formalmente depositado no INPI. A partir dessa data, a marca já tem prioridade sobre pedidos futuros de terceiros, mesmo antes da concessão.' },
+  { title: 'Publicação e prazo de oposição', description: 'O pedido é publicado na Revista da Propriedade Industrial (RPI). Terceiros têm 60 dias para apresentar oposição, caso considerem que a marca fere direito anterior.' },
+  { title: 'Exame de mérito', description: 'O examinador do INPI analisa o pedido. Pode haver exigência (pedido de esclarecimento ou ajuste) — cumprida dentro do prazo legal, sob pena de arquivamento.' },
+  { title: 'Decisão: deferimento ou indeferimento', description: 'Se deferido, é preciso pagar a taxa de concessão para emissão do certificado. Se indeferido, cabe recurso administrativo dentro do prazo.' },
+  { title: 'Certificado de registro', description: 'Emitido o certificado, a marca fica protegida por 10 anos, renováveis por períodos iguais e sucessivos, mediante o pagamento da taxa de renovação decenal.' }
+];
+
+const related = [
+  { href: '/blog/taxas-inpi-2025', tag: 'Taxas oficiais', title: 'Taxas do INPI 2025/2026: tabela completa', description: 'Todos os valores da Portaria 110/2025 e quem tem direito ao desconto de 50%.' },
+  { href: '/blog/duvidas-frequentes', tag: 'Perguntas frequentes', title: 'Dúvidas comuns sobre registrar uma marca', description: 'CNPJ, prazos, indeferimento e outras perguntas respondidas direto.' },
+  { href: '/blog', tag: 'Blog', title: 'Ver todas as publicações', description: 'Volte ao índice do blog para ver todos os artigos disponíveis.' }
+];
+---
+<ArticleLayout
+  title="O passo a passo do registro de marca no INPI | Blog Registrium"
+  description="Da pesquisa de viabilidade ao certificado válido por 10 anos: entenda cada etapa do processo e onde mora o risco de indeferimento."
+  pill="Passo a passo"
+  heroTitle="O passo a passo do registro de marca no INPI"
+  heroDescription="Da pesquisa de viabilidade ao certificado válido por 10 anos: entenda cada etapa do processo e onde mora o risco de indeferimento."
+  meta={['Processo INPI', 'Atualizado em 2026', 'Leitura de 4 min']}
+  backHref="/blog"
+  backLabel="Voltar ao blog"
+  toc={[{ href: '#artigo', label: 'As 7 etapas' }, { href: '#planos', label: 'Planos e preço' }]}
+  related={related}
+>
+  <div class="art-block" id="artigo">
+    <h2>O passo a passo do registro de marca</h2>
+    <p class="lede">Registrar uma marca no INPI passa por etapas bem definidas. Conhecer cada uma delas ajuda a entender prazos, custos e onde mora o risco de indeferimento.</p>
+    {steps.map((step, index) => (
+      <div class="step-mini">
+        <div class="sn">{index + 1}</div>
+        <div>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </div>
+      </div>
+    ))}
+    <p>O prazo total costuma variar entre 12 e 24 meses, dependendo da fila de análise do INPI e da existência de oposições ou exigências no meio do caminho.</p>
+  </div>
+
+  <div class="art-block" id="planos">
+    <h2>Planos e preço da Registrium</h2>
+    <p>Além das taxas oficiais do INPI acima, a Registrium cobra um valor único pelo serviço completo — pesquisa, protocolo, acompanhamento e defesa. Os planos atuais são:</p>
+    <ul class="plain">
+      <li><strong>Bronze</strong> (MEI e Pessoa Física): 12x de R$ 64,14, ou à vista com 15% de desconto.</li>
+      <li><strong>Prata</strong> (ME e EPP): 12x de R$ 106,87, ou à vista com 15% de desconto — inclui novo pedido grátis em caso de indeferimento.</li>
+      <li><strong>Ouro</strong> (proteção completa): sob consulta, com defesa em oposições e recursos por 2 anos.</li>
+    </ul>
+    <p>Veja o detalhamento de cada plano, o que está incluso e os planos comparados lado a lado na <a href="/#planos" style="color:var(--color-violet);font-weight:600;">página principal</a>.</p>
+  </div>
+</ArticleLayout>

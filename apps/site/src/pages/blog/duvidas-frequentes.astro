@@ -1,0 +1,37 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+const qas = [
+  { q: 'Não tenho CNPJ, posso registrar?', a: 'Sim. O pedido pode ser feito por pessoa física. Se você ainda não tem CNPJ mas pretende abrir um MEI, também dá para iniciar — fale com a gente para entender a melhor ordem no seu caso.' },
+  { q: 'Quanto tempo leva o registro?', a: 'O prazo depende do INPI e costuma levar de 12 a 24 meses até a decisão final, conforme a fila de análise e eventuais oposições. A marca já fica protegida a partir da data do protocolo, não da concessão.' },
+  { q: 'A taxa de concessão realmente acabou?', a: 'Sim. A Portaria 110/2025 zerou os códigos 372/373 (concessão e proteção do 1º decênio). O custo de entrada ficou concentrado na taxa do pedido de registro.' },
+  { q: 'O desconto de 50% e o desconto de 15% da Registrium são a mesma coisa?', a: 'Não. O desconto de 50% é do INPI, aplicado à taxa oficial via autodeclaração. Os 15% são um desconto da Registrium sobre o valor do nosso serviço, para pagamento à vista.' },
+  { q: 'Preciso pagar a taxa do INPI direto para eles?', a: 'Sim, é um recolhimento federal (GRU), separado do valor do nosso serviço — nós emitimos a guia e te orientamos em cada etapa.' },
+  { q: 'E se o INPI indeferir o pedido?', a: 'Analisamos a viabilidade antes de protocolar para reduzir esse risco. Nos planos Prata e Ouro, se houver indeferimento, refazemos o pedido sem custo adicional; avaliamos ainda recurso ou ajuste de classe de forma transparente.' }
+];
+
+const related = [
+  { href: '/blog/taxas-inpi-2025', tag: 'Taxas oficiais', title: 'Taxas do INPI 2025/2026: tabela completa', description: 'Todos os valores da Portaria 110/2025 e quem tem direito ao desconto de 50%.' },
+  { href: '/blog/como-funciona-registro', tag: 'Passo a passo', title: 'O passo a passo do registro de marca', description: 'Da pesquisa de viabilidade ao certificado: as 7 etapas do processo no INPI.' },
+  { href: '/blog', tag: 'Blog', title: 'Ver todas as publicações', description: 'Volte ao índice do blog para ver todos os artigos disponíveis.' }
+];
+---
+<ArticleLayout
+  title="Dúvidas comuns sobre registrar uma marca | Blog Registrium"
+  description="CNPJ, prazos, taxas, indeferimento e desconto: as perguntas que mais recebemos sobre o registro de marca, respondidas direto."
+  pill="Perguntas frequentes"
+  heroTitle="Dúvidas comuns sobre registrar uma marca"
+  heroDescription="CNPJ, prazos, taxas, indeferimento e desconto: as perguntas que mais recebemos sobre o registro de marca, respondidas direto."
+  meta={['FAQ', 'Atualizado em 2026', 'Leitura de 3 min']}
+  backHref="/blog"
+  backLabel="Voltar ao blog"
+  toc={[{ href: '#artigo', label: 'Todas as perguntas' }]}
+  related={related}
+>
+  <div class="art-block" id="artigo" style="margin-bottom:0;">
+    <h2>Dúvidas comuns</h2>
+    {qas.map((item) => (
+      <p><strong>{item.q}</strong> {item.a}</p>
+    ))}
+  </div>
+</ArticleLayout>

@@ -1,43 +1,75 @@
 ---
 import { contactConfig } from '../../config/contact';
-const tallyUrl = import.meta.env.PUBLIC_TALLY_FORM_URL || '';
 ---
-<section id="formulario" class="section lead-section">
-  <div class="container lead-grid">
-    <div>
-      <p class="eyebrow">Análise inicial</p>
-      <h2>Conte-nos qual marca você pretende proteger.</h2>
-      <p>Os dados serão utilizados para contato e análise preliminar, conforme a Política de Privacidade.</p>
-      <ul>
-        <li>Nome da marca</li>
-        <li>Segmento de atuação</li>
-        <li>WhatsApp para retorno</li>
-        <li>Situação atual perante o INPI</li>
-      </ul>
+<section id="cadastro" class="section form-section">
+  <div class="container">
+    <div class="section-title reveal">
+      <p class="eyebrow">Cadastro prévio</p>
+      <h2>Vamos começar pela sua marca</h2>
+      <p>Preencha os dados abaixo. Assim que enviar, você já segue direto para o WhatsApp com a conversa iniciada — sem repetir tudo do zero.</p>
     </div>
-    <div class="form-card">
-      {tallyUrl ? (
-        <iframe title="Formulário de análise de marca" src={tallyUrl} loading="lazy" width="100%" height="620" frameborder="0"></iframe>
-      ) : (
-        <div class="form-placeholder">
-          <span>Configuração pendente</span>
-          <h3>O formulário será ativado após a inclusão da URL pública do Tally.</h3>
-          <p>Até lá, o contato permanece disponível pelo e-mail.</p>
-          <a class="button button--dark" href={`mailto:${contactConfig.email}?subject=Solicitação de análise de marca`}>Enviar e-mail</a>
+    <form class="form-card reveal" id="leadForm" data-whatsapp-number={contactConfig.whatsappNumber} novalidate>
+      <div class="form-grid">
+        <div class="field"><label for="l-nome">Nome completo</label><input id="l-nome" name="nome" type="text" placeholder="Seu nome" required /></div>
+        <div class="field"><label for="l-whats">WhatsApp</label><input id="l-whats" name="whats" type="tel" placeholder="(00) 00000-0000" required /></div>
+        <div class="field">
+          <label for="l-tipo">Você é</label>
+          <select id="l-tipo" name="tipo" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="Pessoa Física">Pessoa Física</option>
+            <option value="MEI">MEI</option>
+            <option value="ME / EPP">ME / EPP</option>
+            <option value="Outra empresa">Outra empresa</option>
+          </select>
         </div>
-      )}
-    </div>
+        <div class="field"><label for="l-marca">Nome da marca</label><input id="l-marca" name="marca" type="text" placeholder="Como se chama sua marca" required /></div>
+        <div class="field full"><label for="l-msg">Conte mais (opcional)</label><textarea id="l-msg" name="msg" placeholder="Segmento de atuação, dúvidas, prazo desejado..."></textarea></div>
+      </div>
+      <div class="form-foot">
+        <p class="form-note">Seus dados são usados só para essa conversa com a Registrium pelo WhatsApp, conforme a Política de Privacidade.</p>
+        <button type="submit" class="button button--primary">
+          Enviar e continuar no WhatsApp
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="form-ok" id="leadOk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Abrindo o WhatsApp com seus dados…
+      </div>
+    </form>
   </div>
 </section>
+<script>
+  const form = document.getElementById('leadForm') as HTMLFormElement | null;
+  if (form) {
+    const whatsappNumber = form.dataset.whatsappNumber;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = Object.fromEntries(new FormData(form).entries());
+      let message = 'Olá! Quero registrar minha marca com a Registrium.\n\n';
+      message += `Nome: ${data.nome}\nWhatsApp: ${data.whats}\nTipo: ${data.tipo}\nMarca: ${data.marca}`;
+      if (data.msg) message += `\nMais detalhes: ${data.msg}`;
+      document.getElementById('leadOk')?.classList.add('show');
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    });
+  }
+</script>
 <style>
-.lead-section { background: linear-gradient(135deg, #e8fbfa, var(--color-cream)); }
-.lead-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3rem; align-items: start; }
-.lead-grid h2 { font-size: clamp(2.2rem,5vw,4rem); line-height: 1.05; margin-top: 0; }
-.lead-grid p, .lead-grid li { color: var(--color-muted); }
-.form-card { background: white; border-radius: var(--radius-lg); min-height: 30rem; box-shadow: var(--shadow-lg); overflow: hidden; }
-.form-placeholder { padding: clamp(2rem,6vw,4rem); }
-.form-placeholder span { font-weight: 900; color: var(--color-turmaline-dark); }
-.form-placeholder h3 { font-size: 1.8rem; }
-iframe { border: 0; display: block; }
-@media (max-width: 800px) { .lead-grid { grid-template-columns: 1fr; } }
+.form-card { max-width: 47.5rem; margin: 0 auto; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2.5rem 2.5rem 2.125rem; box-shadow: var(--shadow-sm); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .375rem; }
+.field { display: flex; flex-direction: column; gap: .44rem; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .78rem; font-weight: 700; color: var(--color-text); }
+.field input, .field select, .field textarea { font-family: 'Inter', sans-serif; font-size: .91rem; color: var(--color-text); background: var(--color-white); border: 1px solid var(--color-border); border-radius: .69rem; padding: .75rem .875rem; outline: none; transition: border-color .15s ease; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--color-blue); }
+.field textarea { resize: vertical; min-height: 5.5rem; font-family: 'Inter', sans-serif; }
+.form-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.375rem; flex-wrap: wrap; }
+.form-note { font-size: .75rem; color: var(--color-muted); max-width: 21rem; line-height: 1.5; margin: 0; }
+.form-ok { display: none; align-items: center; gap: .625rem; background: #eaf6ef; border: 1px solid #bee3cb; color: #1f7a4d; border-radius: .75rem; padding: .75rem 1rem; font-size: .84rem; font-weight: 600; margin-top: 1rem; }
+.form-ok.show { display: flex; }
+@media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } .form-card { padding: 1.625rem 1.375rem; } .form-foot { flex-direction: column; align-items: stretch; } .form-foot .button { width: 100%; } }
 </style>

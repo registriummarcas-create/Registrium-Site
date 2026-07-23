@@ -3,9 +3,11 @@ import { contactConfig } from '../../config/contact';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
 const url = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig.whatsappMessage);
 ---
-<a class="floating" href={url} aria-label="Falar com a Registrium pelo WhatsApp" data-track="whatsapp_click" data-location="floating">
-  <span aria-hidden="true">WA</span>
+<a class="floating" href={url} target="_blank" rel="noreferrer" aria-label="Falar com a Registrium pelo WhatsApp" data-track="whatsapp_click" data-location="floating">
+  <svg width="27" height="27" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.3A8.9 8.9 0 0 0 12.05 3.7 8.94 8.94 0 0 0 3.4 15.9L2 21l5.25-1.38A8.94 8.94 0 0 0 12.05 21a8.94 8.94 0 0 0 8.9-8.9 8.9 8.9 0 0 0-3.35-5.8Z" stroke="white" stroke-width="1.6"/><path d="M8.7 8.4c-.15.3-.6 1-.6 1.9s.6 1.8 1.7 3 2.1 1.55 3 1.7c.9.15 1.6-.45 1.9-.6" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
 </a>
 <style>
-.floating { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; width: 3.5rem; height: 3.5rem; border-radius: 50%; display: grid; place-items: center; text-decoration: none; font-weight: 900; background: var(--color-turmaline); color: var(--color-navy-950); box-shadow: var(--shadow-lg); border: 3px solid white; }
+.floating { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 60; width: 3.6rem; height: 3.6rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; background: var(--grad-brand); box-shadow: 0 14px 28px -10px rgba(90,70,210,.65); transition: transform .18s ease; }
+.floating:hover { transform: scale(1.07); }
+@media (max-width: 560px) { .floating { right: 1rem; bottom: 1rem; } }
 </style>
