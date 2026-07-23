@@ -44,11 +44,14 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
     <div class="guarantees reveal">
       {guarantees.map((g) => (
         <div class="g-card">
-          <div class="icon-tile gi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={g.icon} /></div>
-          <div>
-            <div class="gt">{g.title}</div>
-            <div class="gd">{g.description}</div>
+          <div class="g-card-top">
+            <div class="icon-tile gi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={g.icon} /></div>
+            <div>
+              <div class="gt">{g.title}</div>
+              <div class="gd">{g.description}</div>
+            </div>
           </div>
+          <div class="gr"><strong>Resultado:</strong> {g.result}</div>
         </div>
       ))}
     </div>
@@ -77,12 +80,15 @@ import { includedGroups, inpiFees, guarantees } from '../../data/fees';
 .fee-chip { font-family: 'Plus Jakarta Sans', sans-serif; font-size: .78rem; font-weight: 700; color: var(--color-white); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: .3rem .75rem; }
 .fee-note { font-size: .75rem; color: var(--color-on-dark-soft); margin-top: .875rem; line-height: 1.5; }
 .fee-note a { color: #9fd3f2; font-weight: 600; }
-.guarantees { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; margin-top: 1.5rem; }
-.g-card { display: flex; gap: .875rem; align-items: flex-start; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.125rem 1.25rem; }
-.g-card .gi { width: 2.5rem; height: 2.5rem; border-radius: .69rem; }
+.guarantees { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; margin-top: 1.5rem; align-items: stretch; }
+.g-card { display: flex; flex-direction: column; gap: .875rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.125rem 1.25rem; }
+.g-card-top { display: flex; gap: .875rem; align-items: flex-start; }
+.g-card .gi { width: 2.5rem; height: 2.5rem; border-radius: .69rem; flex: none; }
 .g-card .gi svg { width: 1.1rem; height: 1.1rem; }
 .g-card .gt { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: .91rem; color: var(--color-text); margin-bottom: .2rem; }
 .g-card .gd { font-size: .78rem; color: var(--color-muted); line-height: 1.45; }
+.g-card .gr { margin-top: auto; padding-top: .875rem; border-top: 1px dashed var(--color-border); font-size: .78rem; color: var(--color-text); line-height: 1.45; }
+.g-card .gr strong { color: var(--color-violet); }
 .paynote { margin-top: 1.375rem; background: var(--color-cream); border: 1px solid var(--color-border); border-radius: .875rem; padding: 1.25rem 1.375rem; font-size: .84rem; color: var(--color-muted); line-height: 1.6; }
 .paynote strong { color: var(--color-text); }
 @media (max-width: 920px) { .detail-grid { grid-template-columns: 1fr; } .guarantees { grid-template-columns: 1fr; } }
