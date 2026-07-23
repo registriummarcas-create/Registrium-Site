@@ -21,6 +21,7 @@ import { contactConfig } from '../../config/contact';
         <div><div class="s-num">48h</div><div class="s-lbl">para protocolo</div></div>
         <div><div class="s-num">10 anos</div><div class="s-lbl">de validade</div></div>
         <div><div class="s-num">100%</div><div class="s-lbl">transparência</div></div>
+        <div><div class="s-num">88%</div><div class="s-lbl">aprovação no INPI</div></div>
       </div>
     </div>
     <div class="hero-visual reveal">
@@ -44,10 +45,6 @@ import { contactConfig } from '../../config/contact';
           </button>
         </form>
         <p class="hero-form-note">Sem compromisso. Você fala direto com a Registrium pelo WhatsApp.</p>
-      </div>
-      <div class="hero-form-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        88% de aprovação no INPI
       </div>
     </div>
   </div>
@@ -153,7 +150,10 @@ import { contactConfig } from '../../config/contact';
   }
 </script>
 <style>
-.hero { position: relative; overflow: hidden; background: linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 55%, var(--color-purple-900) 100%); }
+.hero { position: relative; overflow: hidden; background:
+    radial-gradient(75% 75% at 82% 30%, rgba(62,111,230,.55), transparent 68%),
+    radial-gradient(65% 65% at 55% 95%, rgba(138,87,206,.4), transparent 70%),
+    linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 45%, var(--color-purple-900) 100%); }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 3rem; align-items: center; padding: 6rem 0 5.25rem; }
 .hero-grid > * { min-width: 0; }
 .pill { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: var(--color-white); border-radius: 999px; padding: .55rem 1.05rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
@@ -164,12 +164,12 @@ import { contactConfig } from '../../config/contact';
 .hero-sub { color: var(--color-on-dark); font-size: 1.125rem; line-height: 1.6; max-width: 31rem; margin-top: 1.6rem; }
 .hero-ctas { display: flex; gap: .875rem; margin-top: 2.1rem; flex-wrap: wrap; }
 .hero-divider { height: 1px; background: rgba(255,255,255,.12); margin-top: 3.25rem; max-width: 38rem; }
-.hero-stats { display: flex; gap: 3.5rem; margin-top: 1.6rem; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 2.25rem; margin-top: 1.6rem; flex-wrap: wrap; }
 .hero-stats .s-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 2.1rem; color: var(--color-white); line-height: 1; }
 .hero-stats .s-lbl { font-size: .84rem; color: var(--color-on-dark-soft); margin-top: .5rem; }
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
-.hero-visual::before { content: ""; position: absolute; width: 80%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(90,120,240,.45), transparent 68%); filter: blur(34px); }
-.hero-watermark { position: absolute; z-index: 0; top: -3.5rem; right: -2rem; width: 21rem; max-width: 70%; opacity: .32; filter: drop-shadow(0 0 50px rgba(90,120,240,.3)); pointer-events: none; user-select: none; }
+.hero-visual::before { content: ""; position: absolute; width: 110%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 200deg, rgba(62,111,230,.5), rgba(138,87,206,.5), rgba(62,111,230,.5)); filter: blur(46px); }
+.hero-watermark { position: absolute; z-index: 0; top: -5.5rem; right: -5rem; width: 30rem; max-width: 92%; opacity: .48; filter: drop-shadow(0 0 60px rgba(90,120,240,.35)); pointer-events: none; user-select: none; }
 
 .chat-card { position: relative; z-index: 1; width: 100%; max-width: 25rem; background: rgba(255,255,255,.97); border: 1px solid rgba(255,255,255,.6); border-radius: var(--radius-lg); padding: 0 1.375rem 1.25rem; box-shadow: 0 40px 80px -30px rgba(6,8,30,.55), 0 1px 0 rgba(255,255,255,.4) inset; display: flex; flex-direction: column; overflow: hidden; }
 .chat-head { position: relative; display: flex; align-items: center; gap: .75rem; margin: 0 -1.375rem 1.125rem; padding: 1.125rem 1.375rem; background: var(--grad-brand); }
@@ -197,9 +197,6 @@ import { contactConfig } from '../../config/contact';
 .chat-send:hover { filter: brightness(1.08); }
 .chat-send:disabled { opacity: .5; cursor: default; }
 .hero-form-note { font-size: .72rem; color: var(--color-muted); text-align: center; margin: .75rem 0 0; }
-.hero-form-badge { position: absolute; left: 1.5rem; bottom: -1.1rem; z-index: 2; display: inline-flex; align-items: center; gap: .5rem; background: var(--color-white); border: 1px solid var(--color-border); color: var(--color-violet); border-radius: 999px; padding: .55rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; box-shadow: 0 14px 28px -14px rgba(6,8,30,.5); animation: badgeFloat 5s ease-in-out infinite; }
-.hero-form-badge svg { flex: none; color: var(--color-violet); }
-@keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 4rem 0 4.25rem; } .hero-visual { order: -1; max-width: 25rem; margin: 0 auto; padding-bottom: 1.5rem; } .hero-watermark { width: 20rem; opacity: .16; } }
-@media (max-width: 560px) { .hero-ctas { flex-direction: column; } .hero-ctas .button { width: 100%; } .hero-stats { gap: 1.875rem; } .chat-card { padding: 1.125rem 1.125rem 1rem; } .hero-form-badge { font-size: .68rem; padding: .5rem .8rem; left: 1.1rem; } .hero-watermark { display: none; } }
+@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap: 1.25rem; padding: 4rem 0 4.25rem; } .hero-visual { order: -1; max-width: 25rem; margin: 0 auto; padding-bottom: 1.5rem; } .hero-watermark { width: 22rem; opacity: .3; top: -3rem; right: -2.5rem; } }
+@media (max-width: 560px) { .hero-ctas { flex-direction: column; } .hero-ctas .button { width: 100%; } .hero-stats { gap: 1.5rem 1.875rem; } .chat-card { padding: 1.125rem 1.125rem 1rem; } .hero-watermark { width: 15rem; opacity: .22; top: -1.5rem; right: -1.5rem; } }
 </style>

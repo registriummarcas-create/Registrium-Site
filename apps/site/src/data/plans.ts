@@ -2,9 +2,8 @@ export const plans = [
   {
     name: 'Plano Bronze',
     who: 'MEI e Pessoa Física',
-    installment: '12x de',
-    price: 'R$ 64,14',
-    fine: 'ou à vista com 15% de desconto · taxas do INPI à parte',
+    price: 'R$ 800,00',
+    fine: 'com 15% de desconto no pagamento à vista · taxa GRU-INPI à parte (R$ 440,00)',
     featured: false,
     items: [
       '1 pedido de registro de marca',
@@ -18,9 +17,8 @@ export const plans = [
   {
     name: 'Plano Prata',
     who: 'ME e EPP',
-    installment: '12x de',
-    price: 'R$ 106,87',
-    fine: 'ou à vista com 15% de desconto · taxas do INPI à parte',
+    price: 'R$ 1.750,00',
+    fine: 'com 15% de desconto no pagamento à vista · taxa GRU-INPI à parte (R$ 440,00)',
     featured: true,
     badge: 'Mais escolhido',
     items: [
@@ -36,7 +34,7 @@ export const plans = [
     name: 'Plano Ouro',
     who: 'Proteção completa',
     price: 'Sob consulta',
-    fine: 'defesa ampla da marca · taxas do INPI à parte',
+    fine: 'defesa ampla da marca · taxa GRU-INPI à parte (R$ 8.800,00)',
     featured: false,
     items: [
       '1 pedido de registro de marca',
