@@ -44,29 +44,49 @@ import { contactConfig } from '../../config/contact';
   function hasRendered() {
     if (!appDiv) return false;
     // A Elfsight injeta imagens/iframes e dá altura real ao container quando carrega
-    const rendered = appDiv.querySelector('img, iframe, canvas, [class*="eapps"]');
-    return !!rendered || appDiv.offsetHeight > 150;
+    return !!appDiv.querySelector('img, iframe, canvas, [class*="eapps"]') || appDiv.offsetHeight > 150;
+  }
+
+  let elfsightLive = false;
+
+  function showElfsight() {
+    if (elfsight) elfsight.hidden = false;
+    if (fallbackEl) fallbackEl.hidden = true;
+    elfsightLive = true;
   }
 
   function showFallback() {
+    if (elfsightLive) return; // o widget real já assumiu
     if (elfsight) elfsight.hidden = true;
     if (fallbackEl) fallbackEl.hidden = false;
   }
 
-  // Verifica algumas vezes ao longo de ~9s antes de decidir que o widget falhou
-  let attempts = 0;
-  const maxAttempts = 6;
-  const timer = window.setInterval(() => {
-    attempts += 1;
+  // Mostra o fallback nativo (em português) rápido se o widget não renderizar.
+  // No celular a Elfsight costuma ser bloqueada ou lenta, então não deixamos a seção vazia.
+  const fallbackTimer = window.setTimeout(() => {
+    if (!hasRendered()) showFallback();
+  }, 4000);
+
+  // Assim que a Elfsight renderizar de verdade, ela assume — mesmo que o fallback
+  // já esteja na tela (corrige o caso de carregamento lento no mobile).
+  if (appDiv) {
     if (hasRendered()) {
-      window.clearInterval(timer);
-      return; // widget carregou: mantém a Elfsight
+      window.clearTimeout(fallbackTimer);
+      showElfsight();
+    } else {
+      const observer = new MutationObserver(() => {
+        if (hasRendered()) {
+          window.clearTimeout(fallbackTimer);
+          showElfsight();
+          observer.disconnect();
+        }
+      });
+      observer.observe(appDiv, { childList: true, subtree: true, attributes: true });
+      window.setTimeout(() => observer.disconnect(), 20000);
     }
-    if (attempts >= maxAttempts) {
-      window.clearInterval(timer);
-      showFallback();
-    }
-  }, 1500);
+  } else {
+    showFallback();
+  }
 </script>
 <style>
 .ig-embed-eyebrow { justify-content: center; text-align: center; width: 100%; margin: 0 0 1.75rem; }
