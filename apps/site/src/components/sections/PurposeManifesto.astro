@@ -10,7 +10,7 @@
       <p>Ninguém abre um negócio pensando em perder o nome dele.</p>
       <p>Mas acontece todo dia. O negócio cresce, o nome pega, os clientes decoram, e aí chega uma notificação dizendo que aquele nome pertence a outra pessoa. Não porque ela construiu. Porque ela chegou primeiro.</p>
       <p>A Registrium nasceu para tirar a sorte dessa conta. Preço publicado, prazo dito na cara, acompanhamento até o fim.</p>
-      <p class="manifesto-close">Você fez o nome valer alguma coisa. A gente faz ele ser seu.</p>
+      <p class="manifesto-close">Você fez o nome valer alguma coisa. Nós fazemos ele ser seu.</p>
     </div>
   </div>
 </section>
@@ -21,11 +21,17 @@
 .manifesto-pattern { position: absolute; inset: -2rem; z-index: 0; background-image: url('/images/logo-mark-white.png'); background-repeat: repeat; background-size: 6.5rem 6.1rem; background-position: center; opacity: .06; pointer-events: none; user-select: none; animation: manifestoPatternDrift 46s linear infinite; }
 @keyframes manifestoPatternDrift { from { background-position: 0 0; } to { background-position: 6.5rem 6.1rem; } }
 .manifesto-vignette { position: absolute; inset: 0; z-index: 0; background: radial-gradient(60% 55% at 50% 45%, var(--color-navy-900) 0%, rgba(14,16,48,.55) 45%, transparent 78%); pointer-events: none; }
-.manifesto-inner { position: relative; z-index: 1; max-width: 42rem; margin: 0 auto; text-align: center; }
-.manifesto h2 { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 700; margin: .75rem 0 2.25rem; line-height: 1.1; }
-.manifesto-body p { color: var(--color-on-dark); font-size: 1.09rem; line-height: 1.7; margin: 0 0 1.25rem; }
-.manifesto-body p.manifesto-close { color: var(--color-white); font-weight: 700; font-size: 1.19rem; margin-top: 1.75rem; }
+.manifesto-inner { position: relative; z-index: 1; max-width: 44rem; margin: 0 auto; text-align: left; }
+.manifesto h2 { font-size: clamp(2rem, 4.2vw, 2.9rem); font-weight: 700; margin: .6rem 0 1.75rem; line-height: 1.12; }
+.manifesto-body p { color: var(--color-on-dark); font-size: 1.09rem; line-height: 1.7; margin: 0 0 1.2rem; max-width: 40rem; }
+.manifesto-body p.manifesto-close { color: var(--color-white); font-weight: 700; font-size: 1.19rem; margin-top: 1.6rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.16); }
 .chapter-mark { display: inline-flex; align-items: center; gap: .3rem; flex: none; }
 .chapter-num { font-family: var(--font-mono); font-weight: 700; }
 .chapter-dash { opacity: .75; }
+@media (max-width: 600px) {
+  .manifesto h2 { font-size: clamp(1.75rem, 8vw, 2.2rem); margin: .5rem 0 1.4rem; line-height: 1.14; }
+  .manifesto-body p { font-size: 1rem; line-height: 1.62; margin-bottom: .95rem; }
+  .manifesto-body p.manifesto-close { font-size: 1.1rem; margin-top: 1.35rem; padding-top: 1.1rem; }
+  .manifesto-pattern { opacity: .04; background-size: 5rem 4.7rem; }
+}
 </style>

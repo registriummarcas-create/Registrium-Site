@@ -65,4 +65,9 @@
 .ra-badge.two { bottom: 10%; left: 0; animation-delay: 1.2s; }
 @keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @media (max-width: 920px) { .referral-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; } .referral-copy p { margin-inline: auto; } .referral-art { order: -1; } }
+@media (max-width: 600px) {
+  .referral-copy { text-align: left; }
+  .referral-copy h2 { font-size: clamp(1.9rem, 9vw, 2.4rem); }
+  .referral-copy p { margin-inline: 0; font-size: .96rem; line-height: 1.6; }
+}
 </style>

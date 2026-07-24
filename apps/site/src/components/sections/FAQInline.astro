@@ -4,7 +4,7 @@ import SectionTitle from '../common/SectionTitle.astro';
 const faqItems = [
   {
     question: 'Em quanto tempo minha marca fica protegida?',
-    answer: 'O que vale na fila do INPI é a data do depósito, e ela passa a ser sua em até 48h após a contratação. A decisão final do órgão leva mais tempo, e a gente acompanha cada etapa até lá, com relatório mensal.'
+    answer: 'O que vale na fila do INPI é a data do depósito, e ela passa a ser sua em até 48h após a contratação. A decisão final do órgão leva mais tempo, e nós acompanhamos cada etapa até lá, com relatório mensal.'
   },
   {
     question: 'E se o INPI negar?',
@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     question: 'E se alguém se opuser ao meu pedido?',
-    answer: 'A gente responde. Oposição, manifestação e recurso estão dentro dos nossos honorários, sem cobrança nova. Você paga apenas a taxa oficial do ato, que é do INPI e está na tabela pública.'
+    answer: 'Nós respondemos. Oposição, manifestação e recurso estão dentro dos nossos honorários, sem cobrança nova. Você paga apenas a taxa oficial do ato, que é do INPI e está na tabela pública.'
   },
   {
     question: 'Sou MEI. Posso registrar?',
@@ -24,7 +24,7 @@ const faqItems = [
   }
 ] as const;
 ---
-<section id="faq" class="section faq">
+<section id="faq" class="section faq hide-mobile">
   <div class="container">
     <SectionTitle chapter="12" eyebrow="Perguntas frequentes" title="Dúvida é normal. Ficar sem resposta é que não pode." />
     <div class="faq-list reveal">
