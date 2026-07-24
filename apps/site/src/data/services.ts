@@ -38,7 +38,7 @@ export const services = [
   {
     title: 'Manifestação em oposição e recurso',
     price: 'R$ 500,00',
-    description: 'Manifestação em oposição e recurso de indeferimento em processos em procurador.',
+    description: 'Manifestação em oposição e recurso de indeferimento em processos sem procurador.',
     icon: '<path d="M12 4v16M8 20h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 8h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 8l-2.4 5.2a3 3 0 004.8 0L5 8zM19 8l-2.4 5.2a3 3 0 004.8 0L19 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
   },
   {
