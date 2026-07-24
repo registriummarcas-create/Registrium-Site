@@ -6,10 +6,16 @@ export const services = [
     icon: '<path d="M3 12 7 9h10l4 3-4 3H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"/><circle cx="12" cy="12" r="2.3" stroke="currentColor" stroke-width="1.6"/>'
   },
   {
-    title: 'Análise de Viabilidade',
+    title: 'Análise de Viabilidade Profunda',
     price: 'R$ 300,00',
-    description: 'Estudo aprofundado para planejamento estratégico do registro.',
+    description: 'Estudo aprofundado para planejamento estratégico do registro. Gratuita para clientes Registrium.',
     icon: '<circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M14.8 14.8 20.5 20.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/>'
+  },
+  {
+    title: 'Renovação de marcas registradas',
+    price: 'R$ 300,00',
+    description: 'Renovação do registro junto ao INPI, garantindo mais 10 anos de proteção.',
+    icon: '<path d="M20 12a8 8 0 1 1-2.4-5.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M20 4v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
   },
   {
     title: 'Criação de Logotipo',
@@ -28,6 +34,12 @@ export const services = [
     price: 'Sob consulta',
     description: 'Registro e averbação da transferência ou do licenciamento da sua marca junto ao INPI.',
     icon: '<path d="M4 9h13M13 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/><path d="M20 15H7M11 11l-4 4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/>'
+  },
+  {
+    title: 'Manifestação em oposição e recurso',
+    price: 'R$ 500,00',
+    description: 'Manifestação em oposição e recurso de indeferimento em processos em procurador.',
+    icon: '<path d="M12 4v16M8 20h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 8h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 8l-2.4 5.2a3 3 0 004.8 0L5 8zM19 8l-2.4 5.2a3 3 0 004.8 0L19 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
   },
   {
     title: 'Proteção contra uso indevido',

@@ -65,6 +65,39 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url);
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+      // Contadores animados (ex.: 88%, 95%): sobem rápido até o número final ao entrar na tela
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const countEls = document.querySelectorAll<HTMLElement>('.count-up');
+      if (countEls.length && !reduceMotion) {
+        const animateCount = (el: HTMLElement) => {
+          const target = Number(el.dataset.countTo || '0');
+          const suffix = el.dataset.countSuffix || '';
+          const prefix = el.dataset.countPrefix || '';
+          const duration = 1300;
+          const startTime = performance.now();
+          const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+          const frame = (now: number) => {
+            const p = Math.min(1, (now - startTime) / duration);
+            el.textContent = prefix + Math.round(ease(p) * target) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+            else el.textContent = prefix + target + suffix;
+          };
+          requestAnimationFrame(frame);
+        };
+        const countObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                animateCount(entry.target as HTMLElement);
+                countObserver.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.6 }
+        );
+        countEls.forEach((el) => countObserver.observe(el));
+      }
+
       const track = document.getElementById('scrollProgress');
       const bar = document.getElementById('scrollProgressBar');
       const mark = document.getElementById('scrollProgressMark');
