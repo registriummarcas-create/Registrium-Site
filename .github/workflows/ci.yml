@@ -26,6 +26,6 @@ jobs:
           corepack enable
           corepack prepare pnpm@11.15.1 --activate
       - name: Instalar dependências
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Validar
         run: pnpm check
