@@ -1,6 +1,7 @@
 // Páginas locais: registro de marca nas principais cidades da Paraíba.
 // O registro de marca é federal (vale para todo o Brasil), então cada página
 // evita ser rasa trazendo contexto econômico real da cidade e da região.
+// Ordem: 10 municípios mais populosos da PB (IBGE) + Esperança.
 
 export interface CidadeFaq {
   q: string;
@@ -82,6 +83,26 @@ export const cidades: Cidade[] = [
     faq: faqComum('Campina Grande')
   },
   {
+    slug: 'santa-rita',
+    nome: 'Santa Rita',
+    regiao: 'Região Metropolitana de João Pessoa',
+    seoTitle: 'Registro de marca em Santa Rita (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Santa Rita e da Grande João Pessoa. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Santa Rita',
+    heroDescription:
+      'Terceira maior cidade da Paraíba e polo industrial da Grande João Pessoa: proteja a marca do seu negócio no INPI, com atendimento paraibano.',
+    meta: ['Santa Rita · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Santa Rita é a terceira cidade mais populosa da Paraíba e parte da Região Metropolitana de João Pessoa, com uma base industrial e agroindustrial relevante. Para os negócios que crescem nesse ambiente, registrar a marca no INPI é o que garante exclusividade sobre o nome.',
+    contexto: [
+      'Integrada à Grande João Pessoa, Santa Rita combina indústria, agroindústria — com forte tradição no setor da cana-de-açúcar — e um comércio local que se beneficia da proximidade com a capital. É um município de empresas que atendem tanto o mercado metropolitano quanto o interior.',
+      'Nesse contexto de competição regional, o registro no INPI protege a marca em todo o Brasil e evita que o nome de uma empresa santa-ritense seja registrado por terceiros de outra cidade ou estado.'
+    ],
+    setores: ['Indústria e agroindústria', 'Cana-de-açúcar', 'Comércio e serviços', 'Logística', 'Construção'],
+    faq: faqComum('Santa Rita')
+  },
+  {
     slug: 'patos',
     nome: 'Patos',
     regiao: 'Sertão da Paraíba',
@@ -102,6 +123,46 @@ export const cidades: Cidade[] = [
     faq: faqComum('Patos')
   },
   {
+    slug: 'bayeux',
+    nome: 'Bayeux',
+    regiao: 'Região Metropolitana de João Pessoa',
+    seoTitle: 'Registro de marca em Bayeux (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Bayeux e da Grande João Pessoa. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Bayeux',
+    heroDescription:
+      'Comércio forte e conurbada com a capital: proteja a marca do seu negócio bayeuxense no INPI, com atendimento paraibano e à distância.',
+    meta: ['Bayeux · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Bayeux integra a Região Metropolitana de João Pessoa e é uma das cidades mais densas da Paraíba, com um comércio de rua intenso e muitos pequenos negócios. Nesse ambiente movimentado, registrar a marca no INPI é o que garante exclusividade sobre o nome.',
+    contexto: [
+      'Conurbada com João Pessoa e Santa Rita, Bayeux tem uma economia apoiada no comércio, nos serviços e na indústria, aproveitando a localização no corredor da BR-230 e a proximidade com a capital. É uma cidade de empreendedores que atendem tanto o bairro quanto a região metropolitana.',
+      'Com tantas marcas surgindo e circulando na Grande João Pessoa, o registro no INPI protege o nome do seu negócio em todo o país e impede que outra empresa passe a usá-lo.'
+    ],
+    setores: ['Comércio e varejo', 'Serviços', 'Indústria', 'Construção', 'Alimentação'],
+    faq: faqComum('Bayeux')
+  },
+  {
+    slug: 'cabedelo',
+    nome: 'Cabedelo',
+    regiao: 'Litoral / Região Metropolitana',
+    seoTitle: 'Registro de marca em Cabedelo (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Cabedelo, cidade portuária e turística da Grande João Pessoa. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Cabedelo',
+    heroDescription:
+      'Da economia do porto ao turismo das praias: proteja a marca do seu negócio cabedelense no INPI, com atendimento paraibano.',
+    meta: ['Cabedelo · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Cabedelo une o principal porto da Paraíba a um litoral que vive de turismo. Essa combinação cria um comércio e uma rede de serviços movimentados o ano inteiro — e negócios movimentados precisam da marca protegida no INPI.',
+    contexto: [
+      'Sede do Porto de Cabedelo, a cidade tem forte vocação para logística e comércio, ao mesmo tempo em que atrai visitantes para praias como Poço e Intermares e para os passeios de barco. Turismo, gastronomia, pesca e serviços caminham juntos numa cidade que faz parte da Grande João Pessoa.',
+      'Marcas ligadas a turismo e alimentação se espalham rápido nas redes e nos aplicativos de viagem. Registrar no INPI garante exclusividade nacional sobre o nome e protege o negócio contra cópias e usos indevidos.'
+    ],
+    setores: ['Portuário e logística', 'Turismo e praias', 'Bares e restaurantes', 'Pesca', 'Comércio e serviços'],
+    faq: faqComum('Cabedelo')
+  },
+  {
     slug: 'sousa',
     nome: 'Sousa',
     regiao: 'Alto Sertão da Paraíba',
@@ -120,6 +181,86 @@ export const cidades: Cidade[] = [
     ],
     setores: ['Agronegócio', 'Comércio e varejo', 'Serviços', 'Turismo', 'Alimentação'],
     faq: faqComum('Sousa')
+  },
+  {
+    slug: 'cajazeiras',
+    nome: 'Cajazeiras',
+    regiao: 'Alto Sertão da Paraíba',
+    seoTitle: 'Registro de marca em Cajazeiras (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Cajazeiras e do extremo oeste paraibano. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Cajazeiras',
+    heroDescription:
+      'Polo de educação e comércio do extremo oeste da Paraíba: proteja a marca do seu negócio no INPI, com atendimento paraibano.',
+    meta: ['Cajazeiras · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Cajazeiras é o principal polo do extremo oeste paraibano, na divisa com o Ceará, com forte tradição em educação e um comércio que atende toda a região. Para os negócios que crescem nesse centro regional, registrar a marca no INPI é o que garante o nome de forma definitiva.',
+    contexto: [
+      'Conhecida como "a cidade que ensinou a Paraíba" pela sua vocação educacional, Cajazeiras reúne instituições de ensino, serviços de saúde e um comércio regional que serve dezenas de municípios do alto sertão e do vizinho estado do Ceará.',
+      'Esse alcance regional torna a marca ainda mais valiosa — e mais exposta a cópias. O registro no INPI protege o nome em todo o país e evita que a reputação construída na região seja explorada por terceiros.'
+    ],
+    setores: ['Educação', 'Comércio regional', 'Serviços e saúde', 'Agropecuária', 'Alimentação'],
+    faq: faqComum('Cajazeiras')
+  },
+  {
+    slug: 'guarabira',
+    nome: 'Guarabira',
+    regiao: 'Brejo paraibano',
+    seoTitle: 'Registro de marca em Guarabira (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Guarabira e do Brejo paraibano. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Guarabira',
+    heroDescription:
+      'Principal polo comercial do Brejo paraibano: proteja a marca do seu negócio no INPI, com atendimento paraibano e à distância.',
+    meta: ['Guarabira · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Guarabira é o centro comercial e de serviços do Brejo paraibano, referência para dezenas de municípios do entorno. Para os negócios que atendem essa região, registrar a marca no INPI é o que assegura o nome à medida que a empresa se torna conhecida.',
+    contexto: [
+      'Polo do Brejo, Guarabira concentra comércio, educação, saúde e serviços que atraem consumidores de toda a região, além de ser conhecida pelo turismo religioso. É uma cidade de marcas locais consolidadas que atendem muito além dos seus limites.',
+      'Quanto maior o alcance regional de uma marca, maior o risco de que alguém a registre primeiro. O registro no INPI garante exclusividade nacional sobre o nome e protege o negócio guarabirense contra uso indevido por terceiros.'
+    ],
+    setores: ['Comércio regional', 'Serviços', 'Educação', 'Saúde', 'Agroindústria'],
+    faq: faqComum('Guarabira')
+  },
+  {
+    slug: 'sape',
+    nome: 'Sapé',
+    regiao: 'Zona da Mata paraibana',
+    seoTitle: 'Registro de marca em Sapé (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Sapé e da Zona da Mata paraibana. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Sapé',
+    heroDescription:
+      'No coração agrícola da Zona da Mata: proteja a marca do seu negócio sapeense no INPI, com atendimento paraibano e à distância.',
+    meta: ['Sapé · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Sapé é um dos principais municípios da Zona da Mata paraibana, com uma economia de base agrícola e um comércio que atende a região. Para os negócios locais, registrar a marca no INPI é o passo que protege o nome e abre espaço para crescer.',
+    contexto: [
+      'Na Zona da Mata, Sapé tem forte tradição no agronegócio — da cana-de-açúcar à produção de abacaxi, característica da região — além de um comércio e uma rede de serviços que atendem o município e o entorno.',
+      'Marcas de alimentos, agro e comércio ganham muito valor quando protegidas. O registro no INPI garante exclusividade nacional sobre o nome e evita que ele seja registrado por concorrentes de outras regiões.'
+    ],
+    setores: ['Agronegócio (cana e abacaxi)', 'Comércio', 'Serviços', 'Agroindústria', 'Alimentação'],
+    faq: faqComum('Sapé')
+  },
+  {
+    slug: 'esperanca',
+    nome: 'Esperança',
+    regiao: 'Agreste paraibano',
+    seoTitle: 'Registro de marca em Esperança (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Esperança e do agreste paraibano. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Esperança',
+    heroDescription:
+      'No agreste de clima ameno, perto de Campina Grande: proteja a marca do seu negócio esperancense no INPI, com atendimento paraibano.',
+    meta: ['Esperança · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Esperança se destaca no agreste paraibano pelo clima ameno de altitude e por uma economia que combina agricultura e comércio. Para os negócios que crescem na cidade e na região, registrar a marca no INPI é o que garante exclusividade sobre o nome.',
+    contexto: [
+      'Localizada no agreste, próxima a Campina Grande, Esperança é conhecida pelo clima serrano agradável e por uma agricultura ativa, com destaque para a horticultura, além de um comércio regional que movimenta a cidade e atrai visitantes em feiras e eventos.',
+      'Nesse ambiente empreendedor, o registro no INPI protege a marca em todo o Brasil e evita que o nome de um negócio esperancense seja usado por terceiros de outras cidades ou estados.'
+    ],
+    setores: ['Agricultura e horticultura', 'Comércio e varejo', 'Serviços', 'Alimentação', 'Eventos e turismo'],
+    faq: faqComum('Esperança')
   }
 ];
 
