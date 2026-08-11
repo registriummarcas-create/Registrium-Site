@@ -10,7 +10,7 @@
   "vars": {
     "INSTAGRAM_API_BASE_URL": "https://graph.instagram.com",
     "INSTAGRAM_USER_ID": "",
-    "ALLOWED_ORIGINS": "http://localhost:4321,https://registrium.pages.dev",
+    "ALLOWED_ORIGINS": "http://localhost:4321,https://registrium.com.br,https://registrium.pages.dev",
     "CACHE_TTL_SECONDS": "3600",
     "MAX_POSTS": "9",
     "REQUEST_TIMEOUT_MS": "8000"
