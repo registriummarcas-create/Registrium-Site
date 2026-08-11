@@ -2,9 +2,11 @@
 import SectionTitle from '../common/SectionTitle.astro';
 
 // Fora da home (páginas de cidade) o carrossel é reaproveitado sem o número de
-// capítulo, que só faz sentido na sequência narrativa da home.
-interface Props { chapter?: string }
-const { chapter } = Astro.props;
+// capítulo, que só faz sentido na sequência narrativa da home, e em versão
+// resumida (carouselOnly): só o título + o carrossel de logos, sem a
+// narrativa do titular, a faixa de números e as credenciais ("Bastidores" em diante).
+interface Props { chapter?: string; carouselOnly?: boolean }
+const { chapter, carouselOnly = false } = Astro.props;
 
 const logos = Array.from({ length: 20 }, (_, i) => `/images/marcas/marca-${String(i + 1).padStart(2, '0')}.jpg`);
 const rowSize = Math.ceil(logos.length / 2);
@@ -32,6 +34,7 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
     </div>
     <p class="marks-note">Logotipos de marcas reais registradas pela Registrium junto ao INPI, exibidos a título de portfólio.</p>
 
+    {!carouselOnly && (<>
     <!-- Divisória editorial -->
     <div class="editorial-rule reveal">
       <span class="er-line"></span>
@@ -101,6 +104,7 @@ const rows = [logos.slice(0, rowSize), logos.slice(rowSize)];
         <svg class="credential-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
+    </>)}
   </div>
 </section>
 <style>
