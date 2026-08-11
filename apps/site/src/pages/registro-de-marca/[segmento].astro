@@ -53,6 +53,15 @@ const jsonLd = [
       name: item.q,
       acceptedAnswer: { '@type': 'Answer', text: item.a }
     }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Registro de marca', item: new URL('/registro-de-marca/', siteConfig.url).toString() },
+      { '@type': 'ListItem', position: 3, name: `Para ${segmento.alvo}`, item: canonical }
+    ]
   }
 ];
 ---

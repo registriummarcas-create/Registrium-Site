@@ -11,21 +11,24 @@ interface Props {
   description?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
+  image?: string;
 }
 
 const {
   title = siteConfig.title,
   description = siteConfig.description,
   noindex = false,
-  jsonLd = []
+  jsonLd = [],
+  image = '/images/og-cover.png'
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, siteConfig.url);
+const ogImage = new URL(image, siteConfig.url);
 ---
 <!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#080a24" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
@@ -41,6 +44,14 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${siteConfig.name} — Registro de marca no INPI`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     {jsonLd.map((schema) => (
       <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
     ))}

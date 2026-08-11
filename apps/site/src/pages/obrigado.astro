@@ -4,7 +4,7 @@ import { contactConfig } from '../config/contact';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 const whatsappUrl = buildWhatsAppUrl(contactConfig.whatsappNumber, contactConfig.whatsappMessage);
 ---
-<BaseLayout title="Solicitação recebida | Registrium" description="A Registrium recebeu sua solicitação de análise.">
+<BaseLayout title="Solicitação recebida | Registrium" description="A Registrium recebeu sua solicitação de análise." noindex>
   <section class="thanks">
     <img class="thanks-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
     <div class="container thanks-card">

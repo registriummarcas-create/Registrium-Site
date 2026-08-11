@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+import { contactConfig } from '../config/contact';
 import Hero from '../components/sections/Hero.astro';
 import Features from '../components/sections/Features.astro';
 import PurposeManifesto from '../components/sections/PurposeManifesto.astro';
@@ -16,8 +18,41 @@ import Services from '../components/sections/Services.astro';
 import FAQInline from '../components/sections/FAQInline.astro';
 import ReferralFaq from '../components/sections/ReferralFaq.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
+
+const logoUrl = new URL('/images/logo-full.png', siteConfig.url).toString();
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    legalName: 'Registrium Copyright e Marcas',
+    url: siteConfig.url,
+    logo: logoUrl,
+    image: logoUrl,
+    description: siteConfig.description,
+    email: contactConfig.email,
+    telephone: `+${contactConfig.whatsappNumber}`,
+    taxID: contactConfig.cnpj,
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'PB',
+      addressCountry: 'BR'
+    },
+    areaServed: { '@type': 'Country', name: 'Brasil' },
+    sameAs: [contactConfig.instagramUrl]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    inLanguage: siteConfig.locale,
+    publisher: { '@type': 'Organization', name: siteConfig.name }
+  }
+];
 ---
-<BaseLayout>
+<BaseLayout jsonLd={jsonLd}>
   <Hero />
   <PurposeManifesto />
   <InstagramEmbed />

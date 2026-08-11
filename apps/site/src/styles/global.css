@@ -29,10 +29,10 @@ h3, h4 { font-family: var(--font-ui); letter-spacing: -0.02em; }
 .section--dark .brand-chip { background: rgba(255,255,255,.12); box-shadow: 0 4px 12px -4px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.16); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .section-title { max-width: 100%; margin: 0 0 3.25rem; text-align: left; padding-top: 1.4rem; border-top: 1px solid var(--color-hairline); }
 .section-title .eyebrow { margin-bottom: .9rem; }
-.section-title h2 { margin-top: 0; font-size: clamp(2rem, 4.8vw, 3.35rem); font-weight: 600; line-height: 1.04; max-width: 20ch; }
+.section-title h1, .section-title h2 { margin-top: 0; font-size: clamp(2rem, 4.8vw, 3.35rem); font-weight: 600; line-height: 1.04; max-width: 20ch; }
 .section-title p { color: var(--color-muted); font-size: 1.06rem; margin-top: 1.15rem; line-height: 1.6; max-width: 40rem; }
 .section--dark .section-title { border-top-color: rgba(255,255,255,.16); }
-.section--dark .section-title h2 { color: var(--color-white); }
+.section--dark .section-title h1, .section--dark .section-title h2 { color: var(--color-white); }
 .section--dark .section-title p { color: var(--color-on-dark); }
 .section--dark .eyebrow { color: #9fb4ff; }
 .section--dark h2, .section--dark h3, .section--dark h4 { color: var(--color-white); }
