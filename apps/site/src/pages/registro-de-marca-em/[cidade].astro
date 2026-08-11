@@ -1,0 +1,130 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { cidades } from '../../data/cidades';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return cidades.map((cidade) => ({
+    params: { cidade: cidade.slug },
+    props: { cidade }
+  }));
+}
+
+const { cidade } = Astro.props;
+const canonical = new URL(`/registro-de-marca-em/${cidade.slug}/`, siteConfig.url).toString();
+
+const outras = cidades.filter((c) => c.slug !== cidade.slug).slice(0, 2);
+const related = [
+  ...outras.map((c) => ({
+    href: `/registro-de-marca-em/${c.slug}/`,
+    tag: c.regiao,
+    title: `Registro de marca em ${c.nome}`,
+    description: c.heroDescription
+  })),
+  {
+    href: '/registro-de-marca/',
+    tag: 'Todos os ramos',
+    title: 'Registro de marca por segmento',
+    description: 'Veja o conteúdo específico para o seu ramo de atividade.'
+  }
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Registro de marca em ${cidade.nome}`,
+    serviceType: 'Registro de marca no INPI',
+    description: cidade.seoDescription,
+    areaServed: { '@type': 'City', name: `${cidade.nome}, PB` },
+    provider: {
+      '@type': 'Organization',
+      name: 'Registrium',
+      url: siteConfig.url
+    },
+    url: canonical
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: cidade.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  }
+];
+---
+<ArticleLayout
+  title={cidade.seoTitle}
+  description={cidade.seoDescription}
+  pill={`${cidade.nome} · PB`}
+  heroTitle={cidade.heroTitle}
+  heroDescription={cidade.heroDescription}
+  meta={cidade.meta}
+  backHref="/registro-de-marca/"
+  backLabel="Registro de marca"
+  toc={[
+    { href: '#sobre', label: `Registrar em ${cidade.nome}` },
+    { href: '#setores', label: 'Setores da região' },
+    { href: '#como', label: 'Como funciona' },
+    { href: '#faq', label: 'Perguntas frequentes' }
+  ]}
+  related={related}
+  jsonLd={jsonLd}
+>
+  <div class="art-block" id="sobre">
+    <h2>Registro de marca em {cidade.nome}</h2>
+    <p class="lede">{cidade.lede}</p>
+    {cidade.contexto.map((p) => <p>{p}</p>)}
+  </div>
+
+  <div class="art-block" id="setores">
+    <h2>Setores em destaque na região</h2>
+    <p>Atendemos negócios de todos os ramos em {cidade.nome} e no entorno. Alguns setores que mais buscam proteção de marca por aqui:</p>
+    <ul class="plain">
+      {cidade.setores.map((s) => <li>{s}</li>)}
+    </ul>
+    <p>Seja qual for o seu ramo, veja também o conteúdo específico por <a href="/registro-de-marca/" style="color:var(--color-violet);font-weight:600;">segmento de atividade</a>.</p>
+  </div>
+
+  <div class="art-block" id="como">
+    <h2>Como funciona, à distância</h2>
+    <p>Todo o processo é online e acompanhado de perto: você fala com a gente pelo WhatsApp e recebe atualizações a cada movimentação no INPI.</p>
+    <div class="step-mini">
+      <div class="sn">1</div>
+      <div>
+        <h3>Pesquisa de viabilidade</h3>
+        <p>Analisamos o banco do INPI para verificar se o nome está livre e apontar riscos antes de qualquer investimento.</p>
+      </div>
+    </div>
+    <div class="step-mini">
+      <div class="sn">2</div>
+      <div>
+        <h3>Protocolo do pedido</h3>
+        <p>Classificamos a marca, ajustamos a logo e depositamos o pedido — a partir daí você já tem prioridade sobre terceiros.</p>
+      </div>
+    </div>
+    <div class="step-mini">
+      <div class="sn">3</div>
+      <div>
+        <h3>Acompanhamento até o certificado</h3>
+        <p>Monitoramos o processo diariamente, cuidamos de exigências e defendemos a marca em oposições até a concessão.</p>
+      </div>
+    </div>
+    <p>Entenda cada etapa em detalhe no nosso guia <a href="/blog/como-funciona-registro" style="color:var(--color-violet);font-weight:600;">o passo a passo do registro de marca no INPI</a>.</p>
+  </div>
+
+  <div class="art-block" id="faq">
+    <h2>Perguntas frequentes</h2>
+    {cidade.faq.map((item) => (
+      <div class="step-mini">
+        <div class="sn">?</div>
+        <div>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</ArticleLayout>

@@ -1,0 +1,117 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { segmentos } from '../../data/segmentos';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return segmentos.map((segmento) => ({
+    params: { segmento: segmento.slug },
+    props: { segmento }
+  }));
+}
+
+const { segmento } = Astro.props;
+const canonical = new URL(`/registro-de-marca/${segmento.slug}/`, siteConfig.url).toString();
+
+// Outros segmentos para a seção "Continue lendo".
+const outros = segmentos.filter((s) => s.slug !== segmento.slug).slice(0, 2);
+const related = [
+  ...outros.map((s) => ({
+    href: `/registro-de-marca/${s.slug}/`,
+    tag: s.pill,
+    title: `Registro de marca para ${s.alvo}`,
+    description: s.heroDescription
+  })),
+  {
+    href: '/registro-de-marca/',
+    tag: 'Todos os ramos',
+    title: 'Ver todos os segmentos e cidades',
+    description: 'Escolha o seu ramo ou a sua cidade e veja como proteger a marca no INPI.'
+  }
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Registro de marca para ${segmento.alvo}`,
+    serviceType: 'Registro de marca no INPI',
+    description: segmento.seoDescription,
+    areaServed: { '@type': 'Country', name: 'Brasil' },
+    provider: {
+      '@type': 'Organization',
+      name: 'Registrium',
+      url: siteConfig.url
+    },
+    url: canonical
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: segmento.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  }
+];
+---
+<ArticleLayout
+  title={segmento.seoTitle}
+  description={segmento.seoDescription}
+  pill={segmento.pill}
+  heroTitle={segmento.heroTitle}
+  heroDescription={segmento.heroDescription}
+  meta={segmento.meta}
+  backHref="/registro-de-marca/"
+  backLabel="Registro de marca por ramo"
+  toc={[
+    { href: '#sobre', label: 'Por que registrar' },
+    { href: '#classes', label: 'Classes a proteger' },
+    { href: '#riscos', label: 'Riscos do setor' },
+    { href: '#faq', label: 'Perguntas frequentes' }
+  ]}
+  related={related}
+  jsonLd={jsonLd}
+>
+  <div class="art-block" id="sobre">
+    <h2>Por que registrar a marca no seu ramo</h2>
+    <p class="lede">{segmento.lede}</p>
+    {segmento.intro.map((p) => <p>{p}</p>)}
+  </div>
+
+  <div class="art-block" id="classes">
+    <h2>Classes do INPI que se aplicam ao seu negócio</h2>
+    <p>O registro de marca é feito por <strong>classe</strong> — cada uma cobre um tipo de produto ou serviço, segundo a Classificação de Nice. Para {segmento.alvo}, estas são as principais a considerar:</p>
+    {segmento.classes.map((classe) => (
+      <div class="step-mini">
+        <div class="sn">{classe.code}</div>
+        <div>
+          <h3>{classe.label}</h3>
+          <p>{classe.note}</p>
+        </div>
+      </div>
+    ))}
+    <p>Na pesquisa de viabilidade, definimos exatamente quais classes fazem sentido para o seu caso — protegendo o que importa sem pagar por classes que você não usa.</p>
+  </div>
+
+  <div class="art-block" id="riscos">
+    <h2>Riscos e cuidados típicos do setor</h2>
+    <ul class="plain">
+      {segmento.riscos.map((r) => <li>{r}</li>)}
+    </ul>
+  </div>
+
+  <div class="art-block" id="faq">
+    <h2>Perguntas frequentes</h2>
+    {segmento.faq.map((item) => (
+      <div class="step-mini">
+        <div class="sn">?</div>
+        <div>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</ArticleLayout>

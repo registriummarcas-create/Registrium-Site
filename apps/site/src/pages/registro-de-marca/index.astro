@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { segmentos } from '../../data/segmentos';
+import { cidades } from '../../data/cidades';
+import { siteConfig } from '../../config/site';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Registro de marca por ramo e por cidade',
+    description:
+      'Conteúdo de registro de marca no INPI organizado por segmento de atividade e pelas principais cidades da Paraíba.',
+    url: new URL('/registro-de-marca/', siteConfig.url).toString(),
+    hasPart: [
+      ...segmentos.map((s) => ({
+        '@type': 'WebPage',
+        name: `Registro de marca para ${s.alvo}`,
+        url: new URL(`/registro-de-marca/${s.slug}/`, siteConfig.url).toString()
+      })),
+      ...cidades.map((c) => ({
+        '@type': 'WebPage',
+        name: `Registro de marca em ${c.nome}`,
+        url: new URL(`/registro-de-marca-em/${c.slug}/`, siteConfig.url).toString()
+      }))
+    ]
+  }
+];
+---
+<BaseLayout
+  title="Registro de marca por ramo e cidade | Registrium"
+  description="Registro de marca no INPI por segmento de atividade (restaurantes, clínicas, moda, tecnologia e mais) e nas principais cidades da Paraíba. Empresa paraibana."
+  jsonLd={jsonLd}
+>
+  <header class="blog-hero">
+    <div class="container">
+      <a class="back" href="/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Voltar ao site
+      </a>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
+        Registro de marca
+      </span>
+      <h1>Registro de marca para o seu negócio</h1>
+      <p>Escolha o seu ramo de atividade ou a sua cidade e veja como proteger a marca no INPI, com o passo a passo, as classes que se aplicam e as dúvidas mais comuns do setor.</p>
+    </div>
+  </header>
+
+  <section class="section" id="segmentos">
+    <div class="container">
+      <div class="section-title reveal">
+        <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Por segmento</p>
+        <h2>Registro de marca por ramo de atividade</h2>
+      </div>
+      <div class="hub-grid reveal">
+        {segmentos.map((s) => (
+          <a class="hub-card" href={`/registro-de-marca/${s.slug}/`}>
+            <span class="hub-tag">{s.pill}</span>
+            <h3>Marca para {s.alvo}</h3>
+            <p>{s.heroDescription}</p>
+            <span class="hub-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="cidades">
+    <div class="container">
+      <div class="section-title reveal">
+        <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Na Paraíba</p>
+        <h2>Registro de marca na sua cidade</h2>
+      </div>
+      <div class="hub-grid reveal">
+        {cidades.map((c) => (
+          <a class="hub-card" href={`/registro-de-marca-em/${c.slug}/`}>
+            <span class="hub-tag">{c.regiao}</span>
+            <h3>Registro de marca em {c.nome}</h3>
+            <p>{c.heroDescription}</p>
+            <span class="hub-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section closing">
+    <div class="container">
+      <div class="cta-card centered reveal">
+        <div>
+          <h2>Pronto para proteger a sua marca?</h2>
+          <p>Faça o cadastro prévio e continue a conversa no WhatsApp. A pesquisa de viabilidade é o primeiro passo — e mostra se o nome está livre antes de qualquer investimento.</p>
+          <a class="button button--secondary" href="/#cadastro">
+            Preencher cadastro
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+.blog-hero { position: relative; overflow: hidden; background:
+    radial-gradient(120% 90% at 85% 20%, rgba(70,110,230,.26), transparent 55%),
+    radial-gradient(90% 80% at 10% 90%, rgba(120,70,200,.22), transparent 60%),
+    linear-gradient(125deg, var(--color-navy-950) 0%, var(--color-indigo-900) 55%, var(--color-purple-900) 100%);
+  padding: 4.5rem 0 3.5rem; color: var(--color-white); }
+.blog-hero .back { display: inline-flex; align-items: center; gap: .5rem; color: var(--color-on-dark); text-decoration: none; font-size: .84rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1.375rem; }
+.blog-hero .back:hover { color: var(--color-white); }
+.blog-hero .pill { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: var(--color-white); border-radius: 999px; padding: .55rem 1.05rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.blog-hero .pill svg { width: .95rem; height: .95rem; color: #8fd0f5; }
+.blog-hero h1 { color: var(--color-white); font-size: clamp(1.875rem, 4.4vw, 3rem); font-weight: 800; line-height: 1.1; max-width: 47.5rem; margin-top: 1.375rem; }
+.blog-hero p { color: var(--color-on-dark); font-size: 1.03rem; line-height: 1.6; max-width: 38.75rem; margin-top: 1.125rem; }
+
+.hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.hub-card { position: relative; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem 1.625rem 3.25rem; display: flex; flex-direction: column; text-decoration: none; box-shadow: 0 20px 40px -32px rgba(30,20,80,.4); transition: transform .18s ease, box-shadow .18s ease; }
+.hub-card:hover { transform: translateY(-4px); box-shadow: 0 28px 50px -30px rgba(60,40,150,.42); }
+.hub-tag { display: inline-flex; align-self: flex-start; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .69rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-violet); background: rgba(138,87,206,.1); border-radius: 999px; padding: .375rem .8rem; margin-bottom: 1rem; }
+.hub-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1.25; font-size: 1.12rem; color: var(--color-text); margin: 0 0 .6rem; }
+.hub-card p { font-size: .875rem; color: var(--color-muted); line-height: 1.6; margin: 0; }
+.hub-arrow { position: absolute; left: 1.625rem; bottom: 1.5rem; width: 2.125rem; height: 2.125rem; border-radius: 50%; background: var(--color-cream); display: flex; align-items: center; justify-content: center; color: var(--color-violet); transition: background .15s ease, transform .15s ease; }
+.hub-card:hover .hub-arrow { transform: translateX(3px); }
+
+.closing { padding-bottom: 2.5rem; }
+.cta-card.centered { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid rgba(255,255,255,.1); color: var(--color-white); padding: 3.75rem 3.5rem; text-align: center;
+  background: radial-gradient(120% 130% at 85% 20%, rgba(120,70,200,.4), transparent 55%), linear-gradient(120deg, var(--color-navy-950), var(--color-indigo-900) 60%, var(--color-purple-900)); }
+.cta-card.centered h2 { color: var(--color-white); font-size: clamp(1.75rem, 3.6vw, 2.625rem); font-weight: 800; }
+.cta-card.centered p { color: var(--color-on-dark); font-size: 1rem; line-height: 1.6; max-width: 36rem; margin: 1.125rem auto 1.875rem; }
+
+@media (max-width: 1040px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .hub-grid { grid-template-columns: 1fr; } .blog-hero { padding: 3.25rem 0 2.5rem; } .cta-card.centered { padding: 2.25rem 1.375rem; } }
+</style>

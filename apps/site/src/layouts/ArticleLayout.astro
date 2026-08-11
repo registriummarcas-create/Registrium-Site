@@ -24,11 +24,12 @@ interface Props {
   backLabel: string;
   toc: TocItem[];
   related: RelatedPost[];
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { title, description, pill, heroTitle, heroDescription, meta, backHref, backLabel, toc, related } = Astro.props;
+const { title, description, pill, heroTitle, heroDescription, meta, backHref, backLabel, toc, related, jsonLd = [] } = Astro.props;
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <header class="blog-hero">
     <img class="blog-hero-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
     <div class="container">

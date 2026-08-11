@@ -10,12 +10,14 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title = siteConfig.title,
   description = siteConfig.description,
-  noindex = false
+  noindex = false,
+  jsonLd = []
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, siteConfig.url);
 ---
@@ -39,6 +41,9 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    {jsonLd.map((schema) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    ))}
     <title>{title}</title>
   </head>
   <body>
