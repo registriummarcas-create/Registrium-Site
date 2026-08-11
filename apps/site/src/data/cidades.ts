@@ -309,6 +309,31 @@ export const cidades: Cidade[] = [
     fontes: ['Sebrae/PB — Agência Sebrae de Notícias (jul. 2026)'],
     setores: ['Agricultura e horticultura', 'Comércio e varejo', 'Serviços', 'Alimentação', 'Eventos e turismo'],
     faq: faqComum('Esperança')
+  },
+  {
+    slug: 'montadas',
+    nome: 'Montadas',
+    regiao: 'Agreste paraibano',
+    seoTitle: 'Registro de marca em Montadas (PB) | Registrium',
+    seoDescription:
+      'Registro de marca no INPI para empresas de Montadas, no agreste paraibano. Empresa paraibana, atendimento online. Fale com a Registrium.',
+    heroTitle: 'Registro de marca em Montadas',
+    heroDescription:
+      'No agreste paraibano, entre Esperança e Campina Grande: proteja a marca do seu negócio no INPI, com atendimento paraibano e à distância.',
+    meta: ['Montadas · PB', 'Atendimento online', 'Empresa paraibana'],
+    lede:
+      'Montadas é um pequeno município do agreste paraibano, na região de Esperança e Campina Grande. Mesmo num mercado local menor, registrar a marca no INPI garante a mesma exclusividade nacional que protege negócios de qualquer tamanho.',
+    contexto: [
+      'A economia de Montadas gira em torno da administração pública, do comércio e dos serviços locais, além da agropecuária, que ainda tem peso relevante no município. É uma cidade pequena, mas com negócios reais que precisam da mesma proteção legal de empresas maiores.',
+      'É comum achar que registro de marca é coisa para negócio grande — mas é o contrário: em municípios pequenos, um nome de sucesso viaja rápido pela região e fica mais exposto a cópias. O registro no INPI resolve isso de uma vez, com validade em todo o Brasil, não só em Montadas.'
+    ],
+    panorama: [
+      'Segundo o IBGE, Montadas tem cerca de 6.144 habitantes (estimativa 2025) e um PIB de aproximadamente R$ 55,2 milhões, com a administração pública respondendo por 63,6% do valor adicionado, seguida por serviços (19,1%) e agropecuária (14,3%).',
+      'No cenário estadual, a Paraíba soma 305.866 pequenos negócios ativos — 95,7% de todas as empresas do estado, segundo o Sebrae/PB — prova de que o pequeno negócio, mesmo em municípios do porte de Montadas, é a espinha dorsal da economia paraibana.'
+    ],
+    fontes: ['IBGE — Cidades@ (2022/2025)', 'Sebrae/PB — Agência Sebrae de Notícias (2026)'],
+    setores: ['Administração pública', 'Comércio e serviços', 'Agropecuária', 'Alimentação'],
+    faq: faqComum('Montadas')
   }
 ];
 
