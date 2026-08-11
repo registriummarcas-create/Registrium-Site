@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
+import PaymentMethods from '../components/layout/PaymentMethods.astro';
 import Footer from '../components/layout/Footer.astro';
 import FloatingWhatsApp from '../components/layout/FloatingWhatsApp.astro';
 import BackToTop from '../components/layout/BackToTop.astro';
@@ -64,6 +65,7 @@ const ogImage = new URL(image, siteConfig.url);
     </div>
     <Header />
     <main><slot /></main>
+    <PaymentMethods />
     <Footer />
     <FloatingWhatsApp />
     <BackToTop />

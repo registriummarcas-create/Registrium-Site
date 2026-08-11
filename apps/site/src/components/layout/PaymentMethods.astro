@@ -1,0 +1,51 @@
+---
+// Faixa de confiança com as formas de pagamento aceitas, exibida antes do rodapé em todas as páginas.
+---
+<section class="payments">
+  <div class="container">
+    <p class="payments-text">Aceitamos e parcelamos em todas as bandeiras de cartão, e também Pix e boleto.</p>
+    <ul class="payments-row">
+      <li class="pm pm-visa"><span class="pm-word">VISA</span></li>
+      <li class="pm pm-mastercard">
+        <svg width="30" height="18" viewBox="0 0 30 18" fill="none" aria-hidden="true"><circle cx="11" cy="9" r="8.4" fill="currentColor" opacity=".55"/><circle cx="19" cy="9" r="8.4" fill="currentColor" opacity=".3"/></svg>
+        <span class="pm-word">mastercard</span>
+      </li>
+      <li class="pm pm-elo">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1a7 7 0 1 0 4.5 12.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="pm-word">elo</span>
+      </li>
+      <li class="pm pm-amex"><span class="pm-word pm-word--stack">American<br/>Express</span></li>
+      <li class="pm pm-diners">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M9 3v12" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="pm-word pm-word--stack">Diners Club<small>International</small></span>
+      </li>
+      <li class="pm pm-boleto">
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="currentColor" aria-hidden="true"><rect x="0" width="1.6" height="16"/><rect x="3" width="3" height="16"/><rect x="7.4" width="1.4" height="16"/><rect x="10" width="1.6" height="16"/><rect x="13" width="3" height="16"/><rect x="17.4" width="1.6" height="16"/></svg>
+        <span class="pm-word">Boleto</span>
+      </li>
+      <li class="pm pm-pix">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="4" transform="rotate(45 8 8)" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="pm-word">pix</span>
+      </li>
+      <li class="pm pm-caixa"><span class="pm-word">CAIXA</span></li>
+      <li class="pm pm-sicoob">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 9 7 2l5 7-5 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span class="pm-word">SICOOB</span>
+      </li>
+    </ul>
+  </div>
+</section>
+<style>
+.payments { padding: 2.75rem 0; border-top: 1px solid var(--color-hairline); background: var(--color-white); }
+.payments-text { text-align: center; font-family: var(--font-ui); font-weight: 700; font-size: .94rem; color: var(--color-text); margin: 0 0 1.75rem; }
+.payments-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.75rem 2.75rem; }
+.pm { display: inline-flex; align-items: center; gap: .5rem; color: var(--color-muted); opacity: .62; filter: grayscale(1); transition: opacity .2s ease; }
+.pm:hover { opacity: .95; }
+.pm-word { font-family: var(--font-ui); font-weight: 800; font-size: 1.02rem; line-height: 1.15; letter-spacing: -.01em; white-space: nowrap; }
+.pm-word--stack { font-weight: 700; font-size: .72rem; letter-spacing: .02em; text-transform: uppercase; }
+.pm-word--stack small { display: block; font-size: .58rem; font-weight: 600; letter-spacing: .1em; opacity: .8; margin-top: .1rem; }
+.pm-visa .pm-word { font-style: italic; font-size: 1.2rem; letter-spacing: -.02em; }
+.pm-mastercard .pm-word, .pm-elo .pm-word, .pm-pix .pm-word { font-weight: 700; text-transform: lowercase; font-size: .95rem; }
+.pm-caixa .pm-word, .pm-boleto .pm-word, .pm-sicoob .pm-word { text-transform: uppercase; letter-spacing: .06em; font-size: .82rem; }
+@media (max-width: 700px) { .payments-row { gap: 1.375rem 1.75rem; } .payments-text { font-size: .87rem; padding: 0 1rem; } }
+</style>
