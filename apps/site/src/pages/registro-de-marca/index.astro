@@ -22,7 +22,7 @@ const jsonLd = [
       ...cidades.map((c) => ({
         '@type': 'WebPage',
         name: `Registro de marca em ${c.nome}`,
-        url: new URL(`/registro-de-marca-em/${c.slug}/`, siteConfig.url).toString()
+        url: new URL(`/registro-de-marca/${c.slug}/`, siteConfig.url).toString()
       }))
     ]
   }
@@ -78,7 +78,7 @@ const jsonLd = [
       </div>
       <div class="hub-grid reveal">
         {cidades.map((c) => (
-          <a class="hub-card" href={`/registro-de-marca-em/${c.slug}/`}>
+          <a class="hub-card" href={`/registro-de-marca/${c.slug}/`}>
             <span class="hub-tag">{c.regiao}</span>
             <h3>Registro de marca em {c.nome}</h3>
             <p>{c.heroDescription}</p>

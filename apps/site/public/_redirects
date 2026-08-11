@@ -1,1 +1,2 @@
 /blog/taxas-inpi-2025 /blog/taxas-inpi 301
+/registro-de-marca-em/*  /registro-de-marca/:splat  301

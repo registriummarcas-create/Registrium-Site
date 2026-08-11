@@ -1,16 +1,11 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
-import { segmentos } from '../../data/segmentos';
+import { segmentos, type Segmento } from '../../data/segmentos';
 import { siteConfig } from '../../config/site';
 
-export function getStaticPaths() {
-  return segmentos.map((segmento) => ({
-    params: { segmento: segmento.slug },
-    props: { segmento }
-  }));
-}
-
+interface Props { segmento: Segmento }
 const { segmento } = Astro.props;
+
 const canonical = new URL(`/registro-de-marca/${segmento.slug}/`, siteConfig.url).toString();
 
 // Outros segmentos para a seção "Continue lendo".

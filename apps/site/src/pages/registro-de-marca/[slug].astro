@@ -1,0 +1,30 @@
+---
+// Rota única para /registro-de-marca/[slug]/: atende tanto segmentos
+// (ex.: restaurantes) quanto cidades (ex.: guarabira). Precisa ser um único
+// arquivo porque o Astro não permite duas rotas dinâmicas de mesmo nível
+// ([segmento] e [cidade]) apontando para o mesmo padrão de caminho.
+import { segmentos, type Segmento } from '../../data/segmentos';
+import { cidades, type Cidade } from '../../data/cidades';
+import SegmentoPage from '../../components/pages/SegmentoPage.astro';
+import CidadePage from '../../components/pages/CidadePage.astro';
+
+type Props =
+  | { kind: 'segmento'; segmento: Segmento; cidade?: never }
+  | { kind: 'cidade'; cidade: Cidade; segmento?: never };
+
+export function getStaticPaths() {
+  return [
+    ...segmentos.map((segmento) => ({
+      params: { slug: segmento.slug },
+      props: { kind: 'segmento' as const, segmento }
+    })),
+    ...cidades.map((cidade) => ({
+      params: { slug: cidade.slug },
+      props: { kind: 'cidade' as const, cidade }
+    }))
+  ];
+}
+
+const props = Astro.props as Props;
+---
+{props.kind === 'segmento' ? <SegmentoPage segmento={props.segmento} /> : <CidadePage cidade={props.cidade} />}
