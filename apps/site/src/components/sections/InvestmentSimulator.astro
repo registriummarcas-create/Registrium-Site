@@ -3,6 +3,11 @@ import SectionTitle from '../common/SectionTitle.astro';
 import { contactConfig } from '../../config/contact';
 import { plans } from '../../data/plans';
 
+// Fora da home (blog, páginas de segmento/cidade, hub) o simulador é reaproveitado
+// sem o número de capítulo, que só faz sentido na sequência narrativa da home.
+interface Props { chapter?: string }
+const { chapter } = Astro.props;
+
 const profiles = [
   { id: 'pf', label: 'Pessoa física', rate: 440 },
   { id: 'mei', label: 'MEI', rate: 440 },
@@ -41,7 +46,7 @@ const profileLabels = Object.fromEntries(profiles.map((p) => [p.id, p.label]));
   <div class="sim-pattern" aria-hidden="true"></div>
   <div class="container">
     <SectionTitle
-      chapter="09"
+      chapter={chapter}
       eyebrow="Simulador de investimento"
       title="Veja o custo antes de contratar"
       description="Escolha o perfil, a quantidade de classes, o plano e a forma de pagamento. Mostramos as duas contas separadas: o que é da Registrium e o que vai direto para o INPI — e tudo que está incluso no plano escolhido."

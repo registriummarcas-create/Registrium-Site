@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import InvestmentSimulator from '../../components/sections/InvestmentSimulator.astro';
 import { segmentos } from '../../data/segmentos';
 import { cidades } from '../../data/cidades';
 import { siteConfig } from '../../config/site';
@@ -89,6 +90,8 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  <InvestmentSimulator />
 
   <section class="section closing">
     <div class="container">

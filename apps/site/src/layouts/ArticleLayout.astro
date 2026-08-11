@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import InvestmentSimulator from '../components/sections/InvestmentSimulator.astro';
 
 export interface TocItem {
   href: string;
@@ -68,6 +69,8 @@ const { title, description, pill, heroTitle, heroDescription, meta, backHref, ba
       </div>
     </div>
   </section>
+
+  <InvestmentSimulator />
 
   <section class="section section--soft related">
     <div class="container">
