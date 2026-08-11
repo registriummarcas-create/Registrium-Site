@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import MarksShowcase from '../../components/sections/MarksShowcase.astro';
 import { cidades } from '../../data/cidades';
 import { siteConfig } from '../../config/site';
 
@@ -13,7 +14,8 @@ export function getStaticPaths() {
 const { cidade } = Astro.props;
 const canonical = new URL(`/registro-de-marca-em/${cidade.slug}/`, siteConfig.url).toString();
 
-const outras = cidades.filter((c) => c.slug !== cidade.slug).slice(0, 2);
+const todasOutras = cidades.filter((c) => c.slug !== cidade.slug);
+const outras = todasOutras.slice(0, 2);
 const related = [
   ...outras.map((c) => ({
     href: `/registro-de-marca-em/${c.slug}/`,
@@ -78,7 +80,9 @@ const jsonLd = [
     { href: '#panorama', label: 'Panorama local' },
     { href: '#setores', label: 'Setores da região' },
     { href: '#como', label: 'Como funciona' },
-    { href: '#faq', label: 'Perguntas frequentes' }
+    { href: '#marcas', label: 'Marcas que já registramos' },
+    { href: '#faq', label: 'Perguntas frequentes' },
+    { href: '#outras-cidades', label: 'Outras cidades da PB' }
   ]}
   related={related}
   jsonLd={jsonLd}
@@ -131,6 +135,8 @@ const jsonLd = [
     <p>Entenda cada etapa em detalhe no nosso guia <a href="/blog/como-funciona-registro" style="color:var(--color-violet);font-weight:600;">o passo a passo do registro de marca no INPI</a>.</p>
   </div>
 
+  <MarksShowcase slot="marks" />
+
   <div class="art-block" id="faq">
     <h2>Perguntas frequentes</h2>
     {cidade.faq.map((item) => (
@@ -143,4 +149,22 @@ const jsonLd = [
       </div>
     ))}
   </div>
+
+  <div class="art-block" id="outras-cidades">
+    <h2>Registro de marca em outras cidades da Paraíba</h2>
+    <p>A Registrium atende empresas em toda a Paraíba. Veja o conteúdo específico para outras cidades do estado:</p>
+    <ul class="city-links plain">
+      {todasOutras.map((c) => (
+        <li><a href={`/registro-de-marca-em/${c.slug}/`}>Registro de marca em {c.nome}</a> <span class="city-links-region">— {c.regiao}</span></li>
+      ))}
+    </ul>
+    <p>Veja também o <a href="/registro-de-marca/" style="color:var(--color-violet);font-weight:600;">guia completo por ramo de atividade</a>, com o conteúdo específico para o seu segmento.</p>
+  </div>
 </ArticleLayout>
+<style>
+.city-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem 1.5rem; }
+.city-links a { color: var(--color-violet); font-weight: 600; text-decoration: none; }
+.city-links a:hover { text-decoration: underline; }
+.city-links-region { color: var(--color-muted); font-size: .84rem; }
+@media (max-width: 560px) { .city-links { grid-template-columns: 1fr; } }
+</style>
