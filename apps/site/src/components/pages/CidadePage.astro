@@ -7,13 +7,16 @@ import { siteConfig } from '../../config/site';
 interface Props { cidade: Cidade }
 const { cidade } = Astro.props;
 
-const canonical = new URL(`/registro-de-marca/${cidade.slug}/`, siteConfig.url).toString();
+const canonical = new URL(`/registro-de-marca/${cidade.slug}/${cidade.uf}/`, siteConfig.url).toString();
 
-const todasOutras = cidades.filter((c) => c.slug !== cidade.slug);
+const todasOutras = cidades
+  .filter((c) => c.uf === cidade.uf && c.slug !== cidade.slug)
+  .sort((a, b) => b.pib2023 - a.pib2023);
 const outras = todasOutras.slice(0, 2);
+const cidadesRelacionadas = todasOutras.slice(0, 12);
 const related = [
   ...outras.map((c) => ({
-    href: `/registro-de-marca/${c.slug}/`,
+    href: `/registro-de-marca/${c.slug}/${c.uf}/`,
     tag: c.regiao,
     title: `Registro de marca em ${c.nome}`,
     description: c.heroDescription
@@ -33,7 +36,7 @@ const jsonLd = [
     name: `Registro de marca em ${cidade.nome}`,
     serviceType: 'Registro de marca no INPI',
     description: cidade.seoDescription,
-    areaServed: { '@type': 'City', name: `${cidade.nome}, PB` },
+    areaServed: { '@type': 'City', name: `${cidade.nome}, ${cidade.uf.toUpperCase()}` },
     provider: {
       '@type': 'Organization',
       name: 'Registrium',
@@ -64,7 +67,7 @@ const jsonLd = [
 <ArticleLayout
   title={cidade.seoTitle}
   description={cidade.seoDescription}
-  pill={`${cidade.nome} · PB`}
+  pill={`${cidade.nome} · ${cidade.uf.toUpperCase()}`}
   heroTitle={cidade.heroTitle}
   heroDescription={cidade.heroDescription}
   meta={cidade.meta}
@@ -77,7 +80,7 @@ const jsonLd = [
     { href: '#como', label: 'Como funciona' },
     { href: '#marcas', label: 'Marcas que já registramos' },
     { href: '#faq', label: 'Perguntas frequentes' },
-    { href: '#outras-cidades', label: 'Outras cidades da PB' }
+    { href: '#outras-cidades', label: `Outras cidades de ${cidade.estado}` }
   ]}
   related={related}
   jsonLd={jsonLd}
@@ -146,11 +149,11 @@ const jsonLd = [
   </div>
 
   <div class="art-block" id="outras-cidades">
-    <h2>Registro de marca em outras cidades da Paraíba</h2>
-    <p>A Registrium atende empresas em toda a Paraíba. Veja o conteúdo específico para outras cidades do estado:</p>
+    <h2>Registro de marca em outras cidades de {cidade.estado}</h2>
+    <p>A Registrium atende empresas em todo o Brasil. Veja o conteúdo específico para outras cidades do estado:</p>
     <ul class="city-links plain">
-      {todasOutras.map((c) => (
-        <li><a href={`/registro-de-marca/${c.slug}/`}>Registro de marca em {c.nome}</a> <span class="city-links-region">— {c.regiao}</span></li>
+      {cidadesRelacionadas.map((c) => (
+        <li><a href={`/registro-de-marca/${c.slug}/${c.uf}/`}>Registro de marca em {c.nome}</a> <span class="city-links-region">— {c.regiao}</span></li>
       ))}
     </ul>
     <p>Veja também o <a href="/registro-de-marca/" style="color:var(--color-violet);font-weight:600;">guia completo por ramo de atividade</a>, com o conteúdo específico para o seu segmento.</p>

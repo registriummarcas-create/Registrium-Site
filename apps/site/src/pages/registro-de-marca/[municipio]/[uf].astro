@@ -1,0 +1,16 @@
+---
+import { cidades, type Cidade } from '../../../data/cidades';
+import CidadePage from '../../../components/pages/CidadePage.astro';
+
+interface Props { cidade: Cidade }
+
+export function getStaticPaths() {
+  return cidades.map((cidade) => ({
+    params: { municipio: cidade.slug, uf: cidade.uf },
+    props: { cidade }
+  }));
+}
+
+const { cidade } = Astro.props;
+---
+<CidadePage cidade={cidade} />

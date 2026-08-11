@@ -4,7 +4,7 @@
 // arquivo porque o Astro não permite duas rotas dinâmicas de mesmo nível
 // ([segmento] e [cidade]) apontando para o mesmo padrão de caminho.
 import { segmentos, type Segmento } from '../../data/segmentos';
-import { cidades, type Cidade } from '../../data/cidades';
+import { cidadesDestaque, type Cidade } from '../../data/cidades';
 import SegmentoPage from '../../components/pages/SegmentoPage.astro';
 import CidadePage from '../../components/pages/CidadePage.astro';
 
@@ -18,7 +18,7 @@ export function getStaticPaths() {
       params: { slug: segmento.slug },
       props: { kind: 'segmento' as const, segmento }
     })),
-    ...cidades.map((cidade) => ({
+    ...cidadesDestaque.map((cidade) => ({
       params: { slug: cidade.slug },
       props: { kind: 'cidade' as const, cidade }
     }))

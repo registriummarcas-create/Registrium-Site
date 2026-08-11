@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import InvestmentSimulator from '../../components/sections/InvestmentSimulator.astro';
 import { segmentos } from '../../data/segmentos';
-import { cidades } from '../../data/cidades';
+import { cidadesDestaque } from '../../data/cidades';
 import { siteConfig } from '../../config/site';
 
 const jsonLd = [
@@ -19,10 +19,10 @@ const jsonLd = [
         name: `Registro de marca para ${s.alvo}`,
         url: new URL(`/registro-de-marca/${s.slug}/`, siteConfig.url).toString()
       })),
-      ...cidades.map((c) => ({
+      ...cidadesDestaque.map((c) => ({
         '@type': 'WebPage',
         name: `Registro de marca em ${c.nome}`,
-        url: new URL(`/registro-de-marca/${c.slug}/`, siteConfig.url).toString()
+        url: new URL(`/registro-de-marca/${c.slug}/${c.uf}/`, siteConfig.url).toString()
       }))
     ]
   }
@@ -77,8 +77,8 @@ const jsonLd = [
         <h2>Registro de marca na sua cidade</h2>
       </div>
       <div class="hub-grid reveal">
-        {cidades.map((c) => (
-          <a class="hub-card" href={`/registro-de-marca/${c.slug}/`}>
+        {cidadesDestaque.map((c) => (
+          <a class="hub-card" href={`/registro-de-marca/${c.slug}/${c.uf}/`}>
             <span class="hub-tag">{c.regiao}</span>
             <h3>Registro de marca em {c.nome}</h3>
             <p>{c.heroDescription}</p>

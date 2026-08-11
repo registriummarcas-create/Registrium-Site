@@ -1,7 +1,9 @@
-// Páginas locais: registro de marca nas principais cidades da Paraíba.
+import { municipiosBrasil, type MunicipioBrasil } from './municipios.generated';
+
+// Páginas locais: registro de marca em todos os municípios brasileiros.
 // O registro de marca é federal (vale para todo o Brasil), então cada página
 // evita ser rasa trazendo contexto econômico real da cidade e da região.
-// Ordem: 10 municípios mais populosos da PB (IBGE) + Esperança.
+// Os textos editoriais existentes da Paraíba são preservados como personalizações.
 
 export interface CidadeFaq {
   q: string;
@@ -11,6 +13,12 @@ export interface CidadeFaq {
 export interface Cidade {
   slug: string;
   nome: string;
+  uf: string;
+  estado: string;
+  macroRegiao: string;
+  codigoIbge: string;
+  pib2023: number;
+  pibPerCapita2023: number;
   /** Como a cidade é conhecida / região. */
   regiao: string;
   seoTitle: string;
@@ -30,22 +38,27 @@ export interface Cidade {
   faq: CidadeFaq[];
 }
 
+type CidadePersonalizada = Omit<
+  Cidade,
+  'uf' | 'estado' | 'macroRegiao' | 'codigoIbge' | 'pib2023' | 'pibPerCapita2023'
+>;
+
 const faqComum = (nome: string): CidadeFaq[] => [
   {
     q: `Preciso ir até um escritório para registrar minha marca em ${nome}?`,
     a: `Não. Todo o processo é feito online, com atendimento pelo WhatsApp e acompanhamento à distância. Você registra a marca da sua empresa de ${nome} sem sair do lugar, com o mesmo acompanhamento diário no INPI.`
   },
   {
-    q: 'O registro vale só na Paraíba ou no Brasil todo?',
-    a: 'O registro de marca é federal: uma vez concedido pelo INPI, ele vale em todo o território nacional. Isso protege sua marca contra uso por empresas de qualquer estado, não só da Paraíba.'
+    q: 'O registro vale só na cidade ou no Brasil todo?',
+    a: 'O registro de marca é federal: uma vez concedido pelo INPI, ele vale em todo o território nacional. Isso protege sua marca contra uso por empresas de qualquer cidade ou estado.'
   },
   {
-    q: 'A Registrium é uma empresa da Paraíba?',
-    a: 'Sim. Somos uma empresa paraibana credenciada no INPI, cuidando de marcas brasileiras desde 2021, com atendimento próximo e em português claro — sem juridiquês.'
+    q: `A Registrium atende empresas de ${nome}?`,
+    a: `Sim. A Registrium atende empresas de ${nome} de forma totalmente online, cuidando de marcas brasileiras desde 2021 com comunicação clara e acompanhamento do processo no INPI.`
   }
 ];
 
-export const cidades: Cidade[] = [
+const cidadesPersonalizadas: CidadePersonalizada[] = [
   {
     slug: 'joao-pessoa',
     nome: 'João Pessoa',
@@ -337,6 +350,62 @@ export const cidades: Cidade[] = [
   }
 ];
 
-export function getCidade(slug: string): Cidade | undefined {
-  return cidades.find((c) => c.slug === slug);
+const moeda = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+  notation: 'compact',
+  maximumFractionDigits: 2
+});
+
+function cidadeGenerica(municipio: MunicipioBrasil): Cidade {
+  const pib = moeda.format(municipio.pib2023 * 1_000);
+  const pibPerCapita = moeda.format(municipio.pibPerCapita2023);
+  const atividades = municipio.atividades.filter(Boolean);
+
+  return {
+    slug: municipio.slug,
+    nome: municipio.nome,
+    uf: municipio.uf,
+    estado: municipio.estado,
+    macroRegiao: municipio.macroRegiao,
+    codigoIbge: municipio.codigoIbge,
+    pib2023: municipio.pib2023,
+    pibPerCapita2023: municipio.pibPerCapita2023,
+    regiao: `${municipio.macroRegiao} · ${municipio.estado}`,
+    seoTitle: `Registro de marca em ${municipio.nome} (${municipio.uf.toUpperCase()}) | Registrium`,
+    seoDescription: `Registro de marca no INPI para empresas de ${municipio.nome}, ${municipio.estado}. Atendimento online, pesquisa de viabilidade e acompanhamento pela Registrium.`,
+    heroTitle: `Registro de marca em ${municipio.nome}`,
+    heroDescription: `Proteja a marca do seu negócio em ${municipio.nome} no INPI, com atendimento online, pesquisa de viabilidade e acompanhamento em todo o Brasil.`,
+    meta: [`${municipio.nome} · ${municipio.uf.toUpperCase()}`, 'Atendimento online', 'Proteção nacional'],
+    lede: `${municipio.nome} participa de uma economia movida principalmente por ${municipio.setorPredominante.toLowerCase()}. Para quem empreende no município, registrar a marca no INPI transforma o nome do negócio em um ativo protegido em todo o território nacional.`,
+    contexto: [
+      `O PIB de ${municipio.nome} foi de aproximadamente ${pib} em 2023, com PIB por habitante de ${pibPerCapita}. Esses números ajudam a dimensionar o mercado local e a presença de empresas que disputam atenção, reputação e nomes comerciais.`,
+      `Mesmo quando uma empresa atua apenas em ${municipio.nome}, a proteção da marca não é municipal nem estadual. O registro é concedido pelo INPI e vale em todo o Brasil, conforme a classe de produtos ou serviços escolhida.`
+    ],
+    panorama: [
+      `Na abertura econômica municipal mais recente disponível, referente a 2021, ${municipio.setorPredominante.toLowerCase()} foi o setor predominante. Entre as atividades de maior valor adicionado aparecem ${atividades.slice(0, 3).join(', ')}.`,
+      `Esse perfil reúne negócios que precisam diferenciar seus nomes no mercado local e também em canais digitais, onde empresas de cidades diferentes podem alcançar o mesmo público.`
+    ],
+    fontes: ['IBGE — PIB dos Municípios 2023', 'IBGE — estrutura econômica municipal 2021'],
+    setores: atividades,
+    faq: faqComum(municipio.nome)
+  };
+}
+
+const personalizadas = new Map(cidadesPersonalizadas.map((cidade) => [`${cidade.slug}/pb`, cidade]));
+
+export const cidades: Cidade[] = municipiosBrasil.map((municipio) => {
+  const base = cidadeGenerica(municipio);
+  const personalizada = personalizadas.get(`${municipio.slug}/${municipio.uf}`);
+  return personalizada ? { ...base, ...personalizada } : base;
+});
+
+export const cidadesDestaque = cidades.filter((cidade) => personalizadas.has(`${cidade.slug}/${cidade.uf}`));
+
+export function getCidade(slug: string, uf?: string): Cidade | undefined {
+  return cidades.find((cidade) => cidade.slug === slug && (!uf || cidade.uf === uf.toLowerCase()));
+}
+
+export function getCidadesPorUf(uf: string): Cidade[] {
+  return cidades.filter((cidade) => cidade.uf === uf.toLowerCase());
 }
