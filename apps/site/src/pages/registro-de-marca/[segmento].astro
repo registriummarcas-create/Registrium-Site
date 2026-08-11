@@ -67,6 +67,7 @@ const jsonLd = [
   backLabel="Registro de marca por ramo"
   toc={[
     { href: '#sobre', label: 'Por que registrar' },
+    { href: '#panorama', label: 'Panorama do setor' },
     { href: '#classes', label: 'Classes a proteger' },
     { href: '#riscos', label: 'Riscos do setor' },
     { href: '#faq', label: 'Perguntas frequentes' }
@@ -80,9 +81,15 @@ const jsonLd = [
     {segmento.intro.map((p) => <p>{p}</p>)}
   </div>
 
+  <div class="art-block" id="panorama">
+    <h2>Panorama do setor</h2>
+    {segmento.panorama.map((p) => <p>{p}</p>)}
+    <p><small style="color:var(--color-muted);">Fontes: {segmento.fontes.join(' · ')}.</small></p>
+  </div>
+
   <div class="art-block" id="classes">
     <h2>Classes do INPI que se aplicam ao seu negócio</h2>
-    <p>O registro de marca é feito por <strong>classe</strong> — cada uma cobre um tipo de produto ou serviço, segundo a Classificação de Nice. Para {segmento.alvo}, estas são as principais a considerar:</p>
+    <p>O registro de marca é feito por <strong>classe</strong> — cada uma cobre um tipo de produto ou serviço, segundo a Classificação Internacional de Nice, adotada pelo INPI. A 13ª edição está em vigor no Brasil desde 1º de janeiro de 2026, com 45 classes ao todo (34 de produtos e 11 de serviços). Para {segmento.alvo}, estas são as principais a considerar:</p>
     {segmento.classes.map((classe) => (
       <div class="step-mini">
         <div class="sn">{classe.code}</div>
@@ -93,6 +100,7 @@ const jsonLd = [
       </div>
     ))}
     <p>Na pesquisa de viabilidade, definimos exatamente quais classes fazem sentido para o seu caso — protegendo o que importa sem pagar por classes que você não usa.</p>
+    <p><small style="color:var(--color-muted);">Fonte: <a href="https://www.gov.br/inpi/pt-br/servicos/marcas/classificacao-marcas" target="_blank" rel="noreferrer" style="color:var(--color-violet);">Classificação de Nice — gov.br/inpi</a>.</small></p>
   </div>
 
   <div class="art-block" id="riscos">

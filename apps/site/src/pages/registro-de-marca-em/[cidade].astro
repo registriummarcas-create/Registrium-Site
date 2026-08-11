@@ -66,6 +66,7 @@ const jsonLd = [
   backLabel="Registro de marca"
   toc={[
     { href: '#sobre', label: `Registrar em ${cidade.nome}` },
+    { href: '#panorama', label: 'Panorama local' },
     { href: '#setores', label: 'Setores da região' },
     { href: '#como', label: 'Como funciona' },
     { href: '#faq', label: 'Perguntas frequentes' }
@@ -77,6 +78,12 @@ const jsonLd = [
     <h2>Registro de marca em {cidade.nome}</h2>
     <p class="lede">{cidade.lede}</p>
     {cidade.contexto.map((p) => <p>{p}</p>)}
+  </div>
+
+  <div class="art-block" id="panorama">
+    <h2>Panorama do empreendedorismo local</h2>
+    {cidade.panorama.map((p) => <p>{p}</p>)}
+    <p><small style="color:var(--color-muted);">Fontes: {cidade.fontes.join(' · ')}.</small></p>
   </div>
 
   <div class="art-block" id="setores">

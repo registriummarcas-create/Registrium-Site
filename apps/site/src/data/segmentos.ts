@@ -1,6 +1,6 @@
 // Páginas de segmento: registro de marca por ramo de atividade.
-// Cada entrada tem conteúdo próprio (classes de Nice aplicáveis, riscos do setor,
-// perguntas específicas) para evitar páginas rasas/duplicadas.
+// Cada entrada tem conteúdo próprio (classes de Nice aplicáveis, panorama do setor
+// com dados de fontes oficiais, riscos e FAQ) para evitar páginas rasas/duplicadas.
 
 export interface ClasseNice {
   code: string;
@@ -29,6 +29,10 @@ export interface Segmento {
   lede: string;
   /** Corpo introdutório (parágrafos adicionais). */
   intro: string[];
+  /** Panorama do setor com dados de fontes oficiais (Sebrae, INPI, imprensa especializada). */
+  panorama: string[];
+  /** Citações das fontes usadas no panorama. */
+  fontes: string[];
   classes: ClasseNice[];
   /** Riscos e cuidados típicos do setor. */
   riscos: string[];
@@ -43,7 +47,7 @@ export const segmentos: Segmento[] = [
     pill: 'Alimentação',
     seoTitle: 'Registro de marca para restaurantes e alimentação | Registrium',
     seoDescription:
-      'Como registrar a marca do seu restaurante, bar, lanchonete, cafeteria ou delivery no INPI. Quais classes proteger, riscos do setor e o passo a passo com a Registrium.',
+      'Como registrar a marca do seu restaurante, bar, lanchonete, cafeteria ou delivery no INPI. Quais classes proteger, panorama do setor na Paraíba e o passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para restaurantes e alimentação',
     heroDescription:
       'Bar, lanchonete, cafeteria, food truck ou delivery: proteja o nome do seu negócio antes que outro registre igual na sua região.',
@@ -54,6 +58,11 @@ export const segmentos: Segmento[] = [
       'A concorrência local é intensa e as marcas se espalham rápido pelo iFood, Instagram e Google Maps. Sem registro, você corre o risco de investir anos em reputação e ser obrigado a trocar de nome porque alguém registrou primeiro — inclusive uma franquia de outra cidade.',
       'O registro também é pré-requisito prático para franquear, licenciar receitas, vender online e fechar parcerias sem perder o controle do nome.'
     ],
+    panorama: [
+      'Segundo o Sebrae, a Paraíba tem 41.370 empresas ativas no setor de alimentação, das quais 98,1% são pequenos negócios. Lanchonetes, casas de chá e sucos lideram, com 5.368 estabelecimentos, seguidas por restaurantes (4.908) e negócios de comida preparada para entrega e viagem (3.670).',
+      'O microempreendedor individual (MEI) é a forma predominante no setor: 69,9% dos negócios de alimentação da Paraíba estão nessa categoria — um universo de empresas pequenas, para quem a marca costuma ser o único diferencial competitivo diante de tantos concorrentes parecidos.'
+    ],
+    fontes: ['Sebrae/PB — DataSebrae, dados do setor de alimentação (2026)'],
     classes: [
       { code: '43', label: 'Serviços de alimentação', note: 'A classe principal do setor: restaurantes, bares, lanchonetes, cafeterias, delivery e food trucks (fornecimento de comida e bebida).' },
       { code: '30', label: 'Pães, massas, doces e café', note: 'Para quem produz e vende os próprios produtos: padarias, confeitarias, cafés torrados, molhos e temperos embalados.' },
@@ -79,7 +88,7 @@ export const segmentos: Segmento[] = [
     pill: 'Saúde',
     seoTitle: 'Registro de marca para clínicas e área da saúde | Registrium',
     seoDescription:
-      'Registro de marca no INPI para clínicas, consultórios, odontologia, estética e profissionais da saúde. Classes aplicáveis, cuidados e passo a passo com a Registrium.',
+      'Registro de marca no INPI para clínicas, consultórios, odontologia, estética e profissionais da saúde. Classes aplicáveis, panorama do setor e passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para clínicas e saúde',
     heroDescription:
       'Consultórios, clínicas odontológicas, laboratórios e profissionais da saúde: proteja o nome que carrega a confiança dos seus pacientes.',
@@ -90,6 +99,11 @@ export const segmentos: Segmento[] = [
       'Clínicas em expansão, com novas unidades ou modelo de franquia, precisam do registro para crescer sem perder a exclusividade do nome. O mesmo vale para quem constrói autoridade nas redes com um nome pessoal ou de método próprio.',
       'Atenção: nomes de clínicas frequentemente esbarram em marcas anteriores parecidas na mesma classe. A pesquisa de viabilidade prévia é ainda mais importante nesse setor.'
     ],
+    panorama: [
+      'A Paraíba soma 13.014 pequenos negócios no segmento de saúde, segundo levantamento do Sebrae/PB com base em dados da Receita Federal. Mais de 80% são microempresas (10.817 ativas), além de 1.190 empresas de pequeno porte e 1.007 MEIs.',
+      'O Sebrae mantém o projeto Impulsiona Saúde, voltado à qualificação da gestão de clínicas, consultórios e laboratórios — reflexo de um setor que cresce em número de negócios, mas ainda profissionaliza etapas básicas como a proteção formal da marca.'
+    ],
+    fontes: ['Sebrae/PB, via jornal A União (2026)'],
     classes: [
       { code: '44', label: 'Serviços médicos e de saúde', note: 'A classe central: serviços médicos, odontológicos, veterinários, fisioterapia, psicologia, estética e cuidados de higiene e beleza.' },
       { code: '5', label: 'Produtos farmacêuticos', note: 'Suplementos, produtos dermatológicos, fórmulas e itens farmacêuticos vendidos com a marca da clínica.' },
@@ -114,7 +128,7 @@ export const segmentos: Segmento[] = [
     pill: 'Moda',
     seoTitle: 'Registro de marca para roupas, moda e vestuário | Registrium',
     seoDescription:
-      'Registro de marca no INPI para grifes, lojas de roupa, calçados e acessórios. Classe 25, comércio (35) e o que proteger. Passo a passo com a Registrium.',
+      'Registro de marca no INPI para grifes, lojas de roupa, calçados e acessórios. Classe 25, comércio (35), panorama do setor e o que proteger. Passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para moda e vestuário',
     heroDescription:
       'Grife, loja de roupa, calçados ou acessórios: no varejo de moda, a marca é o produto. Proteja a etiqueta antes de escalar.',
@@ -125,6 +139,10 @@ export const segmentos: Segmento[] = [
       'Marcas de moda crescem rápido no Instagram e nos marketplaces, e é exatamente aí que surgem as cópias. Sem registro, você não consegue denunciar falsificações, exigir a retirada de anúncios nem impedir que outra loja use sua etiqueta.',
       'O registro é também o que permite licenciar coleções, fechar com representantes e entrar em grandes varejistas com segurança jurídica.'
     ],
+    panorama: [
+      'No mercado de moda da Paraíba, 75,9% das empresas ativas são microempreendedores individuais, segundo o Sebrae — um setor pulverizado e competitivo, no qual a marca costuma ser o principal ativo de diferenciação entre negócios de porte semelhante.'
+    ],
+    fontes: ['Agência Sebrae de Notícias PB (2026)'],
     classes: [
       { code: '25', label: 'Roupas, calçados e chapelaria', note: 'A classe essencial de qualquer marca de moda: peças de vestuário, calçados e acessórios de cabeça.' },
       { code: '35', label: 'Comércio e varejo', note: 'Serviços de loja física e online, e-commerce e representação — importante para quem revende e para lojas multimarcas.' },
@@ -149,7 +167,7 @@ export const segmentos: Segmento[] = [
     pill: 'Beleza',
     seoTitle: 'Registro de marca para estética, beleza e cosméticos | Registrium',
     seoDescription:
-      'Registro de marca no INPI para salões, clínicas de estética, barbearias e marcas de cosméticos. Classes 44, 3 e 35. Passo a passo com a Registrium.',
+      'Registro de marca no INPI para salões, clínicas de estética, barbearias e marcas de cosméticos. Classes 44, 3 e 35, panorama do setor. Passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para estética e beleza',
     heroDescription:
       'Salão, barbearia, clínica de estética ou linha de cosméticos: proteja o nome que atrai e fideliza a sua clientela.',
@@ -160,6 +178,11 @@ export const segmentos: Segmento[] = [
       'É um mercado que cresce por franquias e produtos próprios: muitos salões lançam a própria linha de cosméticos, e muitas marcas de cosmético abrem espaços de atendimento. Cada frente exige uma classe diferente de proteção.',
       'Com a marca registrada, é possível franquear o modelo, vender produtos com segurança e impedir que concorrentes usem um nome parecido na mesma cidade.'
     ],
+    panorama: [
+      'O setor de beleza soma mais de 15 mil pequenos negócios na Paraíba (15.089), dos quais 78% são MEI, segundo o Sebrae. Cabeleireiros, manicures e pedicures lideram, com 10.599 negócios, seguidos por 3.665 negócios de estética e outros cuidados de beleza.',
+      'Do lado dos produtos, a Paraíba tem 4.446 lojas de comércio varejista de cosméticos e perfumaria e 37 fábricas do setor (30 microempresas e 7 pequenas empresas) — a cadeia completa que vai do salão à linha de produtos própria, e que só se protege por completo com o registro das classes certas.'
+    ],
+    fontes: ['Sebrae/PB, via jornal A União e Turismo em Foco (2026)'],
     classes: [
       { code: '44', label: 'Serviços de estética e beleza', note: 'Salões, barbearias, clínicas de estética, spas, manicure, tratamentos capilares e de pele.' },
       { code: '3', label: 'Cosméticos e higiene', note: 'Shampoos, cremes, maquiagem, perfumes e produtos de beleza vendidos com a marca própria.' },
@@ -184,7 +207,7 @@ export const segmentos: Segmento[] = [
     pill: 'Tecnologia',
     seoTitle: 'Registro de marca para tecnologia, apps e software | Registrium',
     seoDescription:
-      'Registro de marca no INPI para startups, aplicativos, SaaS e empresas de tecnologia. Classes 9, 42 e 38. Passo a passo com a Registrium.',
+      'Registro de marca no INPI para startups, aplicativos, SaaS e empresas de tecnologia. Classes 9, 42 e 38, panorama do ecossistema na Paraíba. Passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para tecnologia e aplicativos',
     heroDescription:
       'Startup, app, SaaS ou software: proteja o nome do produto antes da tração — investidores e lojas de apps vão perguntar por ele.',
@@ -195,6 +218,11 @@ export const segmentos: Segmento[] = [
       'Investidores, aceleradoras e as próprias lojas de aplicativos avaliam a titularidade da marca. Um pedido de registro em andamento já demonstra diligência e reduz o risco de precisar renomear o produto depois de escalar.',
       'Como marcas de tecnologia frequentemente usam nomes inventados, a chance de registro costuma ser boa — mas a pesquisa prévia é essencial para não colidir com marcas internacionais já depositadas no Brasil.'
     ],
+    panorama: [
+      'A Paraíba tem 418 startups ativas, com João Pessoa à frente como principal polo de tecnologia do estado. Campina Grande, por sua vez, sedia o PaqTcPB — Parque Tecnológico da Paraíba, fundado em 1984 e um dos três primeiros parques tecnológicos do Brasil, reunindo universidades (UFCG, UFPB, UEPB, IFPB), Sebrae, Embrapa e Insa em torno de TI, automação industrial, conectividade, saúde digital, educação 4.0, biotecnologia e energias renováveis.',
+      'Campina Grande também sedia a FETECH, feira de tecnologia criada em 1988 que chegou à 15ª edição em 2026 — um dos maiores eventos de inovação do Nordeste. É a prova de um ecossistema consolidado, mas onde a proteção formal da marca ainda é um passo que muita startup deixa para depois da tração, com risco de precisar renomear o produto já com usuários.'
+    ],
+    fontes: ['PaqTcPB (paqtc.org.br)', 'WSCOM Economia (jun. 2026)', 'Governo da Paraíba / Fapesq (2026)'],
     classes: [
       { code: '9', label: 'Software e aplicativos', note: 'Programas de computador, aplicativos, plataformas baixáveis, hardware e dispositivos eletrônicos.' },
       { code: '42', label: 'Desenvolvimento e SaaS', note: 'Serviços de tecnologia: desenvolvimento de software, plataformas em nuvem (SaaS), consultoria e hospedagem.' },
@@ -219,7 +247,7 @@ export const segmentos: Segmento[] = [
     pill: 'Educação',
     seoTitle: 'Registro de marca para educação, cursos e treinamentos | Registrium',
     seoDescription:
-      'Registro de marca no INPI para escolas, cursos, infoprodutos e mentorias. Classe 41 e afins. Passo a passo com a Registrium.',
+      'Registro de marca no INPI para escolas, cursos, infoprodutos e mentorias. Classe 41 e afins, panorama do setor. Passo a passo com a Registrium.',
     heroTitle: 'Registro de marca para educação e cursos',
     heroDescription:
       'Escola, curso livre, mentoria ou infoproduto: proteja o nome do método antes que ele seja copiado por quem viu funcionar.',
@@ -230,6 +258,10 @@ export const segmentos: Segmento[] = [
       'Infoprodutores e mentores constroem marcas pessoais e de método que se espalham rápido — e são copiadas com a mesma velocidade. Sem registro, é difícil impedir que outra pessoa use o nome do seu curso ou lance uma versão "igual".',
       'Escolas e cursos livres com planos de expansão ou franquia dependem do registro para crescer mantendo a exclusividade do nome em todo o país.'
     ],
+    panorama: [
+      'O Sebrae mantém programas de educação empreendedora presenciais e online em polos como Campina Grande e João Pessoa, incluindo trilhas voltadas à gestão de cursos, mentorias e negócios de conhecimento — reflexo de um mercado que cresce junto com o número de infoprodutores e escolas livres no estado, muitos deles sem o nome do método ou do curso protegido.'
+    ],
+    fontes: ['Agência Sebrae de Notícias PB (2026)'],
     classes: [
       { code: '41', label: 'Educação e treinamento', note: 'A classe central: cursos, escolas, treinamentos, mentorias, workshops, produção de conteúdo e entretenimento.' },
       { code: '9', label: 'Conteúdo digital', note: 'Cursos gravados, e-books, aplicativos e materiais didáticos em formato digital (downloadáveis).' },
