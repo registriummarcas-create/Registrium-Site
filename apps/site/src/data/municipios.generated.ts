@@ -59,3 +59,17 @@ export const municipiosBrasil: MunicipioBrasil[] = dados.map((d) => ({
   pib2023: d[5], pibPerCapita2023: d[6], setorPredominante: setoresEconomicos[d[7]],
   atividades: [atividadesEconomicas[d[8]], atividadesEconomicas[d[9]], atividadesEconomicas[d[10]]]
 }));
+
+// Instalado em 1º de janeiro de 2025; ainda não possui PIB municipal na série de 2023.
+municipiosBrasil.push({
+  codigoIbge: '5101837',
+  slug: 'boa-esperanca-do-norte',
+  nome: 'Boa Esperança do Norte',
+  uf: 'mt',
+  estado: 'Mato Grosso',
+  macroRegiao: 'Centro-oeste',
+  pib2023: 0,
+  pibPerCapita2023: 0,
+  setorPredominante: 'Perfil econômico em consolidação',
+  atividades: ['Dados econômicos municipais em consolidação']
+});

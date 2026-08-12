@@ -1,4 +1,5 @@
 import { municipiosBrasil, type MunicipioBrasil } from './municipios.generated';
+import { enriquecimentoPorCodigo } from './municipios-enriquecimento.generated';
 
 // Páginas locais: registro de marca em todos os municípios brasileiros.
 // O registro de marca é federal (vale para todo o Brasil), então cada página
@@ -19,6 +20,14 @@ export interface Cidade {
   codigoIbge: string;
   pib2023: number;
   pibPerCapita2023: number;
+  populacao2025: number;
+  wikipediaUrl: string;
+  participacaoSetorial2021: {
+    agropecuaria: number;
+    industria: number;
+    servicos: number;
+    administracaoPublica: number;
+  };
   /** Como a cidade é conhecida / região. */
   regiao: string;
   seoTitle: string;
@@ -40,7 +49,8 @@ export interface Cidade {
 
 type CidadePersonalizada = Omit<
   Cidade,
-  'uf' | 'estado' | 'macroRegiao' | 'codigoIbge' | 'pib2023' | 'pibPerCapita2023'
+  'uf' | 'estado' | 'macroRegiao' | 'codigoIbge' | 'pib2023' | 'pibPerCapita2023' |
+  'populacao2025' | 'wikipediaUrl' | 'participacaoSetorial2021'
 >;
 
 const faqComum = (nome: string): CidadeFaq[] => [
@@ -360,7 +370,13 @@ const moeda = new Intl.NumberFormat('pt-BR', {
 function cidadeGenerica(municipio: MunicipioBrasil): Cidade {
   const pib = moeda.format(municipio.pib2023 * 1_000);
   const pibPerCapita = moeda.format(municipio.pibPerCapita2023);
+  const possuiPib = municipio.pib2023 > 0;
   const atividades = municipio.atividades.filter(Boolean);
+  const extra = enriquecimentoPorCodigo.get(municipio.codigoIbge);
+  const totalSetorial = extra
+    ? extra.vabAgropecuaria2021 + extra.vabIndustria2021 + extra.vabServicos2021 + extra.vabAdministracaoPublica2021
+    : 0;
+  const participacao = (valor = 0) => totalSetorial ? (valor / totalSetorial) * 100 : 0;
 
   return {
     slug: municipio.slug,
@@ -371,19 +387,33 @@ function cidadeGenerica(municipio: MunicipioBrasil): Cidade {
     codigoIbge: municipio.codigoIbge,
     pib2023: municipio.pib2023,
     pibPerCapita2023: municipio.pibPerCapita2023,
+    populacao2025: extra?.populacao2025 ?? 0,
+    wikipediaUrl: extra?.wikipediaUrl ?? '',
+    participacaoSetorial2021: {
+      agropecuaria: participacao(extra?.vabAgropecuaria2021),
+      industria: participacao(extra?.vabIndustria2021),
+      servicos: participacao(extra?.vabServicos2021),
+      administracaoPublica: participacao(extra?.vabAdministracaoPublica2021)
+    },
     regiao: `${municipio.macroRegiao} · ${municipio.estado}`,
     seoTitle: `Registro de marca em ${municipio.nome} (${municipio.uf.toUpperCase()}) | Registrium`,
     seoDescription: `Registro de marca no INPI para empresas de ${municipio.nome}, ${municipio.estado}. Atendimento online, pesquisa de viabilidade e acompanhamento pela Registrium.`,
     heroTitle: `Registro de marca em ${municipio.nome}`,
     heroDescription: `Proteja a marca do seu negócio em ${municipio.nome} no INPI, com atendimento online, pesquisa de viabilidade e acompanhamento em todo o Brasil.`,
     meta: [`${municipio.nome} · ${municipio.uf.toUpperCase()}`, 'Atendimento online', 'Proteção nacional'],
-    lede: `${municipio.nome} participa de uma economia movida principalmente por ${municipio.setorPredominante.toLowerCase()}. Para quem empreende no município, registrar a marca no INPI transforma o nome do negócio em um ativo protegido em todo o território nacional.`,
+    lede: possuiPib
+      ? `${municipio.nome} participa de uma economia movida principalmente por ${municipio.setorPredominante.toLowerCase()}. Para quem empreende no município, registrar a marca no INPI transforma o nome do negócio em um ativo protegido em todo o território nacional.`
+      : `${municipio.nome} é um município de instalação recente, cujo perfil econômico oficial ainda está em consolidação. Para quem empreende na cidade, registrar a marca no INPI transforma o nome do negócio em um ativo protegido em todo o território nacional.`,
     contexto: [
-      `O PIB de ${municipio.nome} foi de aproximadamente ${pib} em 2023, com PIB por habitante de ${pibPerCapita}. Esses números ajudam a dimensionar o mercado local e a presença de empresas que disputam atenção, reputação e nomes comerciais.`,
+      possuiPib
+        ? `O PIB de ${municipio.nome} foi de aproximadamente ${pib} em 2023, com PIB por habitante de ${pibPerCapita}. Esses números ajudam a dimensionar o mercado local e a presença de empresas que disputam atenção, reputação e nomes comerciais.`
+        : `${municipio.nome} foi instalado depois do ano de referência do PIB municipal mais recente. Por isso, o IBGE ainda não publicou PIB e composição setorial próprios para o novo município.`,
       `Mesmo quando uma empresa atua apenas em ${municipio.nome}, a proteção da marca não é municipal nem estadual. O registro é concedido pelo INPI e vale em todo o Brasil, conforme a classe de produtos ou serviços escolhida.`
     ],
     panorama: [
-      `Na abertura econômica municipal mais recente disponível, referente a 2021, ${municipio.setorPredominante.toLowerCase()} foi o setor predominante. Entre as atividades de maior valor adicionado aparecem ${atividades.slice(0, 3).join(', ')}.`,
+      possuiPib
+        ? `Na abertura econômica municipal mais recente disponível, referente a 2021, ${municipio.setorPredominante.toLowerCase()} foi o setor predominante. Entre as atividades de maior valor adicionado aparecem ${atividades.slice(0, 3).join(', ')}.`
+        : `A população estimada pelo IBGE em 2025 é o primeiro indicador municipal disponível. Os dados econômicos serão incorporados quando entrarem nas próximas edições do PIB dos Municípios.`,
       `Esse perfil reúne negócios que precisam diferenciar seus nomes no mercado local e também em canais digitais, onde empresas de cidades diferentes podem alcançar o mesmo público.`
     ],
     fontes: ['IBGE — PIB dos Municípios 2023', 'IBGE — estrutura econômica municipal 2021'],

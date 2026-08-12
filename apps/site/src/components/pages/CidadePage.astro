@@ -2,10 +2,22 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import MarksShowcase from '../sections/MarksShowcase.astro';
 import { cidades, type Cidade } from '../../data/cidades';
+import { getFontesEstaduais } from '../../data/fontes-estaduais';
 import { siteConfig } from '../../config/site';
 
 interface Props { cidade: Cidade }
 const { cidade } = Astro.props;
+const fontesEstado = getFontesEstaduais(cidade.uf);
+const numero = new Intl.NumberFormat('pt-BR');
+const percentual = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1 });
+const moedaCompacta = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', notation: 'compact', maximumFractionDigits: 2 });
+const ibgeUrl = `https://www.ibge.gov.br/cidades-e-estados/${cidade.uf}/${cidade.slug}.html`;
+const setorPredominante = Object.entries({
+  Serviços: cidade.participacaoSetorial2021.servicos,
+  'Administração pública': cidade.participacaoSetorial2021.administracaoPublica,
+  Indústria: cidade.participacaoSetorial2021.industria,
+  Agropecuária: cidade.participacaoSetorial2021.agropecuaria
+}).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Perfil diversificado';
 
 const canonical = new URL(`/registro-de-marca/${cidade.slug}/${cidade.uf}/`, siteConfig.url).toString();
 
@@ -76,6 +88,7 @@ const jsonLd = [
   toc={[
     { href: '#sobre', label: `Registrar em ${cidade.nome}` },
     { href: '#panorama', label: 'Panorama local' },
+    { href: '#dados-e-fontes', label: 'Dados e fontes locais' },
     { href: '#setores', label: 'Setores da região' },
     { href: '#como', label: 'Como funciona' },
     { href: '#marcas', label: 'Marcas que já registramos' },
@@ -95,6 +108,37 @@ const jsonLd = [
     <h2>Panorama do empreendedorismo local</h2>
     {cidade.panorama.map((p) => <p>{p}</p>)}
     <p><small style="color:var(--color-muted);">Fontes: {cidade.fontes.join(' · ')}.</small></p>
+  </div>
+
+  <div class="art-block" id="dados-e-fontes">
+    <h2>Dados econômicos e fontes de {cidade.nome}</h2>
+    <dl class="economic-data">
+      <div><dt>População estimada</dt><dd>{numero.format(cidade.populacao2025)} <small>habitantes (2025)</small></dd></div>
+      <div><dt>PIB municipal</dt><dd>{cidade.pib2023 ? moedaCompacta.format(cidade.pib2023 * 1_000) : 'Aguardando divulgação'} {cidade.pib2023 > 0 && <small>(2023)</small>}</dd></div>
+      <div><dt>PIB por habitante</dt><dd>{cidade.pibPerCapita2023 ? moedaCompacta.format(cidade.pibPerCapita2023) : 'Aguardando divulgação'} {cidade.pibPerCapita2023 > 0 && <small>(2023)</small>}</dd></div>
+      <div><dt>Setor com maior participação</dt><dd>{cidade.pib2023 ? setorPredominante : 'Aguardando divulgação'} {cidade.pib2023 > 0 && <small>(2021)</small>}</dd></div>
+    </dl>
+    {cidade.pib2023 > 0 && (
+      <>
+        <h3>Participação no valor adicionado municipal</h3>
+        <ul class="plain sector-shares">
+          <li>Serviços: <strong>{percentual.format(cidade.participacaoSetorial2021.servicos)}%</strong></li>
+          <li>Administração pública: <strong>{percentual.format(cidade.participacaoSetorial2021.administracaoPublica)}%</strong></li>
+          <li>Indústria: <strong>{percentual.format(cidade.participacaoSetorial2021.industria)}%</strong></li>
+          <li>Agropecuária: <strong>{percentual.format(cidade.participacaoSetorial2021.agropecuaria)}%</strong></li>
+        </ul>
+      </>
+    )}
+    <h3>Consulte as fontes e instituições</h3>
+    <ul class="plain source-links">
+      <li><a href={ibgeUrl} target="_blank" rel="noopener noreferrer">IBGE — panorama oficial de {cidade.nome}</a></li>
+      {cidade.wikipediaUrl && <li><a href={cidade.wikipediaUrl} target="_blank" rel="noopener noreferrer">Wikipédia — artigo sobre {cidade.nome}</a></li>}
+      <li><a href={fontesEstado.sebrae.url} target="_blank" rel="noopener noreferrer">{fontesEstado.sebrae.nome}</a> — {fontesEstado.sebrae.descricao}</li>
+      {fontesEstado.tecnologiaPublica && (
+        <li><a href={fontesEstado.tecnologiaPublica.url} target="_blank" rel="noopener noreferrer">{fontesEstado.tecnologiaPublica.nome}</a> — {fontesEstado.tecnologiaPublica.descricao}</li>
+      )}
+    </ul>
+    <p><small style="color:var(--color-muted);">População: SIDRA/IBGE 2025. PIB: IBGE 2023. Participação setorial: IBGE 2021. Os artigos da Wikipédia foram vinculados pelo código municipal do IBGE no Wikidata.</small></p>
   </div>
 
   <div class="art-block" id="setores">
@@ -164,5 +208,13 @@ const jsonLd = [
 .city-links a { color: var(--color-violet); font-weight: 600; text-decoration: none; }
 .city-links a:hover { text-decoration: underline; }
 .city-links-region { color: var(--color-muted); font-size: .84rem; }
+.economic-data { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1.25rem 0 1.5rem; }
+.economic-data > div { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1rem; }
+.economic-data dt { color: var(--color-muted); font-size: .8rem; margin-bottom: .3rem; }
+.economic-data dd { color: var(--color-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; margin: 0; }
+.economic-data small { color: var(--color-muted); font-family: inherit; font-weight: 500; }
+.sector-shares { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; }
+.source-links a { color: var(--color-violet); font-weight: 600; }
 @media (max-width: 560px) { .city-links { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .economic-data, .sector-shares { grid-template-columns: 1fr; } }
 </style>

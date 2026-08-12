@@ -2,8 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import InvestmentSimulator from '../../components/sections/InvestmentSimulator.astro';
 import { segmentos } from '../../data/segmentos';
-import { cidadesDestaque } from '../../data/cidades';
+import { cidades, cidadesDestaque, type Cidade } from '../../data/cidades';
 import { siteConfig } from '../../config/site';
+
+const ordemRegioes = ['Norte', 'Nordeste', 'Centro-oeste', 'Sudeste', 'Sul'];
+const diretorioCidades = ordemRegioes.map((regiao) => {
+  const cidadesDaRegiao = cidades.filter((cidade) => cidade.macroRegiao === regiao);
+  const estados = [...new Set(cidadesDaRegiao.map((cidade) => cidade.estado))]
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'))
+    .map((estado) => ({
+      estado,
+      uf: cidadesDaRegiao.find((cidade) => cidade.estado === estado)?.uf ?? '',
+      cidades: cidadesDaRegiao
+        .filter((cidade) => cidade.estado === estado)
+        .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')) as Cidade[]
+    }));
+  return { regiao, estados };
+});
 
 const jsonLd = [
   {
@@ -11,7 +26,7 @@ const jsonLd = [
     '@type': 'CollectionPage',
     name: 'Registro de marca por ramo e por cidade',
     description:
-      'Conteúdo de registro de marca no INPI organizado por segmento de atividade e pelas principais cidades da Paraíba.',
+      'Conteúdo de registro de marca no INPI organizado por segmento de atividade e pelos 5.570 municípios brasileiros.',
     url: new URL('/registro-de-marca/', siteConfig.url).toString(),
     hasPart: [
       ...segmentos.map((s) => ({
@@ -30,7 +45,7 @@ const jsonLd = [
 ---
 <BaseLayout
   title="Registro de marca por ramo e cidade | Registrium"
-  description="Registro de marca no INPI por segmento de atividade (restaurantes, clínicas, moda, tecnologia e mais) e nas principais cidades da Paraíba. Empresa paraibana."
+  description="Registro de marca no INPI por segmento de atividade e em todos os municípios brasileiros, organizados por região e estado."
   jsonLd={jsonLd}
 >
   <header class="blog-hero">
@@ -73,7 +88,7 @@ const jsonLd = [
   <section class="section section--soft" id="cidades">
     <div class="container">
       <div class="section-title reveal">
-        <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Na Paraíba</p>
+        <p class="eyebrow"><span class="brand-chip"><img src="/images/logo-mark.png" alt="" aria-hidden="true" /></span>Em todo o Brasil</p>
         <h2>Registro de marca na sua cidade</h2>
       </div>
       <div class="hub-grid reveal">
@@ -86,6 +101,29 @@ const jsonLd = [
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </a>
+        ))}
+      </div>
+      <div class="city-directory">
+        <div class="directory-heading">
+          <h3>Todos os municípios do Brasil</h3>
+          <p>Encontre as páginas por região e estado. O diretório contém {cidades.length.toLocaleString('pt-BR')} municípios.</p>
+        </div>
+        {diretorioCidades.map(({ regiao, estados }) => (
+          <section class="region-group" aria-labelledby={`regiao-${regiao.toLowerCase().replace('-', '')}`}>
+            <h3 id={`regiao-${regiao.toLowerCase().replace('-', '')}`}>Região {regiao === 'Centro-oeste' ? 'Centro-Oeste' : regiao}</h3>
+            <div class="state-list">
+              {estados.map(({ estado, uf, cidades: cidadesDoEstado }) => (
+                <details>
+                  <summary>{estado} ({uf.toUpperCase()}) <span>{cidadesDoEstado.length} municípios</span></summary>
+                  <ul class="municipality-links">
+                    {cidadesDoEstado.map((cidade) => (
+                      <li><a href={`/registro-de-marca/${cidade.slug}/${cidade.uf}/`}>{cidade.nome}</a></li>
+                    ))}
+                  </ul>
+                </details>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>
@@ -130,12 +168,27 @@ const jsonLd = [
 .hub-arrow { position: absolute; left: 1.625rem; bottom: 1.5rem; width: 2.125rem; height: 2.125rem; border-radius: 50%; background: var(--color-cream); display: flex; align-items: center; justify-content: center; color: var(--color-violet); transition: background .15s ease, transform .15s ease; }
 .hub-card:hover .hub-arrow { transform: translateX(3px); }
 
+.city-directory { margin-top: 3.5rem; }
+.directory-heading { margin-bottom: 2rem; }
+.directory-heading h3, .region-group h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--color-text); }
+.directory-heading h3 { font-size: 1.55rem; margin-bottom: .5rem; }
+.directory-heading p { color: var(--color-muted); }
+.region-group { margin-top: 2.25rem; }
+.region-group > h3 { font-size: 1.2rem; margin-bottom: .9rem; }
+.state-list { display: grid; gap: .75rem; }
+.state-list details { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+.state-list summary { cursor: pointer; padding: 1rem 1.15rem; color: var(--color-text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+.state-list summary span { color: var(--color-muted); font-family: inherit; font-size: .78rem; font-weight: 500; margin-left: .35rem; }
+.municipality-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .45rem 1.25rem; padding: 0 1.15rem 1.25rem; list-style: none; }
+.municipality-links a { color: var(--color-violet); font-size: .86rem; line-height: 1.4; text-decoration: none; }
+.municipality-links a:hover { text-decoration: underline; }
+
 .closing { padding-bottom: 2.5rem; }
 .cta-card.centered { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid rgba(255,255,255,.1); color: var(--color-white); padding: 3.75rem 3.5rem; text-align: center;
   background: radial-gradient(120% 130% at 85% 20%, rgba(120,70,200,.4), transparent 55%), linear-gradient(120deg, var(--color-navy-950), var(--color-indigo-900) 60%, var(--color-purple-900)); }
 .cta-card.centered h2 { color: var(--color-white); font-size: clamp(1.75rem, 3.6vw, 2.625rem); font-weight: 800; }
 .cta-card.centered p { color: var(--color-on-dark); font-size: 1rem; line-height: 1.6; max-width: 36rem; margin: 1.125rem auto 1.875rem; }
 
-@media (max-width: 1040px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .hub-grid { grid-template-columns: 1fr; } .blog-hero { padding: 3.25rem 0 2.5rem; } .cta-card.centered { padding: 2.25rem 1.375rem; } }
+@media (max-width: 1040px) { .hub-grid { grid-template-columns: 1fr 1fr; } .municipality-links { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .hub-grid { grid-template-columns: 1fr; } .municipality-links { grid-template-columns: 1fr 1fr; } .blog-hero { padding: 3.25rem 0 2.5rem; } .cta-card.centered { padding: 2.25rem 1.375rem; } }
 </style>
