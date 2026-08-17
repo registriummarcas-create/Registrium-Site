@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import InvestmentSimulator from '../../components/sections/InvestmentSimulator.astro';
 import { segmentos } from '../../data/segmentos';
 import { cidades, cidadesDestaque, type Cidade } from '../../data/cidades';
+import { atividades, type Atividade } from '../../data/atividades';
 import { siteConfig } from '../../config/site';
 
 const ordemRegioes = ['Norte', 'Nordeste', 'Centro-oeste', 'Sudeste', 'Sul'];
@@ -18,6 +19,22 @@ const diretorioCidades = ordemRegioes.map((regiao) => {
         .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')) as Cidade[]
     }));
   return { regiao, estados };
+});
+
+const secoesAtividades = [...new Set(atividades.map((a) => a.secaoId))].sort((a, b) => a.localeCompare(b));
+const diretorioAtividades = secoesAtividades.map((secaoId) => {
+  const atividadesDaSecao = atividades.filter((a) => a.secaoId === secaoId);
+  const secaoDescricao = atividadesDaSecao[0]?.secaoDescricao ?? secaoId;
+  const divisoes = [...new Set(atividadesDaSecao.map((a) => a.divisaoId))]
+    .sort((a, b) => a.localeCompare(b))
+    .map((divisaoId) => ({
+      divisaoId,
+      divisaoDescricao: atividadesDaSecao.find((a) => a.divisaoId === divisaoId)?.divisaoDescricao ?? divisaoId,
+      atividades: atividadesDaSecao
+        .filter((a) => a.divisaoId === divisaoId)
+        .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')) as Atividade[]
+    }));
+  return { secaoId, secaoDescricao, divisoes };
 });
 
 const jsonLd = [
@@ -80,6 +97,29 @@ const jsonLd = [
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </a>
+        ))}
+      </div>
+      <div class="city-directory">
+        <div class="directory-heading">
+          <h3>Todas as atividades econômicas (CNAE)</h3>
+          <p>Encontre a classe de Nice sugerida para a sua atividade, organizada por seção e divisão da CNAE. O diretório contém {atividades.length.toLocaleString('pt-BR')} atividades.</p>
+        </div>
+        {diretorioAtividades.map(({ secaoId, secaoDescricao, divisoes }) => (
+          <section class="region-group" aria-labelledby={`secao-${secaoId.toLowerCase()}`}>
+            <h3 id={`secao-${secaoId.toLowerCase()}`}>Seção {secaoId} — {secaoDescricao}</h3>
+            <div class="state-list">
+              {divisoes.map(({ divisaoId, divisaoDescricao, atividades: atividadesDaDivisao }) => (
+                <details>
+                  <summary>{divisaoDescricao} <span>{atividadesDaDivisao.length} atividades</span></summary>
+                  <ul class="municipality-links">
+                    {atividadesDaDivisao.map((a) => (
+                      <li><a href={`/registro-de-marca/atividade/${a.slug}/`}>{a.nome}</a></li>
+                    ))}
+                  </ul>
+                </details>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>

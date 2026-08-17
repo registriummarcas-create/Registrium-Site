@@ -1,0 +1,174 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { atividades, type Atividade } from '../../data/atividades';
+import { siteConfig } from '../../config/site';
+
+interface Props { atividade: Atividade }
+const { atividade } = Astro.props;
+
+const canonical = new URL(`/registro-de-marca/atividade/${atividade.slug}/`, siteConfig.url).toString();
+
+const todasOutras = atividades.filter((a) => a.divisaoId === atividade.divisaoId && a.slug !== atividade.slug);
+const outras = todasOutras.slice(0, 2);
+const atividadesRelacionadas = todasOutras.slice(0, 12);
+
+const related = [
+  ...outras.map((a) => ({
+    href: `/registro-de-marca/atividade/${a.slug}/`,
+    tag: `CNAE ${a.codigo}`,
+    title: `Registro de marca para ${a.nomeMinusculo}`,
+    description: a.heroDescription
+  })),
+  {
+    href: '/registro-de-marca/',
+    tag: 'Todos os ramos',
+    title: 'Ver segmentos e cidades',
+    description: 'Escolha o seu ramo, a sua atividade ou a sua cidade e veja como proteger a marca no INPI.'
+  }
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Registro de marca para ${atividade.nomeMinusculo}`,
+    serviceType: 'Registro de marca no INPI',
+    description: atividade.seoDescription,
+    areaServed: { '@type': 'Country', name: 'Brasil' },
+    provider: {
+      '@type': 'Organization',
+      name: 'Registrium',
+      url: siteConfig.url
+    },
+    url: canonical
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: atividade.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Registro de marca', item: new URL('/registro-de-marca/', siteConfig.url).toString() },
+      { '@type': 'ListItem', position: 3, name: `Para ${atividade.nomeMinusculo}`, item: canonical }
+    ]
+  }
+];
+---
+<ArticleLayout
+  title={atividade.seoTitle}
+  description={atividade.seoDescription}
+  pill={`CNAE ${atividade.codigo}`}
+  heroTitle={atividade.heroTitle}
+  heroDescription={atividade.heroDescription}
+  meta={atividade.meta}
+  backHref="/registro-de-marca/"
+  backLabel="Registro de marca por atividade"
+  toc={[
+    { href: '#sobre', label: 'Sobre esta atividade' },
+    { href: '#classe', label: 'Classe de Nice sugerida' },
+    { href: '#abrange', label: 'O que essa atividade abrange' },
+    { href: '#riscos', label: 'Riscos e cuidados' },
+    { href: '#faq', label: 'Perguntas frequentes' },
+    { href: '#outras-atividades', label: 'Outras atividades da mesma divisão' }
+  ]}
+  related={related}
+  jsonLd={jsonLd}
+>
+  <div class="art-block" id="sobre">
+    <h2>Registro de marca para {atividade.nomeMinusculo}</h2>
+    <p class="lede">{atividade.lede}</p>
+    {atividade.contexto.map((p) => <p>{p}</p>)}
+  </div>
+
+  <div class="art-block" id="classe">
+    <h2>Classe do INPI sugerida para esta atividade</h2>
+    <p>O registro de marca é feito por <strong>classe</strong> da Classificação Internacional de Nice, adotada pelo INPI — um sistema diferente do CNAE, com 45 classes ao todo (34 de produtos e 11 de serviços). Com base na atividade <strong>{atividade.nome}</strong> (CNAE {atividade.codigo}):</p>
+    <div class="step-mini">
+      <div class="sn">{atividade.classePrimaria.code}</div>
+      <div>
+        <h3>{atividade.classePrimaria.label}</h3>
+        <p>Classe sugerida como ponto de partida para {atividade.nomeMinusculo}.</p>
+      </div>
+    </div>
+    {atividade.classesSecundarias.map((classe) => (
+      <div class="step-mini">
+        <div class="sn">{classe.code}</div>
+        <div>
+          <h3>{classe.label}</h3>
+          <p>Considere também esta classe se o seu negócio também oferece produtos ou serviços dessa natureza.</p>
+        </div>
+      </div>
+    ))}
+    <p>Esta sugestão não é definitiva: na pesquisa de viabilidade, a Registrium confirma exatamente quais classes fazem sentido para o seu caso — protegendo o que importa sem pagar por classes que você não usa.</p>
+    <p><small style="color:var(--color-muted);">Fontes: <a href="https://www.gov.br/inpi/pt-br/servicos/marcas/classificacao-marcas" target="_blank" rel="noreferrer" style="color:var(--color-violet);">Classificação de Nice — gov.br/inpi</a> · <a href="https://concla.ibge.gov.br/classificacoes/por-tema/atividades-economicas.html" target="_blank" rel="noreferrer" style="color:var(--color-violet);">CNAE 2.3 — Concla/IBGE</a>.</small></p>
+  </div>
+
+  <div class="art-block" id="abrange">
+    <h2>O que a atividade "{atividade.nome}" abrange</h2>
+    {atividade.compreende.length > 0 && (
+      <>
+        <h3>Compreende</h3>
+        <ul class="plain">
+          {atividade.compreende.map((item) => <li>{item}</li>)}
+        </ul>
+      </>
+    )}
+    {atividade.naoCompreende.length > 0 && (
+      <>
+        <h3>Não compreende</h3>
+        <ul class="plain">
+          {atividade.naoCompreende.map((item) => <li>{item}</li>)}
+        </ul>
+      </>
+    )}
+    {atividade.sinonimos.length > 0 && (
+      <p><small style="color:var(--color-muted);">Também conhecida como: {atividade.sinonimos.join(' · ')}.</small></p>
+    )}
+  </div>
+
+  <div class="art-block" id="riscos">
+    <h2>Riscos e cuidados típicos</h2>
+    <ul class="plain">
+      {atividade.riscos.map((r) => <li>{r}</li>)}
+    </ul>
+  </div>
+
+  <div class="art-block" id="faq">
+    <h2>Perguntas frequentes</h2>
+    {atividade.faq.map((item) => (
+      <div class="step-mini">
+        <div class="sn">?</div>
+        <div>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="art-block" id="outras-atividades">
+    <h2>Outras atividades de {atividade.divisaoDescricao}</h2>
+    <p>Veja o conteúdo específico para outras atividades da mesma divisão da CNAE:</p>
+    <ul class="city-links plain">
+      {atividadesRelacionadas.map((a) => (
+        <li><a href={`/registro-de-marca/atividade/${a.slug}/`}>Registro de marca para {a.nomeMinusculo}</a> <span class="city-links-region">— CNAE {a.codigo}</span></li>
+      ))}
+    </ul>
+    <p>Veja também o <a href="/registro-de-marca/" style="color:var(--color-violet);font-weight:600;">guia completo por ramo de atividade</a> e a nossa <a href="/registro-de-marca/#cidades" style="color:var(--color-violet);font-weight:600;">cobertura em todo o Brasil</a>.</p>
+  </div>
+</ArticleLayout>
+<style>
+.city-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem 1.5rem; }
+.city-links a { color: var(--color-violet); font-weight: 600; text-decoration: none; }
+.city-links a:hover { text-decoration: underline; }
+.city-links-region { color: var(--color-muted); font-size: .84rem; }
+@media (max-width: 560px) { .city-links { grid-template-columns: 1fr; } }
+</style>

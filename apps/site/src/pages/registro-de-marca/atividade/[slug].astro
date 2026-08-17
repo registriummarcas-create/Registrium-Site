@@ -1,0 +1,16 @@
+---
+import { atividades, type Atividade } from '../../../data/atividades';
+import AtividadePage from '../../../components/pages/AtividadePage.astro';
+
+interface Props { atividade: Atividade }
+
+export function getStaticPaths() {
+  return atividades.map((atividade) => ({
+    params: { slug: atividade.slug },
+    props: { atividade }
+  }));
+}
+
+const { atividade } = Astro.props;
+---
+<AtividadePage atividade={atividade} />
