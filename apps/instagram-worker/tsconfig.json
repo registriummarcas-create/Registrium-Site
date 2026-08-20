@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "types": []
   },
-  "include": ["src", "tests"]
+  "include": ["worker-configuration.d.ts", "src", "tests"]
 }
