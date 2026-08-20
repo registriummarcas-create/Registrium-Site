@@ -1,30 +1,23 @@
 ---
-// Rota única para /registro-de-marca/[slug]/: atende tanto segmentos
-// (ex.: restaurantes) quanto cidades (ex.: guarabira). Precisa ser um único
-// arquivo porque o Astro não permite duas rotas dinâmicas de mesmo nível
-// ([segmento] e [cidade]) apontando para o mesmo padrão de caminho.
-import { segmentos, type Segmento } from '../../data/segmentos';
-import { cidadesDestaque, type Cidade } from '../../data/cidades';
+// Rota /registro-de-marca/[slug]/: só segmentos (ex.: restaurantes).
+// Cidades vivem exclusivamente em /registro-de-marca/[municipio]/[uf]/
+// (ver [municipio]/[uf].astro) — inclusive as cidadesDestaque, que já têm
+// conteúdo personalizado lá. Um slug de cidade aqui também nunca existiu
+// como link interno (o hub em index.astro só aponta para a versão longa),
+// então essa página curta era órfã e duplicada: mesmo conteúdo, canonical
+// apontando pra outra URL, e as duas listadas no sitemap ao mesmo tempo.
+// Removida para não sinalizar conteúdo duplicado pro Google (GSC:
+// "Rastreada, mas não indexada no momento").
+import { segmentos } from '../../data/segmentos';
 import SegmentoPage from '../../components/pages/SegmentoPage.astro';
-import CidadePage from '../../components/pages/CidadePage.astro';
-
-type Props =
-  | { kind: 'segmento'; segmento: Segmento; cidade?: never }
-  | { kind: 'cidade'; cidade: Cidade; segmento?: never };
 
 export function getStaticPaths() {
-  return [
-    ...segmentos.map((segmento) => ({
-      params: { slug: segmento.slug },
-      props: { kind: 'segmento' as const, segmento }
-    })),
-    ...cidadesDestaque.map((cidade) => ({
-      params: { slug: cidade.slug },
-      props: { kind: 'cidade' as const, cidade }
-    }))
-  ];
+  return segmentos.map((segmento) => ({
+    params: { slug: segmento.slug },
+    props: { segmento }
+  }));
 }
 
-const props = Astro.props as Props;
+const { segmento } = Astro.props;
 ---
-{props.kind === 'segmento' ? <SegmentoPage segmento={props.segmento} /> : <CidadePage cidade={props.cidade} />}
+<SegmentoPage segmento={segmento} />

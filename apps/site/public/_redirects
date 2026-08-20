@@ -1,2 +1,18 @@
 /blog/taxas-inpi-2025 /blog/taxas-inpi 301
 /registro-de-marca-em/*  /registro-de-marca/:splat  301
+
+# Ex-URLs curtas das cidades-destaque (removidas de [slug].astro por
+# duplicidade com a canônica /<slug>/<uf>/ — ver GSC "Rastreada, mas não
+# indexada no momento"). 301 preserva qualquer link/bookmark existente.
+/registro-de-marca/joao-pessoa/       /registro-de-marca/joao-pessoa/pb/       301
+/registro-de-marca/campina-grande/    /registro-de-marca/campina-grande/pb/    301
+/registro-de-marca/santa-rita/        /registro-de-marca/santa-rita/pb/        301
+/registro-de-marca/patos/             /registro-de-marca/patos/pb/             301
+/registro-de-marca/bayeux/            /registro-de-marca/bayeux/pb/            301
+/registro-de-marca/cabedelo/          /registro-de-marca/cabedelo/pb/          301
+/registro-de-marca/sousa/             /registro-de-marca/sousa/pb/             301
+/registro-de-marca/cajazeiras/        /registro-de-marca/cajazeiras/pb/        301
+/registro-de-marca/guarabira/         /registro-de-marca/guarabira/pb/         301
+/registro-de-marca/sape/              /registro-de-marca/sape/pb/              301
+/registro-de-marca/esperanca/         /registro-de-marca/esperanca/pb/         301
+/registro-de-marca/montadas/          /registro-de-marca/montadas/pb/          301
