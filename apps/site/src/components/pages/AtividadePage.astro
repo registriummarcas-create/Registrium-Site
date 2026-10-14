@@ -72,6 +72,7 @@ const jsonLd = [
   backHref="/registro-de-marca/"
   backLabel="Registro de marca por atividade"
   toc={[
+    { href: '#resposta', label: 'Resposta rápida' },
     { href: '#sobre', label: 'Sobre esta atividade' },
     { href: '#classe', label: 'Classe de Nice sugerida' },
     { href: '#abrange', label: 'O que essa atividade abrange' },
@@ -82,6 +83,11 @@ const jsonLd = [
   related={related}
   jsonLd={jsonLd}
 >
+  <div class="art-block" id="resposta">
+    <h2>Resposta rápida: qual classe registrar?</h2>
+    <p>Para o CNAE <strong>{atividade.codigo}</strong> ({atividade.nome}), a classe de Nice mais indicada como ponto de partida é a <strong>classe {atividade.classePrimaria.code}</strong> — {atividade.classePrimaria.label.toLocaleLowerCase('pt-BR')}.{atividade.classesSecundarias.length > 0 && ` Dependendo do seu negócio, vale avaliar também ${atividade.classesSecundarias.map((c) => `a classe ${c.code}`).join(' e ')}.`} O CNAE não protege o nome da empresa: só o registro no INPI garante exclusividade da marca em todo o Brasil.</p>
+  </div>
+
   <div class="art-block" id="sobre">
     <h2>Registro de marca para {atividade.nomeMinusculo}</h2>
     <p class="lede">{atividade.lede}</p>

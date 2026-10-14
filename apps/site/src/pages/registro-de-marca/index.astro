@@ -37,7 +37,35 @@ const diretorioAtividades = secoesAtividades.map((secaoId) => {
   return { secaoId, secaoDescricao, divisoes };
 });
 
+const faqHub = [
+  {
+    q: 'Qual a diferença entre CNAE e classe de Nice?',
+    a: 'O CNAE é o código da atividade da empresa na Receita Federal, usado para fins fiscais e de CNPJ. A classe de Nice é a classificação internacional que o INPI usa para dizer em quais produtos ou serviços a marca fica protegida. Os números não coincidem e uma atividade pode exigir mais de uma classe.'
+  },
+  {
+    q: 'O registro de marca vale só para a minha cidade?',
+    a: 'Não. O registro no INPI vale em todo o território nacional, independentemente da cidade onde a empresa fica. As páginas por cidade existem para mostrar o contexto econômico local e como funciona o atendimento online da Registrium.'
+  },
+  {
+    q: 'Ter o CNAE no CNPJ já protege o nome da minha empresa?',
+    a: 'Não. O CNPJ e o CNAE regularizam a empresa e a atividade, mas não dão exclusividade sobre o nome. Quem registra a marca no INPI primeiro tem prioridade para usá-la.'
+  },
+  {
+    q: 'Como saber qual classe registrar para o meu negócio?',
+    a: 'Encontre a sua atividade no diretório de CNAE desta página e veja a classe sugerida. Em seguida, a pesquisa de viabilidade confirma as classes certas para o que você oferece, antes de qualquer protocolo no INPI.'
+  }
+];
+
 const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqHub.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  },
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -75,11 +103,28 @@ const jsonLd = [
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
         Registro de marca
       </span>
-      <h1>Registro de marca para o seu negócio</h1>
+      <h1>Registro de marca no INPI por ramo de atividade e por cidade</h1>
       <p>Escolha o seu ramo de atividade ou a sua cidade e veja como proteger a marca no INPI, com o passo a passo, as classes que se aplicam e as dúvidas mais comuns do setor.</p>
       <p style="margin-top:.875rem;font-size:.9rem;">Segundo o Sebrae, a Paraíba tem <strong>410.511 pequenos negócios ativos</strong>, dos quais 58,4% são MEI — cada um deles precisa de uma marca protegida no INPI.</p>
     </div>
   </header>
+
+  <section class="section" id="duvidas-frequentes">
+    <div class="container">
+      <div class="art-block" style="margin-bottom:0;">
+        <h2>Antes de escolher: dúvidas frequentes</h2>
+        {faqHub.map((item) => (
+          <div class="step-mini">
+            <div class="sn">?</div>
+            <div>
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <section class="section" id="segmentos">
     <div class="container">

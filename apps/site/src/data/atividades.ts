@@ -49,8 +49,15 @@ function riscosComuns(nome: string): string[] {
   ];
 }
 
-function faqComum(nome: string, nomeMinusculo: string, codigo: string): AtividadeFaq[] {
+function faqComum(nome: string, nomeMinusculo: string, codigo: string, primaria: NiceClasse, secundarias: NiceClasse[]): AtividadeFaq[] {
+  const outras = secundarias.length
+    ? ` Dependendo do que você oferece, também podem fazer sentido: ${secundarias.map((c) => `classe ${c.code} (${c.label.toLocaleLowerCase('pt-BR')})`).join('; ')}.`
+    : '';
   return [
+    {
+      q: `Qual classe de marca registrar para o CNAE ${codigo} (${nomeMinusculo})?`,
+      a: `O ponto de partida é a classe ${primaria.code} da Classificação de Nice (${primaria.label.toLocaleLowerCase('pt-BR')}).${outras} A definição final sai da pesquisa de viabilidade, que considera o que você realmente vende.`
+    },
     {
       q: `O CNAE de "${nome}" já me dá direito sobre o nome da minha empresa?`,
       a: 'Não. O CNAE identifica a atividade econômica perante a Receita Federal; ele não protege o nome comercial. Só o registro de marca no INPI garante exclusividade sobre o nome em todo o território nacional.'
@@ -96,7 +103,7 @@ export function atividadeGenerica(subclasse: CnaeSubclasse): Atividade {
     classePrimaria: primaria,
     classesSecundarias: secundarias,
     riscos: riscosComuns(nomeMinusculo),
-    faq: faqComum(nome, nomeMinusculo, subclasse.codigo)
+    faq: faqComum(nome, nomeMinusculo, subclasse.codigo, primaria, secundarias)
   };
 }
 
