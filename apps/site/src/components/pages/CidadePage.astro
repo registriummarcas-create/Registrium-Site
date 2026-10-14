@@ -4,6 +4,7 @@ import MarksShowcase from '../sections/MarksShowcase.astro';
 import { cidades, type Cidade } from '../../data/cidades';
 import { getFontesEstaduais } from '../../data/fontes-estaduais';
 import { siteConfig } from '../../config/site';
+import municipiosNoindex from '../../data/municipios-noindex.json';
 
 interface Props { cidade: Cidade }
 const { cidade } = Astro.props;
@@ -19,6 +20,7 @@ const setorPredominante = Object.entries({
   Agropecuária: cidade.participacaoSetorial2021.agropecuaria
 }).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Perfil diversificado';
 
+const foraDoIndice = new Set<string>(municipiosNoindex).has(`${cidade.slug}/${cidade.uf}`);
 const canonical = new URL(`/registro-de-marca/${cidade.slug}/${cidade.uf}/`, siteConfig.url).toString();
 
 const todasOutras = cidades
@@ -97,6 +99,7 @@ const jsonLd = [
   ]}
   related={related}
   jsonLd={jsonLd}
+  noindexFollow={foraDoIndice}
 >
   <div class="art-block" id="sobre">
     <h2>Registro de marca em {cidade.nome}</h2>

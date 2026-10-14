@@ -11,6 +11,8 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  /** Fora do índice, mas deixando o Google seguir os links (poda de páginas fracas). */
+  noindexFollow?: boolean;
   jsonLd?: Record<string, unknown>[];
   image?: string;
 }
@@ -19,6 +21,7 @@ const {
   title = siteConfig.title,
   description = siteConfig.description,
   noindex = false,
+  noindexFollow = false,
   jsonLd = [],
   image = '/images/og-cover.png'
 } = Astro.props;
@@ -33,6 +36,7 @@ const ogImage = new URL(image, siteConfig.url);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#080a24" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {!noindex && noindexFollow && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/images/logo-mark.png" type="image/png" />

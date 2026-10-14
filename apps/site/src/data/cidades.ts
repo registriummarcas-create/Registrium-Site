@@ -396,8 +396,8 @@ function cidadeGenerica(municipio: MunicipioBrasil): Cidade {
       administracaoPublica: participacao(extra?.vabAdministracaoPublica2021)
     },
     regiao: `${municipio.macroRegiao} · ${municipio.estado}`,
-    seoTitle: `Registro de marca em ${municipio.nome} (${municipio.uf.toUpperCase()}) | Registrium`,
-    seoDescription: `Registro de marca no INPI para empresas de ${municipio.nome}, ${municipio.estado}. Atendimento online, pesquisa de viabilidade e acompanhamento pela Registrium.`,
+    seoTitle: `Registro de marca em ${municipio.nome} (${municipio.uf.toUpperCase()}): online, no INPI | Registrium`,
+    seoDescription: `Registre sua marca no INPI em ${municipio.nome} (${municipio.estado}) sem sair de casa: pesquisa de viabilidade, protocolo em até 48h e acompanhamento diário. Fale com a Registrium.`,
     heroTitle: `Registro de marca em ${municipio.nome}`,
     heroDescription: `Proteja a marca do seu negócio em ${municipio.nome} no INPI, com atendimento online, pesquisa de viabilidade e acompanhamento em todo o Brasil.`,
     meta: [`${municipio.nome} · ${municipio.uf.toUpperCase()}`, 'Atendimento online', 'Proteção nacional'],

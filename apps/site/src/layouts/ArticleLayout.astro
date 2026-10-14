@@ -26,11 +26,12 @@ interface Props {
   toc: TocItem[];
   related: RelatedPost[];
   jsonLd?: Record<string, unknown>[];
+  noindexFollow?: boolean;
 }
 
-const { title, description, pill, heroTitle, heroDescription, meta, backHref, backLabel, toc, related, jsonLd = [] } = Astro.props;
+const { title, description, pill, heroTitle, heroDescription, meta, backHref, backLabel, toc, related, jsonLd = [], noindexFollow = false } = Astro.props;
 ---
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} noindexFollow={noindexFollow}>
   <header class="blog-hero">
     <img class="blog-hero-watermark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
     <div class="container">
